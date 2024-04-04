@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\global\shop\saveShopRequest;
 use App\Models\Category;
 use App\Models\Shop;
 use App\Services\ShopService;
@@ -39,7 +40,7 @@ class ShopController extends Controller
         return view('shop.new', compact('categories'));
     }
 
-    function Store(Request $request)
+    function Store(saveShopRequest $request)
     {
         $data = $request->all();
         $data['categories_ids'] = implode(',', $request->categories_ids);

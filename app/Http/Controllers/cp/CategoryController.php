@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\cp\category\saveCategoryRequest;
 use App\Models\Category;
 use App\Models\CategoryTranslation;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class CategoryController extends Controller
 
     }
     
-    public function Store(Request $request){
+    public function Store(saveCategoryRequest $request){
 
 
         try {

@@ -20,7 +20,7 @@ class Category extends Model
     {
         $lang = $lang == false ? App::getLocale() : $lang;
         $translation = $this->translations->where('key', $field)->where('lang',$lang)->first();
-        return $translation->value;
+        return $translation->value ?? '';
     }
 
 }

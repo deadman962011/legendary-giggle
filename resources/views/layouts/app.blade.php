@@ -37,7 +37,7 @@
 {{-- Add common Javascript/Jquery code --}}
 
 @push('js')
-    @include('adminlte::plugins', ['type' => 'js'])
+    {{-- @include('adminlte::plugins', ['type' => 'js']) --}}
     <script>
         $(document).ready(function() {
 
@@ -91,7 +91,7 @@
 {{-- Add common CSS customizations --}}
 
 @push('css')
-    @include('adminlte::plugins', ['type' => 'css']) 
+    {{-- @include('adminlte::plugins', ['type' => 'css'])  --}}
     <style type="text/css">
         {{-- You can add AdminLTE customizations here --}}
         /*
@@ -104,3 +104,5 @@
         */
     </style>
 @endpush
+
+@section('plugins.toastr', true)

@@ -14,13 +14,15 @@ class ShopMagicLink extends Mailable
     use Queueable, SerializesModels;
 
     public $token;
+    public $action;
     /**
      * Create a new message instance.
      */
-    public function __construct($token)
+    public function __construct($token,$action)
     {
         //
         $this->token = $token;
+        $this->action=$action;
     }
 
     /**
@@ -41,7 +43,8 @@ class ShopMagicLink extends Mailable
         return new Content(
             view: 'emails.shop_magic_link',
             with:[
-                'token'=>$this->token
+                'token'=>$this->token,
+                'action'=>$this->action
             ]
         );
     }

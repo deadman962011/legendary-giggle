@@ -34,7 +34,8 @@ class ShopService
             'name'=>$data->shop_admin_name,
             'email'=>$data->shop_admin_email,
             'phone'=>$data->shop_admin_phone,
-            'password'=>$data->shop_admin_password,
+            'password'=>generate_random_token(12),
+            'auth_token'=>generate_random_token(12),
             'shop_id'=>$shop->id
         ]);
 

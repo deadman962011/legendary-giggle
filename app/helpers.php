@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use App\Models\Upload;
 
 if (!function_exists('get_setting')) {
     function get_setting($key, $default = null, $lang = false)
@@ -57,6 +57,25 @@ if (! function_exists('generate_random_token')) {
         return Str::random($length);
     }
 }
+
+
+if (! function_exists('getFileUrl')) {
+    /**
+     * Generate a random token.
+     *
+     * @param int $length
+     * @return string
+     */
+    function getFileUrl($id)
+    {
+        $item = Upload::findOrFail($id);
+        
+        return url($item->file_name);
+        
+
+    }
+}
+
 
 
 

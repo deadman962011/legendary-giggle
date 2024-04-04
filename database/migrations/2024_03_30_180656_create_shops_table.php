@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('address');
             $table->string('tax_register');
+            $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();

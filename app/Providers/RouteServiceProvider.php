@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\api\ApiCategoryController;
 use App\Http\Controllers\api\shop\ShopAuthController;
 use App\Http\Controllers\api\shop\ShopStaffController;
 use App\Http\Controllers\api\user\AuthController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\api\user\UserAuthController;
 use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
 use App\Http\Controllers\cp\CategoryController;
+use App\Http\Controllers\cp\OfferController;
 use App\Http\Controllers\cp\ShopController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -40,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api/v1')
                 ->group(function () {
+                    Route::prefix('category')->controller(ApiCategoryController::class)->group(base_path('routes/api/v1/CategoryRoutes.php'));
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
                     });
@@ -54,13 +57,13 @@ class RouteServiceProvider extends ServiceProvider
                 });
 
             Route::middleware('web')->group(base_path('routes/web.php'));
-
             Route::middleware('web')->group(base_path('routes/cp/AuthRoutes.php'));
 
             Route::middleware(['web', 'auth:web'])->group(function () {
                 Route::prefix('approval')->controller(ApprovalController::class)->group(base_path('routes/cp/ApprovalRoutes.php'));
-                Route::prefix('category')->controller(CategoryController::class)->group(base_path('routes/cp/CategoryRoutes.php'));
                 Route::prefix('shop')->controller(ShopController::class)->group(base_path('routes/cp/ShopRoutes.php'));
+                Route::prefix('category')->controller(CategoryController::class)->group(base_path('routes/cp/CategoryRoutes.php'));
+                Route::prefix('offer')->controller(OfferController::class)->group(base_path('routes/cp/OfferRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));
             });
         });
