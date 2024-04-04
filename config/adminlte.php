@@ -511,27 +511,27 @@ return [
             ]
         ],
         'Datatables' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => '/vendor/datatables/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' => '/vendor/datatables/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '/vendor/datatables/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
         'Select2' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -545,6 +545,23 @@ return [
                 ],
             ],
         ],
+        'tempusdominusBootstrap4'=>[
+            'active'=>false,
+            'files'=>[
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '/vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '/vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+                ],
+            ]
+
+        ],
+        
         // 'Chartjs' => [
         //     'active' => true,
         //     'files' => [
