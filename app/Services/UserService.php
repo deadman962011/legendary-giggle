@@ -14,7 +14,9 @@ class UserService
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'birth_date'=>$data['birth_date'],
+            'password' => Hash::make(generate_random_token(12)),
+            'auth_token'=>generate_random_token(6)
         ]);
     }
 

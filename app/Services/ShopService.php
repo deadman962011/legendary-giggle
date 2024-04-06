@@ -24,7 +24,7 @@ class ShopService
             'shop_logo'=>$data->shop_logo,
             'longitude'=>$data->longitude,
             'latitude'=>$data->latitude,
-            'address'=>$data->address,
+            'address'=>$data->shop_address,
             'tax_register'=>$data->tax_register,
         ]);
 

@@ -27,7 +27,8 @@ class saveShopRequest extends FormRequest
         return [
             //
             'shop_name'=>'required',
-            'shop_logo'=>'required|exists:uploads,id',
+            // 'shop_logo'=>'required|exists:uploads,id',
+            'shop_address'=>'required',
             'longitude'=>'required',
             'latitude'=>'required',
             'tax_register'=>'required',

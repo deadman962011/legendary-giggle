@@ -65,7 +65,7 @@ class ShopAuthController extends Controller
             return response()->json([
                 'success'=>false,
                 'message'=>'Somthing Went Wrong'
-            ])->setStatusCode(500);
+            ],500);
         }
 
     
@@ -74,26 +74,25 @@ class ShopAuthController extends Controller
 
     public function ValidateLink(validateLinkRequest $request) {
         
-
         try {
             if($request->action==='verifyShopLogin'){
-                $admin=ShopAdmin::where('token',$request->token)->firstOrFail();
-                $token=Auth::guard('admin')->loginUsingId($admin->id);
+                $admin=ShopAdmin::where('auth_token',$request->token)->firstOrFail();
+                $token=Auth::guard('shop')->login($admin);
                 $payload=[
                     "admin"=>$admin,
                     "token"=>$token
                 ];
-    
-    
             }
             elseif($request->action==='verifyShopRegister'){
-                ShopRegistrationRequest::where('token',$request->token)->firstOrFail();
-                $payload=[];
+                $regrequest = ShopRegistrationRequest::where('token',$request->token)->firstOrFail();
+                $payload=[
+                    'email'=>$regrequest->email
+                ];
             }
             else{
                 throw new \Exception("action not valid");
             }
- 
+
             return response()->json([
                 'success'=>true,
                 'payload'=>$payload,
@@ -101,9 +100,10 @@ class ShopAuthController extends Controller
             ]);
             
         } catch (\Throwable $th) {
+            dd($th);
             return response()->json([
                 'success'=>false,
-                'message'=>$th->message
+                'message'=>$th
             ]);   
         }
 

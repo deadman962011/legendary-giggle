@@ -5,12 +5,13 @@ namespace App\Http\Controllers\api\user;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\validateLinkRequest;
 use App\Http\Requests\global\user\saveUserRequest;
+use App\Mail\UserMagicLink;
 use App\Models\User;
 use App\Models\UserRegistrationRequest;
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\UserService; 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-
 class UserAuthController extends Controller
 {
     //
@@ -48,20 +49,65 @@ class UserAuthController extends Controller
         }
     }
 
+
+
+    public function Authenticate(Request $request) {
+        
+        try {
+
+            //check if the shop exists 
+            $admin=User::where('email',$request->email)->first();
+            
+            $token=generate_random_token(6);
+            if(!$admin){
+
+                //save store registartion request 
+                $saveMagicLink=new UserRegistrationRequest();
+                $saveMagicLink->email=$request->email;
+                $saveMagicLink->token=$token;
+                $saveMagicLink->save();   
+                $action='verifyUserRegister';
+            }
+            else{
+                //update auth token 
+                $admin->auth_token=$token;
+                $admin->save();
+                $action='verifyUserLogin';
+            }
+            
+            //send magic link    
+            Mail::to($request->email)->send(new UserMagicLink($token,$action));
+            
+            return response()->json([
+                'success'=>true,
+                'message'=>'magic link to user email sucessfully sent'
+            ]);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success'=>false,
+                'message'=>'Somthing Went Wrong'
+            ],500);
+        }
+    }
+
+
     function ValidateLink(validateLinkRequest $request)
     {
 
         try {
             if ($request->action === 'verifyUserLogin') {
-                $admin = User::where('token', $request->token)->firstOrFail();
-                $token = Auth::guard('admin')->loginUsingId($admin->id);
+                $user = User::where('auth_token', $request->token)->firstOrFail();
+                $token = Auth::guard('user')->login($user);
                 $payload = [
-                    "admin" => $admin,
+                    "user" => $user,
                     "token" => $token
                 ];
             } elseif ($request->action === 'verifyUserRegister') {
-                UserRegistrationRequest::where('token', $request->token)->firstOrFail();
-                $payload = [];
+                $regRequest = UserRegistrationRequest::where('token', $request->token)->firstOrFail();
+                $payload = [
+                    'email'=>$regRequest->email
+                ];
             } else {
                 throw new \Exception("action not valid");
             }
@@ -74,7 +120,7 @@ class UserAuthController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->message
+                'message' => $th->getMessage()
             ]);
         }
     }
@@ -95,7 +141,7 @@ class UserAuthController extends Controller
                 'token' => $token
             ],
             'message' => 'user registration request successfully saved'
-        ], 200);
+        ], 201);
     }
 
     function Logout()

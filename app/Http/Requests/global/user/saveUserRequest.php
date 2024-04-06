@@ -30,6 +30,7 @@ class saveUserRequest extends FormRequest
             //
             'name'=>'required',
             'email'=>'required|unique:users,email',
+            'birth_date'=>'required'
         ];
     }
 

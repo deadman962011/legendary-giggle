@@ -17,6 +17,7 @@ class ShopAdmin extends Authenticatable implements JWTSubject
         'email',
         'phone',
         'password',
+        'auth_token',
         'shop_id'
     ];
 
