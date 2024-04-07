@@ -515,7 +515,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
               // "</div>" +
               // "</div>" +
               '<div class="card card-file aiz-uploader-select" title="' +
-              data[i].filename  
+              data[i].file_name  
               + '" data-value="'+
               data[i].id+
               '">' +
@@ -525,11 +525,11 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
               '<div class="card-body">' +
               '<h6 class="d-flex">' +
               '<span class="text-truncate title">' +
-              data[i].filename +
+              data[i].file_name +
               "</span>" +
               "</h6>" +
               "<p>" +
-              AIZ.extra.bytesToSize(data[i].size) +
+              AIZ.extra.bytesToSize(data[i].file_size) +
               "</p>" +
               "</div>" +
               "</div>" +

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->seedAdmin();
         $this->seedShopRoles();    
-
+        $this->seedLanguage();
 
     }
 
@@ -76,6 +76,20 @@ class DatabaseSeeder extends Seeder
 
     }
 
-
-
+    public function seedLanguage(){
+        \App\Models\Language::insert([
+            [
+                'name'=>'العربية',
+                'key'=>'ar',
+                'dir'=>'rtl',
+                'status'=>true
+            ],
+            [
+                'name'=>'English',
+                'key'=>'en',
+                'dir'=>'ltr',
+                'status'=>true
+            ],
+        ]);
+    }
 }
