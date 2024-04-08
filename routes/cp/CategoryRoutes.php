@@ -12,6 +12,8 @@ Route::get('/{id}','Edit')->name('category.edit');
 
 Route::put('/{id}','Update')->name('category.update');
 
+Route::put('/{id}/status','UpdateStatus')->name('category.update_status');
+
 Route::delete('/{id}','Delete')->name('category.delete');
 
 ?>

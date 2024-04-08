@@ -480,12 +480,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
           for (var i = 0; i < data.length; i++) {
             var thumb = "";
             var hidden = "";
-            if (['.jpg','.jpeg','.png'].includes(data[i].extention)) {
+            if (['jpg','jpeg','png'].includes(data[i].extension)) {
               thumb =
-                '<img src="' +
-                AIZ.data.fileBaseUrl +
-                data[i].path +
-                '" class="img-fit">';
+                '<img src="' +AIZ.data.fileBaseUrl+data[i].file_name +'" class="img-fit">';
             } else {
               thumb = '<i class="la la-file-text"></i>';
             }
@@ -515,7 +512,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
               // "</div>" +
               // "</div>" +
               '<div class="card card-file aiz-uploader-select" title="' +
-              data[i].file_name  
+              data[i].file_original_name  
               + '" data-value="'+
               data[i].id+
               '">' +
@@ -525,7 +522,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
               '<div class="card-body">' +
               '<h6 class="d-flex">' +
               '<span class="text-truncate title">' +
-              data[i].file_name +
+              data[i].file_original_name +
               "</span>" +
               "</h6>" +
               "<p>" +
@@ -576,7 +573,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                   '<div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="' +
                   data[i].id +
                   '" title="' +
-                  data[i].filename+
+                  data[i].file_original_name+
                   '">' +
                   '<div class="align-items-center align-self-stretch d-flex justify-content-center thumb">' +
                   thumb +
@@ -584,13 +581,13 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                   '<div class="col body">' +
                   '<h6 class="d-flex">' +
                   '<span class="text-truncate title">' +
-                  data[i].filename +
+                  data[i].file_original_name +
                   "</span>" +
                   '<span class="flex-shrink-0 ext">.'+
                   "</span>" +
                   "</h6>" +
                   "<p>" +
-                  AIZ.extra.bytesToSize(data[i].size) +
+                  AIZ.extra.bytesToSize(data[i].file_size) +
                   "</p>" +
                   "</div>" +
                   '<div class="remove">' +
@@ -810,15 +807,16 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
               $this.next(".file-preview").html(null);
 
               if (data.length > 0) {
+                console.log(data[i])
                 $this
                   .find(".file-amount")
                   .html(AIZ.uploader.updateFileHtml(data));
                 for (var i = 0; i < data.length; i++) {
                   var thumb = "";
-                  var thumbExts=['.jpg','.jpeg','.png','gif']
-                  if (thumbExts.includes(data[i].UploadExtention)) {  
+                  var thumbExts=['jpg','jpeg','png','gif']
+                  if (thumbExts.includes(data[i].extension)) {  
                     thumb =
-                      '<img src="' + data[i].UploadPath + '" class="img-fit">';
+                      '<img src="' + data[i].file_name + '" class="img-fit">';
                   } else {
                     thumb = '<i class="la la-file-text"></i>';
                   }
@@ -826,9 +824,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     '<div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="' +
                     data[i].id +
                     '" title="' +
-                    data[i].UploadFileName +
+                    data[i].file_original_name +
                     "." +
-                    data[i].UploadExtention +
+                    data[i].extension +
                     '">' +
                     '<div class="align-items-center align-self-stretch d-flex justify-content-center thumb">' +
                     thumb +
@@ -836,14 +834,14 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     '<div class="col body">' +
                     '<h6 class="d-flex">' +
                     '<span class="text-truncate title">' +
-                    data[i].UploadFileName +
+                    data[i].file_original_name +
                     "</span>" +
                     '<span class="ext flex-shrink-0">.' +
-                    data[i].UploadExtention +
+                    data[i].extension +
                     "</span>" +
                     "</h6>" +
                     "<p>" +
-                    AIZ.extra.bytesToSize(data[i].UploadSize) +
+                    AIZ.extra.bytesToSize(data[i].file_size) +
                     "</p>" +
                     "</div>" +
                     '<div class="remove">' +

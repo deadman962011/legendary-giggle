@@ -11,6 +11,9 @@ class Category extends Model
 {
     use HasFactory;
 
+
+    protected $fillable=['status','isDeleted'];
+
     public function translations()
     {
         return $this->hasMany(CategoryTranslation::class);

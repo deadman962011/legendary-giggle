@@ -9,7 +9,50 @@
 {{-- Content body: main page content --}}
 
 @section('content_body')
-    <p>List of categories.</p>
+    <div class="card">
+        <div class="card-body">
+            <table id="example" class="table" style="width:100%">
+                <thead>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        name
+                    </th>
+                    <th>
+                        status
+                    </th>
+                    <th>
+                        action
+                    </th>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td>
+                                {{$category->id}}
+                            </td>
+                            <td>
+                                {{ $category->getTranslation('name') }}
+                            </td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" data-id='{{$category->id}}' oninput="update_status(this)" @checked($category->status)>
+                                    <span class="slider round"></span>
+                                  </label>
+                            </td>
+                            <td>
+                                <button data-delete-url='{{route('category.delete',['id'=>$category->id])}}'  class="btn btn-primary delete-button" ><i class="fas fa-trash"></i></button>
+                                {{-- <a href="{{route('approval.show',['id'=>$approval_request->id])}}" class="btn btn-primary">ap</a> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 @stop
 
 {{-- Push extra CSS --}}
@@ -22,5 +65,39 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script>
+        new DataTable('#example', {
+            info: false,
+            ordering: false,
+            paging: false
+        });
+
+        function update_status(e){
+            
+            var itemId= e.getAttribute('data-id')
+            var url = '{{ route("category.update_status",["id"=>"s"]) }}';
+            url=url.replace('s',itemId)
+            $.ajax({
+                method:"PUT",
+                url,
+                data:{
+                    _token:$('meta[name="c_token"]').attr("content")
+                }
+            }).then((resp)=>{
+                if(resp.success){
+                    toastr["success"](resp.message)
+                }
+                else{
+                    toastr["error"](resp.message)
+                }
+            })
+            
+
+        }
+
+
+    </script>
 @endpush
+
+
+@section('plugins.Datatables', true)

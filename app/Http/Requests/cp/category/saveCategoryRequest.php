@@ -28,7 +28,8 @@ class saveCategoryRequest extends FormRequest
     {
         return [
             //
-            'name'=>'required',
+            'name'=>'required|max:100',
+            'name.0' => 'required',
             'cover_image'=>'required|exists:uploads,id'
         ];
     }

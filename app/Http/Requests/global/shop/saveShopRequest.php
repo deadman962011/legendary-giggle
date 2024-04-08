@@ -31,10 +31,10 @@ class saveShopRequest extends FormRequest
             'shop_address'=>'required',
             'longitude'=>'required',
             'latitude'=>'required',
-            'tax_register'=>'required',
+            'tax_register'=>'required|unique:shops,tax_register',
             'shop_admin_name'=>'required',
             'shop_admin_email'=>'required|unique:shop_admins,email',
-            'shop_admin_phone'=>'required'
+            'shop_admin_phone'=>'required|unique:shop_admins,phone'
         ];
     }
 

@@ -10,10 +10,9 @@
 
 @section('content_body')
     <form class="custom-form" method="POST" action="{{ route('category.store') }}">
+        <div class="card">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-
                     <div class="card-header">
                         @if ($languages)
                             <nav>
@@ -34,7 +33,7 @@
                                         <div class="form-group">
                                             <input type="text" name="name[]" placeholder="category name {{$lang->name}}"
                                                 class="form-control">
-                                            <input type="hidden" name="lang[]" value="{{ $lang->code }}">
+                                            <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                     </div>
                                 @endforeach

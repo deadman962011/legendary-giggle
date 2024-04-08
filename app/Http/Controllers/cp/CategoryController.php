@@ -31,24 +31,28 @@ class CategoryController extends Controller
 
 
         try {
-
-            $maxOrderLevel = Category::max('order_level');
-
+            
+            $maxOrderLevel = Category::max('order_level') ?? 0;
             //save category item
             $saveCategory = new Category();
-            $saveCategory->name=$request->name;
+            $saveCategory->name=$request->name[0];
             $saveCategory->order_level=$maxOrderLevel+1;
             $saveCategory->cover_image=$request->cover_image;
             $saveCategory->banner=$request->banner;
             $saveCategory->save();
             
-            //save category translations
-            CategoryTranslation::create([
-                'key'=>'name',
-                'value'=>$request->name,
-                'lang' => 'en', //default language
-                'category_id' => $saveCategory->id
-            ]);
+            
+            for ($i=0; $i < count($request->name); $i++) { 
+                //save category translations
+                CategoryTranslation::create([
+                    'key'=>'name',
+                    'value'=>$request->name[$i],
+                    'lang' =>$request->lang[$i], 
+                    'category_id' => $saveCategory->id
+                ]);
+            }
+
+
 
             return response()->json([
                 'success'=>true,
@@ -81,7 +85,39 @@ class CategoryController extends Controller
 
     }
 
+
+    function UpdateStatus(Request $request)  {
+        
+        $updateCategory=Category::findOrFail($request->id);
+        $updateCategory->update([
+            'status'=>!$updateCategory->status
+        ]);
+        
+        return response()->json([
+            'success'=>true,
+            'message'=>__('category_status_successfully_updated')
+        ],200);
+        
+    }
+
+
+
     public function Delete(Request $request){
+
+        $deleteCategory=Category::findOrFail($request->id);
+
+        //update category
+        $deleteCategory->update([
+            'isDeleted'=>true
+        ]);
+
+        return response()->json([
+            'success'=>true,
+            'action'=>'redirect_to_url',
+            'action_val'=>route('category.list'),
+            'message'=>__('category_successfully_deleted')
+        ],200);
+
 
     }
 

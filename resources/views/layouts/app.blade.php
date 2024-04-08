@@ -30,7 +30,9 @@
 {{-- Rename section content to content_body --}}
 
 @section('content')
+        <link rel="stylesheet" href="/vendor/custom.css">
     @yield('content_body')
+    @include('modals.delete_modal')
 @stop
 
 
@@ -81,6 +83,46 @@
                 });
             });
 
+
+            $('.delete-button').on('click', function() {
+                console.log('delete button clicked')
+                deleteUrl = $(this).data('delete-url');
+                console.log(deleteUrl)
+                $('#deleteModalBtn').data('delete-url',deleteUrl)
+                $('#delete-modal').modal('show');
+            })
+
+
+            $('#deleteModalBtn').on('click',function(){
+
+                deleteUrl=$(this).data('delete-url');
+
+                $.ajax({
+                    method:'DELETE',
+                    url:deleteUrl,
+                    data:{
+                        _token:$('meta[name="c_token"]').attr("content")
+                    },
+                    success:function(response){
+                        if (response.success) {
+                            toastr["success"](response.message);
+
+                            if (response.action === 'redirect_to_url') {
+
+                                setTimeout(() => {
+                                    window.location.href = response.action_val
+                                }, 1500)
+
+                            }
+
+                        } else {
+                            toastr["error"](response.message);
+                        }
+                    }
+                })
+
+
+            })
 
 
             // Add your common script logic here...
