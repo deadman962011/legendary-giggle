@@ -75,8 +75,8 @@
         function update_status(e){
             
             var itemId= e.getAttribute('data-id')
-            var url = '{{ route("category.update_status",["id"=>"s"]) }}';
-            url=url.replace('s',itemId)
+            var url = '{{ route("category.update_status",["id"=>":id"]) }}';
+            url=url.replace(':id',itemId)
             $.ajax({
                 method:"PUT",
                 url,
