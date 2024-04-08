@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('shop_logo');
             $table->string('longitude');
             $table->string('latitude');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('tax_register');
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
