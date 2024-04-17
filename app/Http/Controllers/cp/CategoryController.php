@@ -35,18 +35,17 @@ class CategoryController extends Controller
             $maxOrderLevel = Category::max('order_level') ?? 0;
             //save category item
             $saveCategory = new Category();
-            $saveCategory->name=$request->name[0];
+            $saveCategory->name=$request->{'name_'.$request->lang[0]};
             $saveCategory->order_level=$maxOrderLevel+1;
             $saveCategory->cover_image=$request->cover_image;
             $saveCategory->banner=$request->banner;
             $saveCategory->save();
             
-            
-            for ($i=0; $i < count($request->name); $i++) { 
+            for ($i=0; $i < count($request->lang); $i++) { 
                 //save category translations
                 CategoryTranslation::create([
                     'key'=>'name',
-                    'value'=>$request->name[$i],
+                    'value'=>$request->{'name_'.$request->lang[$i]},
                     'lang' =>$request->lang[$i], 
                     'category_id' => $saveCategory->id
                 ]);
@@ -62,7 +61,6 @@ class CategoryController extends Controller
             ]);
             
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json([
                 'success'=>false,
                 'message'=>'Somthing Went Wrong'

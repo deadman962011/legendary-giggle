@@ -11,6 +11,15 @@ use Illuminate\Validation\Rule;
 
 class saveCategoryRequest extends FormRequest
 {
+
+    protected $fetchedLanguages;
+
+
+    public function __construct() {
+        parent::__construct();
+        $langs =\App\Models\Language::where('status',true)->where('isDeleted',false)->get();
+        $this->fetchedLanguages = $langs;   
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -26,13 +35,17 @@ class saveCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-            'name'=>'required|max:100',
-            'name.0' => 'required',
-            'cover_image'=>'required|exists:uploads,id'
+        $rules=[
+            'cover_image'=>'required|exists:uploads,id',
+            'lang.*' => 'required',
         ];
+
+        foreach ($this->fetchedLanguages as $key=>$lang) {
+            $rules["name_".$lang->key] = 'required';
+        }
+        return $rules;
     }
+
 
     public function failedValidation(Validator $validator)
     {
@@ -42,4 +55,19 @@ class saveCategoryRequest extends FormRequest
             'errors'      => $validator->errors()
         ],422));
     }
+
+    public function messages()
+    {
+        
+
+        $messages = [];
+
+        foreach ($this->fetchedLanguages as $lang) {
+            $messages["name_".$lang->key.".required"] = "category name in ".$lang->name." is required.";
+        }
+
+        return $messages;
+    }
+
+
 }

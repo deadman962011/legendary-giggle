@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Controllers\api\ApiCategoryController;
 use App\Http\Controllers\api\shop\ShopAuthController;
+use App\Http\Controllers\api\shop\ShopOfferController;
 use App\Http\Controllers\api\shop\ShopStaffController;
 use App\Http\Controllers\api\user\AuthController;
 use App\Http\Controllers\api\user\UserAuthController;
@@ -51,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                         Route::prefix('auth')->controller(ShopAuthController::class)->group(base_path('routes/api/v1/shop/ShopAuthRoutes.php'));
                         Route::middleware('auth:shop')->group(function () {
                             Route::prefix('staff')->controller(ShopStaffController::class)->group(base_path('routes/api/v1/shop/ShopStaffRoutes.php'));
-                            Route::prefix('offer')->controller(ShopStaffController::class)->group(base_path('routes/api/v1/shop/ShopOfferRoutes.php'));
+                            Route::prefix('offer')->controller(ShopOfferController::class)->group(base_path('routes/api/v1/shop/ShopOfferRoutes.php'));
                         });
                     });
                 });

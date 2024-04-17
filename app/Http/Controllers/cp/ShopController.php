@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\global\shop\saveShopRequest;
+use App\Http\Requests\cp\shop\saveShopRequest;
 use App\Models\Category;
 use App\Models\Shop;
 use App\Services\ShopService;
@@ -48,7 +48,7 @@ class ShopController extends Controller
         try {
             
             DB::beginTransaction();            
-            $this->shopService->createShop(json_decode(json_encode($data)));
+            $this->shopService->createShop(json_decode(json_encode($data)),'cp');
             DB::commit();
             return response()->json([
                 'success' => true,
@@ -58,7 +58,6 @@ class ShopController extends Controller
                 'message' => 'Shop successfully saved'
             ], 200);
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollBack();
             return response()->json([
                 'success' => false,

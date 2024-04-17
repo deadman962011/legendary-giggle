@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\App;
 class Offer extends Model
 {
     use HasFactory;
-
+    // id	name	premalink	start_date	end_date	cashback_amount	thumbnail	shop_id	featured	status	isDeleted
+    protected $fillable=['name','premalink','start_date','end_date','cashback_amount','thumbnail','shop_id','featured','status','isDeleted'];
 
     
     public function translations()

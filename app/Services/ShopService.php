@@ -15,17 +15,18 @@ use function PHPSTORM_META\map;
 
 class ShopService
 {
-    public function createShop($data)
+    public function createShop($data,$from)
     {
         
         //save shop
         $shop=Shop::create([
-            'shop_name'=>$data->shop_name,
+            'shop_name'=> $from==='approval' ? $data->shop_name :  $data->{'shop_name_'.$data->lang[0]},
             'shop_logo'=>$data->shop_logo,
             'longitude'=>$data->longitude,
             'latitude'=>$data->latitude,
             'address'=>$data->shop_address,
             'tax_register'=>$data->tax_register,
+            'status'=>$from ==='cp' ? false : true 
         ]);
 
 
@@ -61,14 +62,25 @@ class ShopService
             ShopCategory::create(['category_id'=>$cat_id,'shop_id'=>$shop->id]);
         }
 
-        //save shop translation
-        ShopTranslation::create([
-            'key'=>'name',
-            'lang'=>'en', //default language
-            'value'=>$data->shop_name,
-            'shop_id'=>$shop->id
-        ]);
-    
+        if($from==='approval'){
+            //save shop translation
+            ShopTranslation::create([
+                'key'=>'name',
+                'lang'=>'en', //default language
+                'value'=>$data->shop_name,
+                'shop_id'=>$shop->id
+            ]);
+        }
+        elseif($from==='cp'){
+            for ($i=0; $i < count($data->lang); $i++) { 
+                ShopTranslation::create([
+                    'key'=>'name',
+                    'lang'=>$data->lang[$i], //default language
+                    'value'=>$data->{"shop_name_".$data->lang[$i]},
+                    'shop_id'=>$shop->id
+                ]);
+            }
+        }
     }
 
     // public function createShopAdmin($data){

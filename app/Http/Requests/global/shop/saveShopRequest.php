@@ -31,9 +31,27 @@ class saveShopRequest extends FormRequest
             // 'shop_address'=>'required',
             'longitude'=>'required',
             'latitude'=>'required',
-            'tax_register'=>'required|unique:shops,tax_register',
+            'tax_register'=>[
+                'required',
+                'unique:shops,tax_register',
+                function ($attribute, $value, $fail) {
+                    $emailExistsInApprovalRequests = \App\Models\ApprovalRequest::where('status','pending')->whereRaw("JSON_EXTRACT(changes, '$.tax_register') = ?", [$value])->exists();
+                    if ($emailExistsInApprovalRequests) {
+                        $fail('tex register is already in pending approval requests.');
+                    }
+                }
+            ],
             'shop_admin_name'=>'required',
-            'shop_admin_email'=>'required|unique:shop_admins,email',
+            'shop_admin_email'=>[
+                'required',
+                'unique:shop_admins,email',
+                function ($attribute, $value, $fail) {
+                    $emailExistsInApprovalRequests = \App\Models\ApprovalRequest::where('status','pending')->whereRaw("JSON_EXTRACT(changes, '$.shop_admin_email') = ?", [$value])->exists();
+                    if ($emailExistsInApprovalRequests) {
+                        $fail('The email is already in pending approval requests.');
+                    }
+                },
+            ],
             'shop_admin_phone'=>'required|unique:shop_admins,phone'
         ];
     }

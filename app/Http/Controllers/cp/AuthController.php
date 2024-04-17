@@ -12,17 +12,25 @@ class AuthController extends Controller
     //
 
     public function Get(){
-        return view('auth.login');
+        return view('vendor.adminlte.auth.login');
     }
 
     public function Post(adminLoginRequest $request){
 
         $attempt=Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password]);
         if($attempt){
-            return redirect()->to('/');
+            return response()->json([
+                'success'=>true,
+                'message'=>'successfully logged-in',
+                'action'=>'redirect_to_url',
+                'action_val'=>route('home')
+            ]);
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(['Credentials does not match.']);
+        return response()->json([
+            'success'=>false,
+            'message'=>'Credentials does not match.'
+        ]);
 
     }
     

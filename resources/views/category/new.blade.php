@@ -24,6 +24,7 @@
                                 </div>
                             </nav>
                         @endif
+                        Category Informations
                     </div>
                     <div class="card-body">
                         @if ($languages)
@@ -31,8 +32,7 @@
                                 @foreach ($languages as $key=>$lang)
                                     <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
                                         <div class="form-group">
-                                            <input type="text" name="name[]" placeholder="category name {{$lang->name}}"
-                                                class="form-control">
+                                            <input type="text" name="name_{{$lang->key}}" placeholder="category name {{$lang->name}}" class="form-control">
                                             <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                     </div>

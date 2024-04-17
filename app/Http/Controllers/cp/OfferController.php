@@ -4,13 +4,22 @@ namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\OfferService;
 use App\Models\Offer;
 use App\Models\Shop;
-use App\Models\OfferTranslation;
-use App\Http\Requests\global\offer\saveOfferRequest;
-
+use App\Http\Requests\cp\offer\saveOfferRequest;
+use Illuminate\Support\Facades\DB;
 class OfferController extends Controller
 {
+
+    
+    protected $offerService;
+
+    public function __construct(OfferService $offerService)
+    {
+        $this->offerService = $offerService;
+    }
+
     //
     public function List(){
 
@@ -30,26 +39,13 @@ class OfferController extends Controller
     
     public function Store(saveOfferRequest $request){
 
-
+        
+        $data = $request->all();
         try {
-            //save category item
-            $saveOffer = new Offer();
-            $saveOffer->name=$request->name;
-            $saveOffer->premalink=$request->premalink;
-            $saveOffer->start_date=$request->start_date;
-            $saveOffer->end_date=$request->end_date;
-            $saveOffer->cashback_amount=$request->cashback_amount;
-            $saveOffer->thumbnail=$request->offer_thumbnail;
-            $saveOffer->shop_id=$request->shop_id;
-            $saveOffer->save();
-            
-            //save category translations
-            OfferTranslation::create([
-                'key'=>'name',
-                'value'=>$request->name,
-                'lang' => 'en', //default language
-                'offer_id' => $saveOffer->id
-            ]);
+
+            DB::beginTransaction();            
+            $this->offerService->createOffer(json_decode(json_encode($data)),'cp');
+            DB::commit();
 
             return response()->json([
                 'success'=>true,
@@ -59,19 +55,12 @@ class OfferController extends Controller
             ]);
             
         } catch (\Throwable $th) {
-            dd($th);
+            DB::rollBack();
             return response()->json([
                 'success'=>false,
                 'message'=>'Somthing Went Wrong'
             ]);
-            //throw $th;
         }
-
-
-
-
-
-
     }
 
     public function Edit(){

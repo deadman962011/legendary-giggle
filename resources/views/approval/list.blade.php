@@ -35,7 +35,7 @@
                                         2
                                     </td>
                                     <td>
-                                        Shop
+                                        {{$approval_request->model}}
                                     </td>
                                     <td>
                                         <span class="badge badge-warning">pending</span>

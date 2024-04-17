@@ -15,12 +15,40 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
+
+                        @if ($languages)
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    @foreach ($languages as $key => $lang)
+                                        <button class="nav-link {{$key==0 ? 'active':''}} " id="nav-{{ $lang->id }}-tab" data-toggle="tab" data-target="#nav-{{ $lang->id }}" type="button" role="tab" aria-controls="nav-{{ $lang->id }}"aria-selected="true">{{ $lang->name }}</button>
+                                    @endforeach
+
+                                </div>
+                            </nav>
+                        @endif
+
                         Shop Informations
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
+
+                        @if ($languages)
+                            <div class="tab-content" id="nav-tabContent">
+                                @foreach ($languages as $key=>$lang)
+                                    <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
+                                        <div class="form-group">
+                                            <input type="text" name="shop_name_{{$lang->key}}" placeholder="shop name {{$lang->name}}" class="form-control" required>
+                                            <input type="hidden" name="lang[]" value="{{ $lang->key }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+
+
+                        {{-- <div class="form-group">
                             <input type="text" class="form-control" name="shop_name" placeholder="Enter Shop Name">
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <div class="input-group" data-toggle='aizuploader' data-type='all'
                                 data-target='mn_program_thumbnail' data-itemid=''>
@@ -38,7 +66,7 @@
                         </div>
                         <div class="form-group">
 
-                            <select class="js-example-basic-multiple w-100" name="categories_ids[]" multiple="multiple">
+                            <select class="js-example-basic-multiple w-100" name="categories_ids[]" multiple="multiple" placeholder='Select Shop Category'>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                 @endforeach
@@ -46,7 +74,8 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="tax_register"
-                                placeholder="Enter Shop Tex Register">
+                                placeholder="Enter Shop Tex Register" required>
+                            {{-- <input type="hidden" name="shop_address" value="=="> --}}
                         </div>
                     </div>
                 </div>
@@ -59,19 +88,19 @@
                     <div class="card-body">
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_name"
-                                placeholder="Enter Admin Name">
+                                placeholder="Enter Admin Name" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_phone"
-                                placeholder="Enter Shop Admin Phone">
+                                placeholder="Enter Shop Admin Phone" required>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" name="shop_admin_email"
-                                placeholder="Enter Shop Admin Email">
+                                placeholder="Enter Shop Admin Email" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_password"
-                                placeholder="Enter Shop Admin Password">
+                                placeholder="Enter Shop Admin Password" required>
                         </div>
                     </div>
                 </div>
@@ -124,8 +153,8 @@
                                                     alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
                                             </span>
                                         </label>
-                                        <input type="text" name="address" class="form-control h--45px"
-                                            placeholder="Ex: ryiadh" value="{{ old('address') }}" required>
+                                        <input type="text" name="shop_address" class="form-control h--45px"
+                                            placeholder="Shop address Ex: ryiadh" value="{{ old('address') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
@@ -172,7 +201,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places&v=3.45.8"></script>
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').select2({
+                placeholder:"Select Shop Category",
+                allowClear: true
+            });
 
 
             let myLatlng = {
