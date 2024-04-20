@@ -21,12 +21,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-end align-items-center">
-                        <form class="custom-form" action="{{ route('approval.approve') }}" method="POST">
+                        <form id='approveForm'>
                             <input type="hidden" name="id" value="{{ $approval_request->id }}">
+                            <button class="btn btn-primary mx-2 actionBtn" data-action='approve'>{{ trans('custom.approve') }}</button>
                             {{ csrf_field() }}
-                            <button class="btn btn-primary mx-2">Approve</button>
                         </form>
-                        <button class="btn btn-danger">Reject</button>
+                        <button class="btn btn-danger actionBtn" data-action='reject'>{{ trans('custom.reject') }}</button>
                     </div>
 
                 </div>
@@ -50,12 +50,76 @@
 {{-- Push extra CSS --}}
 
 @push('css')
-    {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
+    {{-- Add here extra stylesheets --}}
 @endpush
 
 {{-- Push extra scripts --}}
 
 @push('js')
-    <script></script>
+    <script>
+        $(document).on('click', '.actionBtn', function() {
+
+            event.preventDefault();
+            var action=$(this).data('action');
+            Swal.fire({
+                title: 'Do you want to save the changes?',
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: 'No',
+                customClass: {
+                    actions: 'my-actions',
+                    cancelButton: 'order-1 right-gap',
+                    confirmButton: 'order-2',
+                    denyButton: 'order-3',
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var data = {
+                        id: $('input[name=id]').val(),
+                        action,
+                        _token:$('meta[name="c_token"]').attr("content")
+                    };
+                    $.ajax({
+                        url: "{{ route('approval.handle') }}",
+                        data,
+                        method: 'POST',
+                        success: function(response) {
+                            // Handle the response here
+                            if (response.success) {
+                                toastr["success"](response.message);
+
+                                setTimeout(() => {
+                                    window.location.href = response.action_val
+                                }, 1500)
+                            } else {
+                                toastr["error"](response.message);
+                            }
+                        },
+                        error: function(response) {
+                            if (response.status == 422) {
+                                $.each(response.responseJSON.errors, function(key,
+                                errorsArray) {
+                                    $.each(errorsArray, function(item, error) {
+                                        toastr["error"](error);
+                                    });
+                                });
+                            } else {
+                                toastr["error"]('somthing went wrong');
+                            }
+                        },
+                    })
+
+                    // Swal.fire('Saved!', '', 'success')
+                } else if (result.isDenied) {
+                    // Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+        })
+    </script>
 @endpush
+
+
+@section('plugins.Sweetalert2', true)

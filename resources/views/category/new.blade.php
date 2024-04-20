@@ -24,7 +24,7 @@
                                 </div>
                             </nav>
                         @endif
-                        Category Informations
+                        {{trans('custom.category_informations')}}
                     </div>
                     <div class="card-body">
                         @if ($languages)
@@ -32,7 +32,7 @@
                                 @foreach ($languages as $key=>$lang)
                                     <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
                                         <div class="form-group">
-                                            <input type="text" name="name_{{$lang->key}}" placeholder="category name {{$lang->name}}" class="form-control">
+                                            <input type="text" name="name_{{$lang->key}}" placeholder="{{trans('custom.category_name_in_'.$lang->key.'')}}" class="form-control">
                                             <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                     </div>
@@ -44,11 +44,11 @@
                                 data-target='mn_program_thumbnail' data-itemid=''>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
-                                        Browse
+                                        {{trans('custom.browse')}}
                                     </div>
                                 </div>
                                 <div class="form-control file-amount">
-                                    Choose File
+                                    {{trans('custom.choose_file')}}
                                 </div>
                                 <input class="selected-files" type='hidden' name='cover_image'>
                             </div>
@@ -61,7 +61,7 @@
         <div class="row">
             <div class="col-sm-12">
                 {{ csrf_field() }}
-                <input type="submit" value="Save" class="btn btn-primary">
+                <input type="submit" value="{{trans('custom.save')}}" class="btn btn-primary">
             </div>
         </div>
     </form>

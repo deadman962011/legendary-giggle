@@ -37,7 +37,12 @@ class ApprovalService
         ]);
     }
 
-    function reject($model, $data)
+    function reject($data)
     {
+
+        ApprovalRequest::where('id',$data->id)->update([
+            'status'=>'rejected'
+        ]);
+
     }
 }

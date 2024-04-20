@@ -316,57 +316,57 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Approval Requests',
+            'text' => 'approval_requests',
             'icon' => 'far fa-fw fa-file',
             'submenu' => [
                 [
-                    'text' => 'Shops',
+                    'text' => 'shops',
                     'url' => '/approval?model=shop&status=pending&action=create',
                 ],
                 [
-                    'text' => 'Offers',
+                    'text' => 'offers',
                     'url' => '/approval?model=offer&status=pending&action=create',
                 ],
             ],
         ],
         [
-            'text' => 'Categories',
+            'text' => 'categories',
             'icon' => 'far fa-fw fa-file',
             'submenu' => [
                 [
-                    'text' => 'List Categories',
+                    'text' => 'categories_list',
                     'url' => '/category/list',
                 ],
                 [
-                    'text' => 'Add New Category',
+                    'text' => 'add_new_category',
                     'url' => '/category/new',
                 ],
             ],
         ],
         [
-            'text' => 'Shops',
+            'text' => 'shops',
             'icon' => 'far fa-fw fa-file',
             'submenu' => [
                 [
-                    'text' => 'List Shops',
+                    'text' => 'shops_list',
                     'url' => '/shop/list',
                 ],
                 [
-                    'text' => 'Add New Shop',
+                    'text' => 'add_new_shop',
                     'url' => '/shop/new',
                 ],
             ],
         ],
         [
-            'text' => 'Offers',
+            'text' => 'offers',
             'icon' => 'far fa-fw fa-file',
             'submenu' => [
                 [
-                    'text' => 'List Offers',
+                    'text' => 'offers_list',
                     'url' => '/offer/list',
                 ],
                 [
-                    'text' => 'Add New Offer',
+                    'text' => 'add_new_offer',
                     'url' => '/offer/new',
                 ],
             ],
@@ -377,11 +377,11 @@ return [
             'icon' => 'far fa-fw fa-file',
             'submenu' => [
                 [
-                    'text' => 'List Zones',
+                    'text' => 'zones_list',
                     'url' => '#',
                 ],
                 [
-                    'text' => 'Add New Zone',
+                    'text' => 'add_new_zone',
                     'url' => '#',
                 ],
             ],
@@ -561,6 +561,21 @@ return [
             ]
 
         ],
+        'Sweetalert2' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '/vendor/sweetalert2/sweetalert2.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '/vendor/sweetalert2/sweetalert2.min.js',
+                ],
+            ],
+        ],
         
         // 'Chartjs' => [
         //     'active' => true,
@@ -569,16 +584,6 @@ return [
         //             'type' => 'js',
         //             'asset' => false,
         //             'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
-        //         ],
-        //     ],
-        // ],
-        // 'Sweetalert2' => [
-        //     'active' => true,
-        //     'files' => [
-        //         [
-        //             'type' => 'js',
-        //             'asset' => false,
-        //             'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
         //         ],
         //     ],
         // ],

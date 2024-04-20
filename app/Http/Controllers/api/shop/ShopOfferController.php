@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\shop;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\offer\saveOfferRequest;
 use App\Http\Resources\OfferResource;
+use App\Models\ApprovalRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Services\ApprovalService;
@@ -25,13 +26,35 @@ class ShopOfferController extends Controller
 
     function List(Request $request)
     {
-        $user=Auth::guard('shop')->user();
+        $shop_admin=Auth::guard('shop')->user();
 
-        $offers = Offer::where('shop_id', $user->shop_id)->where('isDeleted', false)->get();
+        $offers = Offer::where('shop_id', $shop_admin->shop_id)->where('isDeleted', false)->orderBy('created_at','desc')->get();
         
+
+        //get pending offers 
+        $pending_offers= ApprovalRequest::where('action','create')->where('status','pending')->where('model','offer')->where('changes->shop_id',$shop_admin->shop_id)->get();
+        $pending_offers=$pending_offers->map(function ($approval_request){
+            
+            $payload = json_decode($approval_request->changes);
+            return (object) [
+                'id'=>$approval_request->id,
+                'state'=>'pending',
+                'sales'=>0,
+                'commission'=>0,
+                'thumbnail' =>'1',
+                'name'=>$payload->name,
+                'start_date'=>$payload->start_date,
+                'end_date'=>$payload->end_date
+            ];
+        });
+
+        $collected_pending_offers=collect($pending_offers);
+        
+        $combined_collection =$collected_pending_offers->concat($offers);
+              
         return response()->json([
             'success' => true,
-            'payload' =>OfferResource::collection($offers),
+            'payload' =>OfferResource::collection($combined_collection),
             'message' => 'Offers Successfully Loaded'
         ], 200);
     }

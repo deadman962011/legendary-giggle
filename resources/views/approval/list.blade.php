@@ -13,19 +13,19 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
+                    <table  id="example" class="table" style="width:100%">
                         <thead>
                             <th>
-                                id
+                                #
                             </th>
                             <th>
-                                model
+                                {{trans('custom.model')}}
                             </th>
                             <th>
-                                status
+                                {{trans('status')}}
                             </th>
                             <th>
-                                action
+                                {{trans('action')}}
                             </th>
                         </thead>
                         <tbody>
@@ -38,10 +38,25 @@
                                         {{$approval_request->model}}
                                     </td>
                                     <td>
-                                        <span class="badge badge-warning">pending</span>
+                                        @php
+                                            if($approval_request->status==='pending'){
+                                                $bg='badge-warning';
+                                            }
+                                            elseif($approval_request->status==='rejected')
+                                            {
+                                                $bg='badge-danger';
+                                            }
+                                            elseif ($approval_request->status==='approved') {
+                                                $bg='badge-sucess';
+                                            }
+                                            else{
+                                                $bg='badge-primary';
+                                            }
+                                        @endphp
+                                        <span class="badge {{$bg}} ">{{trans('custom.'.$approval_request->status)}}</span>
                                     </td>
                                     <td>
-                                        <a href="{{route('approval.show',['id'=>$approval_request->id])}}" class="btn btn-primary">ap</a>
+                                        <a href="{{route('approval.show',['id'=>$approval_request->id])}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,7 +83,11 @@
 
 @push('js')
     <script>
-        console.log("Hi, I'm using the Laravel-AdminLTE package!");
+        new DataTable('#example', {
+            info: false,
+            ordering: false,
+            paging: false
+        });
     </script>
 @endpush
 

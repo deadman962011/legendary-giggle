@@ -39,17 +39,24 @@ class ApprovalController extends Controller
 
     }
 
-    function Approve(Request $request) {
-    
+
+    function Handle(Request $request) {
         try {
             DB::beginTransaction();
             $approval_request=ApprovalRequest::where('id',$request->id)->firstOrFail();
-    
-            $this->approvalService->approve($approval_request);
+            if($request->action==='approve'){
+                $this->approvalService->approve($approval_request);
+            }
+            else if($request->action==='reject'){
+                $this->approvalService->reject($approval_request);
+            }
+            else{
+                throw 'action is not valid ';
+            }
             DB::commit();
             return response()->json([
                 'success'=>true,
-                'message'=>'Approval request sucessfully Approved',
+                'message'=>'Approval request sucessfully '+$request->action,
                 'action'=>'redirect_to_url',
                 'action_val'=> route('approval.list',['status'=>'pending','model'=>$approval_request->model,'action'=>$approval_request->action])
             ]);
@@ -61,7 +68,40 @@ class ApprovalController extends Controller
                 'message'=>'Somthing went wrong',
             ]);
         }
+        
+
+
     }
+
+    // function Approve(Request $request) {
+    
+    // }
+
+    // function Reject(Request $request)  {
+        
+    
+    //     try {
+    //         DB::beginTransaction();
+    //         $approval_request=ApprovalRequest::where('id',$request->id)->firstOrFail();
+    
+    //         $this->approvalService->reject($approval_request);
+    //         DB::commit();
+    //         return response()->json([
+    //             'success'=>true,
+    //             'message'=>'Approval request sucessfully Rejected',
+    //             'action'=>'redirect_to_url',
+    //             'action_val'=> route('approval.list',['status'=>'pending','model'=>$approval_request->model,'action'=>$approval_request->action])
+    //         ]);
+    //     } catch (\Throwable $th) {
+    //         DB::rollBack();
+    //         dd($th);
+    //         return response()->json([
+    //             'success'=>false,
+    //             'message'=>'Somthing went wrong',
+    //         ]);
+    //     }
+
+    // }
 
 
 

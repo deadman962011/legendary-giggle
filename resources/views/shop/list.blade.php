@@ -41,7 +41,7 @@
                                         <span class="badge badge-warning">pending</span>
                                     </td>
                                     <td>
-                                        <a href="{{route('approval.show',['id'=>$shop->id])}}" class="btn btn-primary">ap</a>
+                                        <a href="{{route('approval.show',['id'=>$shop->id])}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

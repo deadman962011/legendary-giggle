@@ -14,14 +14,21 @@ class OfferResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        if($this instanceof \App\Models\Offer){
+            $name=$this->getTranslation('name');
+        }
+        else{
+            $name=$this->name;
+        }
+
         return [
             'id' => $this->id,
-            'name' => $this->getTranslation('name'),
+            'name' => $name,
             'start_date'=>date("m/d/Y",$this->start_date),
             'end_date'=>date("m/d/Y",$this->end_date) ,
-            'state'=>'active',
-            'sales'=>0,
-            'commission'=>0,
+            'state'=>$this->state,
+            'sales'=>$this->sales,
+            'commission'=>$this->commission,
             'thumbnail' => getFileUrl($this->thumbnail),
         ];
         // return parent::toArray($request);
