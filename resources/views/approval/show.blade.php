@@ -64,10 +64,10 @@
             event.preventDefault();
             var action=$(this).data('action');
             Swal.fire({
-                title: 'Do you want to save the changes?',
+                title: action ==='approve' ? '{{trans("custom.sw_title_approve_ap_request")}}' : '{{trans("custom.sw_title_reject_ap_request")}}',
                 showDenyButton: true,
-                confirmButtonText: 'Yes',
-                denyButtonText: 'No',
+                confirmButtonText: '{{trans("custom.yes")}}',
+                denyButtonText: '{{trans("custom.no")}}',
                 customClass: {
                     actions: 'my-actions',
                     cancelButton: 'order-1 right-gap',

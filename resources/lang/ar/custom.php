@@ -51,7 +51,14 @@
         'model'=>"النوع",
 
         'approved'=>'موافقة',
-        'reject'=>'رفض'
+        'reject'=>'رفض',
+
+        
+        'sw_title_approve_ap_request'=>'هل انت متأكد من قبول هذا العنصر',
+        'sw_title_reject_ap_request'=>'عل انت متأكد من رفض هذا العنصر',
+
+        'yes'=>'نعم',
+        'no'=>'لا'
 
     
     

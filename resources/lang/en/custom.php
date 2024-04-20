@@ -51,9 +51,16 @@
 
         'pending'=>'Pending',
         'approved'=>'Approved',
-        'reject'=>'Rejected'
+        'reject'=>'Rejected',
+
+
+        'sw_title_approve_ap_request'=>'Are you sure you want to approve this item',
+        'sw_title_reject_ap_request'=>'Are you sure you want to reject this item',
         // ''
 
+        
+        'yes'=>'Yest',
+        'no'=>'No'
   
     ];
 
