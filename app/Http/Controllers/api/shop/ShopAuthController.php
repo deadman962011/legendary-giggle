@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\shop\AuthenticateShopRequest;
 use App\Http\Requests\api\validateLinkRequest;
 use App\Http\Requests\global\shop\saveShopRequest;
 use App\Mail\ShopMagicLink;
-use App\Mail\UserMagicLink;
 use App\Models\ShopAdmin;
 use App\Models\ShopRegistrationRequest;
 use App\Services\ApprovalService;
@@ -29,20 +29,16 @@ class ShopAuthController extends Controller
     {
     }
 
-    function Authenticate(Request $request)
+    function Authenticate(AuthenticateShopRequest $request)
     {
 
         try {
 
             //check if the shop exists 
             $admin = ShopAdmin::where('email', $request->email)->first();
-
             $token = generate_random_token(6);
             if (!$admin) {
-
-                //check email has no pending approval request 
-
-
+    
                 //save store registartion request 
                 $saveMagicLink = new ShopRegistrationRequest();
                 $saveMagicLink->email = $request->email;

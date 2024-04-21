@@ -11,14 +11,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Passport;
 
+use Illuminate\Support\Facades\DB;
 use function PHPSTORM_META\map;
 
 class ShopService
 {
     public function createShop($data,$from)
     {
-        
-        //save shop
+        DB::beginTransaction();
+        try {
+                    //save shop
         $shop=Shop::create([
             'shop_name'=> $from==='approval' ? $data->shop_name :  $data->{'shop_name_'.$data->lang[0]},
             'shop_logo'=>$data->shop_logo,
@@ -81,6 +83,12 @@ class ShopService
                 ]);
             }
         }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            //throw $th;
+        }
+
     }
 
     // public function createShopAdmin($data){

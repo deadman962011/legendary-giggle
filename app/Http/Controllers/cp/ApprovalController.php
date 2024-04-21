@@ -41,8 +41,8 @@ class ApprovalController extends Controller
 
 
     function Handle(Request $request) {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             $approval_request=ApprovalRequest::where('id',$request->id)->firstOrFail();
             if($request->action==='approve'){
                 $this->approvalService->approve($approval_request);
@@ -56,13 +56,12 @@ class ApprovalController extends Controller
             DB::commit();
             return response()->json([
                 'success'=>true,
-                'message'=>'Approval request sucessfully '+$request->action,
+                'message'=>'Approval request sucessfully '.$request->action,
                 'action'=>'redirect_to_url',
                 'action_val'=> route('approval.list',['status'=>'pending','model'=>$approval_request->model,'action'=>$approval_request->action])
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
             return response()->json([
                 'success'=>false,
                 'message'=>'Somthing went wrong',

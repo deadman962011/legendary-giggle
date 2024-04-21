@@ -45,14 +45,17 @@ class saveShopRequest extends FormRequest
             'shop_admin_email'=>[
                 'required',
                 'unique:shop_admins,email',
+            ],
+            'shop_admin_phone'=>[
+                'required',
+                'unique:shop_admins,phone',
                 function ($attribute, $value, $fail) {
-                    $emailExistsInApprovalRequests = \App\Models\ApprovalRequest::where('status','pending')->whereRaw("JSON_EXTRACT(changes, '$.shop_admin_email') = ?", [$value])->exists();
-                    if ($emailExistsInApprovalRequests) {
-                        $fail('The email is already in pending approval requests.');
+                    $phoneExistsInApprovalRequests = \App\Models\ApprovalRequest::where('status','pending')->whereRaw("JSON_EXTRACT(changes, '$.shop_admin_phone') = ?", [$value])->exists();
+                    if ($phoneExistsInApprovalRequests) {
+                        $fail('The phone is already in pending approval requests.');
                     }
                 },
-            ],
-            'shop_admin_phone'=>'required|unique:shop_admins,phone'
+            ]
         ];
     }
 
