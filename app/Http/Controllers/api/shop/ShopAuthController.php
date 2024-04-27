@@ -60,6 +60,7 @@ class ShopAuthController extends Controller
                 'message' => 'magic linl to user email sucessfully sent'
             ]);
         } catch (\Throwable $th) {
+            // dd($th);
             return response()->json([
                 'success' => false,
                 'message' => 'Somthing Went Wrong'

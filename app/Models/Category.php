@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -30,6 +31,12 @@ class Category extends Model
             return $default_translation->value;
         }
         return $translation->value;
+    }
+
+
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('isDeleted', false)->where('status',true);
     }
 
 }

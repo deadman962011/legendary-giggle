@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Requests\api;
+namespace App\Http\Requests\api\user;
 
+use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Rule;
 
-use Illuminate\Foundation\Http\FormRequest;
 
-class validateLinkRequest extends FormRequest
+class toggleOfferFavoriteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,16 @@ class validateLinkRequest extends FormRequest
     {
         return [
             //
-            'action'=>'required',
-            'token'=>'required'
+            'offer_id'=>
+            [
+                'required',
+                Rule::exists('offers','id')->where(function ($query) {
+                    $query->where('status',true)->where('isDeleted',false)->where('state','active');
+                }),
+            
+            ]
+            
+            // 'required|numeric|exists:offers,id'
         ];
     }
 
@@ -42,5 +50,7 @@ class validateLinkRequest extends FormRequest
             'errors'      => $validator->errors()
         ],422));
     }
+
+
 
 }

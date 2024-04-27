@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+// use App\Http\Controllers\api\user\AuthController;
 use App\Http\Controllers\api\ApiCategoryController;
 use App\Http\Controllers\api\shop\ShopAuthController;
 use App\Http\Controllers\api\shop\ShopOfferController;
 use App\Http\Controllers\api\shop\ShopStaffController;
-use App\Http\Controllers\api\user\AuthController;
+use App\Http\Controllers\api\user\ApiOfferController;
+use App\Http\Controllers\api\user\ApiOfferFavoriteController;
 use App\Http\Controllers\api\user\UserAuthController;
 use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
@@ -46,6 +48,12 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('category')->controller(ApiCategoryController::class)->group(base_path('routes/api/v1/CategoryRoutes.php'));
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
+                        Route::prefix('offer')->controller(ApiOfferController::class)->group(base_path('routes/api/v1/user/UserOfferRoutes.php'));
+                        
+                        Route::middleware('auth:user')->group(function(){
+                            Route::prefix('offer_favorite')->controller(ApiOfferFavoriteController::class)->group(base_path('routes/api/v1/user/UserOfferFavoriteRoutes.php'));
+                        });
+                    
                     });
 
                     Route::prefix('shop')->group(function () {

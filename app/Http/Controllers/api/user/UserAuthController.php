@@ -97,12 +97,17 @@ class UserAuthController extends Controller
 
         try {
             if ($request->action === 'verifyUserLogin') {
-                $user = User::where('auth_token', $request->token)->firstOrFail();
-                $token = Auth::guard('user')->login($user);
-                $payload = [
-                    "user" => $user,
-                    "token" => $token
-                ];
+                $user = User::where('auth_token', $request->token)->first();
+                if($user){
+                    $token = Auth::guard('user')->login($user);
+                    $payload = [
+                        "user" => $user,
+                        "token" => $token
+                    ];
+                }
+                else{
+                    throw new \Exception("somthing went wrong");
+                }
             } elseif ($request->action === 'verifyUserRegister') {
                 $regRequest = UserRegistrationRequest::where('token', $request->token)->firstOrFail();
                 $payload = [

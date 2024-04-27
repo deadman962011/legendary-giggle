@@ -24,12 +24,14 @@ class OfferResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $name,
+            'cashback_amount'=> intval($this->cashback_amount),
             'start_date'=>date("m/d/Y",$this->start_date),
             'end_date'=>date("m/d/Y",$this->end_date) ,
             'state'=>$this->state,
             'sales'=>$this->sales,
             'commission'=>$this->commission,
             'thumbnail' => getFileUrl($this->thumbnail),
+            'isFavorite'=>$this->isFavorite
         ];
         // return parent::toArray($request);
     }

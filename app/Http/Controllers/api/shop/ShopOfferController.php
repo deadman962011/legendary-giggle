@@ -79,7 +79,35 @@ class ShopOfferController extends Controller
             ], 201);
         } catch (\Throwable $th) {
             DB::rollBack();
-            //throw $th;
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'Somthing went wrong'
+            ], 500);
         }
     }
+
+    function Get(Request $request){
+
+        try { 
+            $getOffer=Offer::where('id',$request->id)->firstOrFail();
+            
+            return response()->json([
+                'success' => true,
+                'payload' =>$getOffer,
+                'message' => 'Offers Successfully Loaded'
+            ], 200);
+
+
+        } catch (\Throwable $th) {
+            dd($th);
+            return response()->json([
+                'success' => false,
+                'payload' =>null,
+                'message' => 'Somthing Went Wrong'
+            ], 500);
+        };
+
+    }
+
 }

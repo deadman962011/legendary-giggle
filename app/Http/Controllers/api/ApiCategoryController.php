@@ -12,7 +12,7 @@ class ApiCategoryController extends Controller
     //
     public function Get()
     {
-        $categories = Category::where('isDeleted', false)->orderBy('order_level')->get();
+        $categories = Category::active()->where('isDeleted', false)->orderBy('order_level')->get();
 
         return response()->json(
             [
@@ -23,3 +23,5 @@ class ApiCategoryController extends Controller
         );
     }
 }
+
+
