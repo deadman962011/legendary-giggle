@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use App\Http\Controllers\api\user\AuthController;
+
 use App\Http\Controllers\api\ApiCategoryController;
+use App\Http\Controllers\api\ApiSliderController;
+use App\Http\Controllers\api\ApiZoneController;
 use App\Http\Controllers\api\shop\ShopAuthController;
 use App\Http\Controllers\api\shop\ShopOfferController;
 use App\Http\Controllers\api\shop\ShopStaffController;
@@ -15,6 +18,8 @@ use App\Http\Controllers\cp\ApprovalController;
 use App\Http\Controllers\cp\CategoryController;
 use App\Http\Controllers\cp\OfferController;
 use App\Http\Controllers\cp\ShopController;
+use App\Http\Controllers\cp\SliderController;
+use App\Http\Controllers\cp\ZoneController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -46,6 +51,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api/v1')
                 ->group(function () {
                     Route::prefix('category')->controller(ApiCategoryController::class)->group(base_path('routes/api/v1/CategoryRoutes.php'));
+                    Route::prefix('slider')->controller(ApiSliderController::class)->group(base_path('routes/api/v1/SliderRoutes.php'));
+                    Route::prefix('zone')->controller(ApiZoneController::class)->group(base_path('routes/api/v1/ZoneRoutes.php'));
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
                         Route::prefix('offer')->controller(ApiOfferController::class)->group(base_path('routes/api/v1/user/UserOfferRoutes.php'));
@@ -73,6 +80,8 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('shop')->controller(ShopController::class)->group(base_path('routes/cp/ShopRoutes.php'));
                 Route::prefix('category')->controller(CategoryController::class)->group(base_path('routes/cp/CategoryRoutes.php'));
                 Route::prefix('offer')->controller(OfferController::class)->group(base_path('routes/cp/OfferRoutes.php'));
+                Route::prefix('slider')->controller(SliderController::class)->group(base_path('routes/cp/sliderRoutes.php'));
+                Route::prefix('zone')->controller(ZoneController::class)->group(base_path('routes/cp/zoneRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));
             });
         });

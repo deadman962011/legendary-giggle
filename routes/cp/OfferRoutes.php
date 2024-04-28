@@ -13,6 +13,8 @@ Route::get('/{id}','Edit')->name('offer.edit');
 
 Route::put('/{id}','Update')->name('offer.update');
 
+Route::put('/{id}/status','UpdateStatus')->name('offer.update_status');
+
 Route::delete('/{id}','Delete')->name('offer.delete');
 
 ?>

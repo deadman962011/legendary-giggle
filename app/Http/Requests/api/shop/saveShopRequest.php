@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\global\shop;
+namespace App\Http\Requests\api\shop;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
@@ -31,6 +31,8 @@ class saveShopRequest extends FormRequest
             // 'shop_address'=>'required',
             'longitude'=>'required',
             'latitude'=>'required',
+            'zone_id'=>'required|exists:zones,id',
+            'categories_ids'=>'required',
             'tax_register'=>[
                 'required',
                 'unique:shops,tax_register',

@@ -88,4 +88,29 @@ $(document).ready(function() {
 
 
     })
+
+
+
+    $(document).on(
+        "click",
+        '[data-toggle="remove-parent"]',
+        function () {
+            var $this = $(this);
+            var parent = $this.data("parent");
+            $this.closest(parent).remove();
+        }
+    );
+
+    $('[data-toggle="add-more"]').each(function () {
+        var $this = $(this);
+        var content = $this.data("content");
+        var target = $this.data("target");
+
+        $this.on("click", function (e) {
+            e.preventDefault();
+            $(target).append(content);
+            // AIZ.plugins.bootstrapSelect();
+        });
+    });
+    
 });

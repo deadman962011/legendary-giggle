@@ -371,6 +371,16 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Sliders',
+            'icon' => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => 'home_slider',
+                    'url' => '/slider/home',
+                ],
+            ],
+        ],
 
         [
             'text' => 'zones',
@@ -378,11 +388,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'zones_list',
-                    'url' => '#',
+                    'url' => '/zone/list',
                 ],
                 [
                     'text' => 'add_new_zone',
-                    'url' => '#',
+                    'url' => '/zone/new',
                 ],
             ],
         ]
@@ -536,13 +546,22 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'location' => '/vendor/select2/select2.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'location' => '/vendor/select2/select2.min.css',
                 ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
+
+
+                
+
             ],
         ],
         'tempusdominusBootstrap4'=>[

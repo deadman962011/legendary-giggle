@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ZoneTranslation extends Model
 {
     use HasFactory;
+
+    
+    protected $fillable = ['key','value','lang','zone_id'];
+
+
 }

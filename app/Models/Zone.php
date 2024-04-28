@@ -4,16 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App;
+
+use MatanYadaev\EloquentSpatial\Objects\Polygon;
+use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
+use Illuminate\Support\Facades\App;
+
 
 class Zone extends Model
 {
+    use HasFactory;
+    use HasSpatial;
+ 
+    protected $casts = [
+        'coordinates' => Polygon::class,
+    ];
+
+
     protected $with = ['translations'];
 
-    use HasFactory;
-
     protected $fillable = [
-        'coordinates'
+        'coordinates',
+        'status'
     ];
 
 
@@ -23,22 +34,25 @@ class Zone extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', '=', 1);
+        return $query->where('status', true)->where('isDeleted',false);
     }
 
     public function translations()
     {
-        return $this->morphMany(ZoneTranslation::class, 'translationable');
+        return $this->hasMany(ZoneTranslation::class);
     }
-
 
     public function getTranslation($field = '', $lang = false)
     {
-        // $lang = $lang == false ? App::getLocale() : $lang;
+        $lang = $lang == false ? App::getLocale() : $lang;
+        $translation = $this->translations->where('key', $field)->where('lang',$lang)->first();
         
-        $translations = $this->translations->where('lang', $lang)->first();
-
-        return $translations != null ? $translations->$field : $this->$field;
+        //fallback lang
+        if(!$translation){
+            $default_translation=$this->translations->where('key', $field)->where('lang','en')->first();
+            return $default_translation->value;
+        }
+        return $translation->value;
     }
 
 

@@ -60,7 +60,13 @@
 
         
         'yes'=>'Yest',
-        'no'=>'No'
+        'no'=>'No',
+
+        'latitude'=>'latitude',
+        'longitude'=>'longitude',
+        // ''
+
+
   
     ];
 

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('shops', function (Blueprint $table) {
+            // $table->integer('shop_logo');
             $table->id();
             $table->string('shop_name');
-            $table->integer('shop_logo');
             $table->string('longitude');
             $table->string('latitude');
             $table->string('address')->nullable();
@@ -22,6 +22,12 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
+            
+            $table->bigInteger('shop_logo')->unsigned()->index();
+            $table->foreign('shop_logo')->references('id')->on('uploads')->onDelete('cascade');
+            $table->bigInteger('zone_id')->unsigned()->index();
+            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

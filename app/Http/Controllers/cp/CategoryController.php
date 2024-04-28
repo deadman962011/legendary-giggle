@@ -95,7 +95,7 @@ class CategoryController extends Controller
             'success'=>true,
             'message'=>__('category_status_successfully_updated')
         ],200);
-        
+
     }
 
 

@@ -26,7 +26,8 @@ class ShopService
             'shop_logo'=>$data->shop_logo,
             'longitude'=>$data->longitude,
             'latitude'=>$data->latitude,
-            'address'=>$data->shop_address,
+            'zone_id'=>$data->zone_id,
+            'address'=>'',
             'tax_register'=>$data->tax_register,
             'status'=>$from ==='cp' ? false : true 
         ]);
@@ -86,7 +87,8 @@ class ShopService
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            //throw $th;
+            // dd($th);
+            throw $th;
         }
 
     }

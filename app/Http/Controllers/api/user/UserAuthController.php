@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\validateLinkRequest;
-use App\Http\Requests\global\user\saveUserRequest;
+use App\Http\Requests\api\user\saveUserRequest;
 use App\Mail\UserMagicLink;
 use App\Models\User;
 use App\Models\UserRegistrationRequest;

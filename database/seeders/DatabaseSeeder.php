@@ -12,16 +12,11 @@ class DatabaseSeeder extends Seeder
     * Seed the application's database.
     **/
     public function run(): void
-    {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    { 
         $this->seedAdmin();
         $this->seedShopRoles();    
         $this->seedLanguage();
+        $this->seedHomeSlider();
 
     }
 
@@ -70,10 +65,6 @@ class DatabaseSeeder extends Seeder
             $role->givePermissionTo($perm->id);
         }
 
-
-        
-
-
     }
 
     public function seedLanguage(){
@@ -91,5 +82,14 @@ class DatabaseSeeder extends Seeder
                 'status'=>true
             ],
         ]);
+    }
+
+    public function seedHomeSlider() {
+        
+        \App\Models\Slider::create([
+            'name'=>'home',
+            'status'=>true
+        ]);
+
     }
 }

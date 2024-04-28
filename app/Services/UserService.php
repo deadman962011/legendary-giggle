@@ -12,9 +12,11 @@ class UserService
     public function createUser($data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name'=>$data['last_name'],
             'email' => $data['email'],
             'birth_date'=>$data['birth_date'],
+            'gender'=>$data['gender'],
             'password' => Hash::make(generate_random_token(12)),
             'auth_token'=>generate_random_token(6)
         ]);

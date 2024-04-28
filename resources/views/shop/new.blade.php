@@ -44,8 +44,6 @@
                             </div>
                         @endif
 
-
-
                         {{-- <div class="form-group">
                             <input type="text" class="form-control" name="shop_name" placeholder="Enter Shop Name">
                         </div> --}}
@@ -117,7 +115,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="input-label" for="latitude">{{ __('messages.latitude') }}<span
+                                        <label class="input-label" for="latitude">{{ __('custom.latitude') }}<span
                                                 data-toggle="tooltip" data-placement="right"
                                                 data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
@@ -130,7 +128,7 @@
                                             required readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label class="input-label" for="longitude">{{ __('messages.longitude') }}
+                                        <label class="input-label" for="longitude">{{ __('custom.longitude') }}
                                             <span data-toggle="tooltip" data-placement="right"
                                                 data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
@@ -144,7 +142,7 @@
                                             value="{{ old('longitude') }}" required readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label class="input-label" for="longitude">{{ __('messages.address') }}
+                                        {{-- <label class="input-label" for="longitude">{{ __('messages.address') }} --}}
                                             <span data-toggle="tooltip" data-placement="right"
                                                 data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
@@ -152,9 +150,20 @@
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
                                             </span>
-                                        </label>
-                                        <input type="text" name="shop_address" class="form-control h--45px"
-                                            placeholder="Shop address Ex: ryiadh" value="{{ old('address') }}" required>
+                                        {{-- </label> --}}
+                                        {{-- <input type="text" name="shop_address" class="form-control h--45px"
+                                            placeholder="Shop address Ex: ryiadh" value="{{ old('address') }}" required> --}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="input-label" for="choice_zones">{{ __('custom.zone') }}</label>
+                                        <select name="zone_id" id="choice_zones" required class="form-control h--45px js-select2-custom"
+                                            data-placeholder="{{ __('messages.select_zone') }}">
+                                            <option value="" selected disabled>{{ __('messages.select_zone') }}</option>
+                                            @foreach (\App\Models\Zone::where('status',1 )->get(['id','name']) as $zone)
+                                            <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
+                                            </option> 
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
@@ -308,6 +317,50 @@
                 );
                 infoWindow.open(map);
             }
+
+            $('#choice_zones').on('change', function() {
+                    var id = $(this).val();
+                    $.get({
+                        url: '{{ url('/') }}/zone/get-coordinates/' + id,
+                        dataType: 'json',
+                        success: function(data) {
+                            if (zonePolygon) {
+                                zonePolygon.setMap(null);
+                            }
+                            zonePolygon = new google.maps.Polygon({
+                                paths: data.coordinates,
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: 'white',
+                                fillOpacity: 0,
+                            });
+                            zonePolygon.setMap(map);
+                            zonePolygon.getPaths().forEach(function(path) {
+                                path.forEach(function(latlng) {
+                                    bounds.extend(latlng);
+                                    map.fitBounds(bounds);
+                                });
+                            });
+                            map.setCenter(data.center);
+                            google.maps.event.addListener(zonePolygon, 'click', function(mapsMouseEvent) {
+                                infoWindow.close();
+                                // Create a new InfoWindow.
+                                infoWindow = new google.maps.InfoWindow({
+                            position: mapsMouseEvent.latLng,
+                            content: JSON.stringify(mapsMouseEvent.latLng.toJSON(),
+                                null, 2),
+                        });
+                        var coordinates = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null,
+                            2);
+                        var coordinates = JSON.parse(coordinates);
+                                    document.getElementById('latitude').value = coordinates['lat'];
+                                    document.getElementById('longitude').value = coordinates['lng'];
+                                    infoWindow.open(map);
+                                });
+                            },
+                        });
+                    })
 
             google.maps.event.addListener(map, 'click', function(mapsMouseEvent) {
                 infoWindow.close();

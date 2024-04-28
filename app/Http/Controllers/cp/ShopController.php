@@ -66,4 +66,22 @@ class ShopController extends Controller
             ], 200);
         }
     }
+
+
+    function UpdateStatus(Request $request)  {
+        
+        $updateShop=Shop::findOrFail($request->id);
+        $updateShop->update([
+            'status'=>!$updateShop->status
+        ]);
+        
+        return response()->json([
+            'success'=>true,
+            'message'=>__('shop_status_successfully_updated')
+        ],200);
+
+    }
+
+
+
 }

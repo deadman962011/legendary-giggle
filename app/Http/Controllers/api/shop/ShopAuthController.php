@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api\shop;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\shop\AuthenticateShopRequest;
 use App\Http\Requests\api\validateLinkRequest;
-use App\Http\Requests\global\shop\saveShopRequest;
+use App\Http\Requests\api\shop\saveShopRequest;
 use App\Mail\ShopMagicLink;
 use App\Models\ShopAdmin;
 use App\Models\ShopRegistrationRequest;

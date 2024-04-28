@@ -13,7 +13,7 @@ class Shop extends Model
 
     protected $with=['translations'];
 
-    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register'];
+    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id'];
 
     public function translations()
     {

@@ -24,8 +24,8 @@ class OfferController extends Controller
     public function List(){
 
         //get categories
-        $categories = Offer::where('isDeleted',false)->get();
-        return view('category.list',['categories'=>$categories]);
+        $offers = Offer::where('isDeleted',false)->get();
+        return view('offer.list',['offers'=>$offers]);
 
     }
 
@@ -66,12 +66,42 @@ class OfferController extends Controller
     public function Edit(){
 
     }
+    
 
     public function Update(Request $request){
 
     }
 
+    function UpdateStatus(Request $request)  {
+        
+        $updateOffer=Offer::findOrFail($request->id);
+        $updateOffer->update([
+            'status'=>!$updateOffer->status
+        ]);
+        
+        return response()->json([
+            'success'=>true,
+            'message'=>__('offer_status_successfully_updated')
+        ],200);
+
+    }
+
+
     public function Delete(Request $request){
+
+        $deleteOffer=Offer::findOrFail($request->id);
+
+        //update category
+        $deleteOffer->update([
+            'isDeleted'=>true
+        ]);
+
+        return response()->json([
+            'success'=>true,
+            'action'=>'redirect_to_url',
+            'action_val'=>route('offer.list'),
+            'message'=>__('offer_successfully_deleted')
+        ],200);
 
     }
 

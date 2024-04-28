@@ -90,6 +90,8 @@
                 else{
                     toastr["error"](resp.message)
                 }
+            }).catch(()=>{
+                toastr["error"]('somthing went wrong')
             })
             
 

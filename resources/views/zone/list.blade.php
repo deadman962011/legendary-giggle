@@ -4,7 +4,7 @@
 
 @section('subtitle', 'Welcome')
 @section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Shops List')
+@section('content_header_subtitle', 'Zones List')
 
 {{-- Content body: main page content --}}
 
@@ -29,18 +29,18 @@
                             </th>
                         </thead>
                         <tbody>
-                            @foreach ($shops as $shop)
+                            @foreach ($zones as $zone)
                                 <tr>
                                     <td>
-                                        {{ $shop->id }}
+                                        {{ $zone->id }}
                                     </td>
                                     <td>
-                                        {{ $shop->getTranslation('name') }}
+                                        {{ $zone->getTranslation('name') }}
                                     </td>
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" data-id='{{ $shop->id }}' oninput="update_status(this)"
-                                                @checked($shop->status)>
+                                            <input type="checkbox" data-id='{{ $zone->id }}' oninput="update_status(this)"
+                                                @checked($zone->status)>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
@@ -81,7 +81,7 @@
         function update_status(e) {
 
             var itemId = e.getAttribute('data-id')
-            var url = '{{ route('shop.update_status', ['id' => ':id']) }}';
+            var url = '{{ route('zone.update_status', ['id' => ':id']) }}';
             url = url.replace(':id', itemId)
             $.ajax({
                 method: "PUT",

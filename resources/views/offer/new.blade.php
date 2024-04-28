@@ -18,37 +18,43 @@
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     @foreach ($languages as $key => $lang)
-                                        <button class="nav-link {{$key==0 ? 'active':''}} " id="nav-{{ $lang->id }}-tab" data-toggle="tab" data-target="#nav-{{ $lang->id }}" type="button" role="tab" aria-controls="nav-{{ $lang->id }}"aria-selected="true">{{ $lang->name }}</button>
+                                        <button class="nav-link {{ $key == 0 ? 'active' : '' }} "
+                                            id="nav-{{ $lang->id }}-tab" data-toggle="tab"
+                                            data-target="#nav-{{ $lang->id }}" type="button" role="tab"
+                                            aria-controls="nav-{{ $lang->id }}"aria-selected="true">{{ $lang->name }}</button>
                                     @endforeach
 
                                 </div>
                             </nav>
                         @endif
-                    
+
                         Offer Informations
-                    
+
                     </div>
                     <div class="card-body">
                         @if ($languages)
-                        <div class="tab-content" id="nav-tabContent">
-                            @foreach ($languages as $key=>$lang)
-                                <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
-                                    <div class="form-group">
-                                        <input type="text" name="name_{{$lang->key}}" placeholder="offer name {{$lang->name}}" class="form-control">
-                                        <input type="hidden" name="lang[]" value="{{ $lang->key }}">
+                            <div class="tab-content" id="nav-tabContent">
+                                @foreach ($languages as $key => $lang)
+                                    <div class="tab-pane fade  {{ $key == 0 ? 'show active' : '' }}"
+                                        id="nav-{{ $lang->id }}" role="tabpanel"
+                                        aria-labelledby="nav-{{ $lang->id }}-tab">
+                                        <div class="form-group">
+                                            <input type="text" name="name_{{ $lang->key }}"
+                                                placeholder="offer name {{ $lang->name }}" class="form-control">
+                                            <input type="hidden" name="lang[]" value="{{ $lang->key }}">
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
+                                @endforeach
+                            </div>
+                        @endif
 
-{{-- 
+                        {{-- 
                         <div class="form-group">
                             <input type="text" name="name" placeholder="offer name" class="form-control">
                         </div> --}}
                         <div class="form-group">
-                            <div class="input-group" data-toggle='aizuploader' data-type='all'
-                                data-target='offer_thumbnail' data-itemid=''>
+                            <div class="input-group" data-toggle='aizuploader' data-type='all' data-target='offer_thumbnail'
+                                data-itemid=''>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
                                         Browse
@@ -66,7 +72,7 @@
                                 <div class="form-group">
                                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                         <input name="start_date" type="text" class="form-control datetimepicker-input"
-                                            data-target="#datetimepicker1" />
+                                            data-target="#datetimepicker1" placeholder="Offer end date"  autocomplete="off" />
                                         <div class="input-group-append" data-target="#datetimepicker1"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -77,8 +83,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                        <input name="end_date" type="text" class="form-control datetimepicker-input"
-                                            data-target="#datetimepicker2" />
+                                        <input  name="end_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="Offer end date" autocomplete="off" />
                                         <div class="input-group-append" data-target="#datetimepicker2"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -86,9 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <select name="cashback_amount" class="form-control" >
+                                    <select name="cashback_amount" class="form-control">
                                         <option value="" selected>Select Checkout amount</option>
                                         <option value="10">10</option>
                                         <option value="40">40</option>
@@ -97,11 +102,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <select name="shop_id" class="form-control" >
+                            <div class="col-sm-6">
+                                <select name="shop_id" class="form-select js-example-basic-multiple">
                                     <option value="" selected>Select Shop</option>
                                     @foreach ($shops as $shop)
-                                        <option value="{{$shop->id}}">{{$shop->getTranslation('name')}}</option>
+                                        <option value="{{ $shop->id }}">{{ $shop->getTranslation('name') }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -123,21 +128,43 @@
 @push('css')
     <link rel="stylesheet" href="/vendor/media-manager/uppy.min.css">
     <link rel="stylesheet" href="/vendor/media-manager/media-manger.css">
+    <style>
+        .select2 {
+            width: 100% !important;
+        }
+    </style>
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @endpush
 
 {{-- Push extra scripts --}}
 @push('js')
-<script src="/vendor/media-manager/uppy.min.js"></script>
-<script src="/vendor/media-manager/media-manager.js"></script>
+    <script src="/vendor/media-manager/uppy.min.js"></script>
+    <script src="/vendor/media-manager/media-manager.js"></script>
 
-@section('plugins.tempusdominusBootstrap4', true)
-    <script>
-        $('#datetimepicker1').datetimepicker();
-        
-        $('#datetimepicker2').datetimepicker();
-    </script>
+    @section('plugins.tempusdominusBootstrap4', true)
+@section('plugins.Select2', true)
+
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            placeholder: "Select Shop Offer",
+            allowClear: true
+            // theme, "bootstrap" 
+        });
+
+        $('#datetimepicker1').datetimepicker({
+            // placeholder:'offer start date'
+
+        }
+        );
+
+        $('#datetimepicker2').datetimepicker({
+            // placeholder:'offer end date'
+
+        }
+        );
+
+    });
+</script>
 @endpush
-
-
