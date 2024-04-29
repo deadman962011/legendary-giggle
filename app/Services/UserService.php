@@ -10,7 +10,7 @@ use Laravel\Passport\Passport;
 class UserService
 {
     public function createUser($data)
-    {
+    { 
         return User::create([
             'first_name' => $data['first_name'],
             'last_name'=>$data['last_name'],

@@ -133,7 +133,6 @@ class UserAuthController extends Controller
 
     function CompleteRegister(saveUserRequest $request)
     {
-
         $user = $this->userService->createUser($request->all());
         //
         $token = auth('user')->login($user);

@@ -44,14 +44,16 @@ class ShopOfferController extends Controller
                 'thumbnail' =>'1',
                 'name'=>$payload->name,
                 'start_date'=>$payload->start_date,
-                'end_date'=>$payload->end_date
+                'end_date'=>$payload->end_date,
+                'cashback_amount'=>$payload->cashback_amount,
+                'isFavorite'=>false
             ];
         });
 
         $collected_pending_offers=collect($pending_offers);
         
         $combined_collection =$collected_pending_offers->concat($offers);
-              
+
         return response()->json([
             'success' => true,
             'payload' =>OfferResource::collection($combined_collection),
@@ -66,7 +68,6 @@ class ShopOfferController extends Controller
         $data['start_date'] = strtotime($request->start_date);
         $data['end_date'] = strtotime($request->end_date);
         $data['shop_id']=Auth::guard('shop')->user()->shop_id;
-
         try {
 
             DB::beginTransaction();
