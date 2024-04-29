@@ -80,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('shop')->controller(ShopController::class)->group(base_path('routes/cp/ShopRoutes.php'));
                 Route::prefix('category')->controller(CategoryController::class)->group(base_path('routes/cp/CategoryRoutes.php'));
                 Route::prefix('offer')->controller(OfferController::class)->group(base_path('routes/cp/OfferRoutes.php'));
-                Route::prefix('slider')->controller(SliderController::class)->group(base_path('routes/cp/sliderRoutes.php'));
+                Route::prefix('slider')->controller(SliderController::class)->group(base_path('routes/cp/SliderRoutes.php'));
                 Route::prefix('zone')->controller(ZoneController::class)->group(base_path('routes/cp/zoneRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));
             });
