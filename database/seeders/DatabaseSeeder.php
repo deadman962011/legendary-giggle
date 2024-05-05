@@ -311,7 +311,7 @@ class DatabaseSeeder extends Seeder
 
 
         foreach ($categories as $key => $categoryData) {
-            $category = \App\models\Category::create([
+            $category = \App\Models\Category::create([
                 'name' => $categoryData['name'],
                 'order_level' => $categoryData['order_level'],
                 'cover_image' => $uploadIds[$key],
@@ -320,7 +320,7 @@ class DatabaseSeeder extends Seeder
 
             // Seed the CategoryTranslations model for each category
             foreach ($categoryData['translation'] as $translationData) {
-                \App\models\CategoryTranslation::create([
+                \App\Models\CategoryTranslation::create([
                     'key' => 'name',
                     'value' => $translationData['value'],
                     'lang' => $translationData['lang'],
@@ -383,7 +383,7 @@ class DatabaseSeeder extends Seeder
 
 
         foreach ($settings as $setting) {
-            $settingId = \App\models\Setting::insertGetId([
+            $settingId = \App\Models\Setting::insertGetId([
                 'key' => $setting['key'],
                 'value' => $setting['value'],
                 'sub_value' => $setting['sub_value'],
@@ -393,7 +393,7 @@ class DatabaseSeeder extends Seeder
 
             // Loop through each translation and insert into the setting_translations table
             foreach ($setting['translations'] as $translation) {
-                \App\models\SettingTranslation::insert([
+                \App\Models\SettingTranslation::insert([
                     'key' => $translation['key'],
                     'value' => $translation['value'],
                     'lang' => $translation['lang'],
