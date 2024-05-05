@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
 
 
         $uploads = [
-            ['file_original_name' => 'uploads/dummy/home_slide/1.jpg', 'file_name' => 'uploads/dummy/home_slide/1.jpg', 'file_size' => 3158, 'extension' => 'jpg', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/home_slide/1.jpg', 'file_name' => 'dummy/home_slide/1.jpg', 'file_size' => 3158, 'extension' => 'jpg', 'type' => 'image', 'external_link' => null],
         ];
 
         foreach ($uploads as $uploadData) {
@@ -226,16 +226,15 @@ class DatabaseSeeder extends Seeder
     }
 
 
-
     public function seedCategory()
     {
         //
         $uploads = [
-            ['file_original_name' => 'uploads/dummy/category/1.png', 'file_name' => 'uploads/dummy/category/1.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
-            ['file_original_name' => 'uploads/dummy/category/2.png', 'file_name' => 'uploads/dummy/category/2.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
-            ['file_original_name' => 'uploads/dummy/category/3.png', 'file_name' => 'uploads/dummy/category/3.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
-            ['file_original_name' => 'uploads/dummy/category/4.png', 'file_name' => 'uploads/dummy/category/4.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
-            ['file_original_name' => 'uploads/dummy/category/5.png', 'file_name' => 'uploads/dummy/category/5.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/category/1.png', 'file_name' => 'dummy/category/1.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/category/2.png', 'file_name' => 'dummy/category/2.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/category/3.png', 'file_name' => 'dummy/category/3.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/category/4.png', 'file_name' => 'dummy/category/4.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/category/5.png', 'file_name' => 'dummy/category/5.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
         ];
 
         $uploadIds = [];
