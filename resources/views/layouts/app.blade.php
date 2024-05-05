@@ -27,10 +27,25 @@
     @endif
 @stop
 
+@section('content_top_nav_right')
+    <li id="lang-change" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{trans('custom.language')}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" data-code='ar'>{{trans('custom.arabic')}}</a>
+            <a class="dropdown-item" href="#" data-code='en'>{{trans('custom.english')}}</a>
+
+        </div>
+    </li>
+@endsection
+
+
 {{-- Rename section content to content_body --}}
 
 @section('content')
-        <link rel="stylesheet" href="/vendor/custom.css">
+    <link rel="stylesheet" href="/vendor/custom.css">
     @yield('content_body')
     @include('modals.delete_modal')
 @stop
@@ -40,7 +55,7 @@
 
 @push('js')
     {{-- @include('adminlte::plugins', ['type' => 'js']) --}}
-    <script src="{{asset('/custom/custom.js')}}" ></script>
+    <script src="{{ asset('/custom/custom.js') }}"></script>
 @endpush
 
 {{-- Add common CSS customizations --}}
@@ -50,13 +65,13 @@
     <style type="text/css">
         {{-- You can add AdminLTE customizations here --}}
         /*
-        .card-header {
-            border-bottom: none;
-        }
-        .card-title {
-            font-weight: 600;
-        }
-        */
+                .card-header {
+                    border-bottom: none;
+                }
+                .card-title {
+                    font-weight: 600;
+                }
+                */
     </style>
 @endpush
 

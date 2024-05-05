@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Approval Requests')
+@section('content_header_title',trans("custom.home"))
+@section('content_header_subtitle',trans("custom.approval_requests"))
 
 {{-- Content body: main page content --}}
 
@@ -22,10 +22,10 @@
                                 {{trans('custom.model')}}
                             </th>
                             <th>
-                                {{trans('status')}}
+                                {{trans('custom.status')}}
                             </th>
                             <th>
-                                {{trans('action')}}
+                                {{trans('custom.action')}}
                             </th>
                         </thead>
                         <tbody>

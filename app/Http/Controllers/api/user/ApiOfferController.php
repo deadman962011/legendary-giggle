@@ -12,11 +12,16 @@ class ApiOfferController extends Controller
     //
     public function Get(Request $request){
 
-        $offers=Offer::active()->paginate(6);
+        $category=$request->category;
+        $offers=Offer::active()->nearby();
+        if($category){
+            $offers=$offers->inCategory($category);
+        }
+        $paginated_offers=$offers->paginate(6);
 
         return response()->json([
             'success'=>true,
-            'payload'=>OfferResource::collection($offers)->resource,
+            'payload'=>OfferResource::collection($paginated_offers)->resource,
             'message'=>'Offers Successfully Loaded'
         ]);
 

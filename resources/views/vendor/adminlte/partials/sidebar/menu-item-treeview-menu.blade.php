@@ -1,16 +1,26 @@
-<li @isset($item['id']) id="{{ $item['id'] }}" @endisset class="nav-item has-treeview {{ $item['submenu_class'] }}">
+<li @isset($item['id']) id="{{ $item['id'] }}" @endisset
+    class="nav-item has-treeview {{ $item['submenu_class'] }}">
 
     {{-- Menu toggler --}}
     <a class="nav-link {{ $item['class'] }} @isset($item['shift']) {{ $item['shift'] }} @endisset"
-       href="" {!! $item['data-compiled'] ?? '' !!}>
+        href="" {!! $item['data-compiled'] ?? '' !!}>
 
-        <i class="{{ $item['icon'] ?? 'far fa-fw fa-circle' }} {{
-            isset($item['icon_color']) ? 'text-'.$item['icon_color'] : ''
-        }}"></i>
+        <i
+            class="{{ $item['icon'] ?? 'far fa-fw fa-circle' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
+
+
+        @php
+            if (app()->getLocale() == 'ar') {
+                $arrowClassess = 'fas fa-angle-right left';
+            } else {
+                $arrowClassess = 'fas fa-angle-left right';
+            }
+        @endphp
+
 
         <p>
             {{ $item['text'] }}
-            <i class="fas fa-angle-left right"></i>
+            <i class="{{ $arrowClassess }}"></i>
 
             @isset($item['label'])
                 <span class="badge badge-{{ $item['label_color'] ?? 'primary' }} right">

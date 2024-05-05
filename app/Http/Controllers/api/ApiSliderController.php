@@ -25,7 +25,6 @@ class ApiSliderController extends Controller
                 'message' => 'Slider successfully Loaded'
             ], 200);
         } catch (\Throwable $th) {
-            dd($th); 
             return response()->json([
                 'success' => false,
                 'payload' => null,

@@ -12,12 +12,53 @@ class Offer extends Model
 {
     use HasFactory;
     protected $appends=['commission','sales','is_favorite'];
-    // id	name	premalink	start_date	end_date	cashback_amount	thumbnail	shop_id	featured	status	isDeleted
+    
+    protected $with=['shop'];
+
     protected $fillable=['name','premalink','start_date','end_date','cashback_amount','thumbnail','shop_id','featured','status','state','isDeleted'];
 
     public function scopeActive(Builder $query): void
     {
         $query->where('isDeleted', false)->where('state','active')->where('status',true);
+    }
+
+    public function scopeNearby($query)
+    {   
+        $distance=30;
+        $request = request();
+        $latitude = $request->header('latitude');
+        $longitude = $request->header('longitude');
+        return $query->whereHas('shop', function ($subquery) use ($latitude, $longitude, $distance) {
+            $subquery->selectRaw("
+                id,
+                latitude,
+                longitude,
+                (6371 * acos(
+                    cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) +
+                    sin(radians(?)) * sin(radians(latitude))
+                )) AS distance",
+                [$latitude, $longitude, $latitude])
+                ->having("distance", "<", $distance);
+        });
+    }
+
+
+    public function scopeInCategory($query,$category) {
+        return $query->whereHas('shop.categories', function (Builder $query) use ($category) {
+            $query->where('category_id', $category);
+        });
+    }
+
+
+
+    /**
+     * Get the shop associated with the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function shop()
+    {
+        return $this->hasOne(Shop::class, 'id', 'shop_id');
     }
 
 

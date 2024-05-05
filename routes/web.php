@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\cp\LanguageController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,9 @@ Route::middleware('auth:web')->group(function(){
     })->name('home');
 
 });
+
+
+Route::post('language_change',[LanguageController::class,'change'])->name('language.change');
 
 
 

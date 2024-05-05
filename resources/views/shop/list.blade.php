@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Shops List')
+@section('content_header_title', trans('custom.home'))
+@section('content_header_subtitle', trans('custom.shops'))
 
 {{-- Content body: main page content --}}
 
@@ -16,16 +16,16 @@
                     <table id="example" class="table" style="width:100%">
                         <thead>
                             <th>
-                                id
+                                #
                             </th>
                             <th>
-                                name
+                                {{trans('custom.name')}}
                             </th>
                             <th>
-                                status
+                                {{trans('custom.status')}}
                             </th>
                             <th>
-                                action
+                                {{trans('custom.action')}}
                             </th>
                         </thead>
                         <tbody>

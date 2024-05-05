@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','Get');
+Route::get('/','Get')->middleware('validated_user_location');
 
 ?>

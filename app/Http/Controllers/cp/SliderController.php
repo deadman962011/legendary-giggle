@@ -43,6 +43,7 @@ class SliderController extends Controller
             DB::beginTransaction();
 
             $slider=Slider::where('name',$request->name)->firstOrFail();
+            $slider->slides()->delete();
             $uploadIds = $request->input('slider_images');
             foreach ($uploadIds as $uploadId) {
                 Slide::create([

@@ -14,6 +14,7 @@ class UserService
         return User::create([
             'first_name' => $data['first_name'],
             'last_name'=>$data['last_name'],
+            'avatar'=>1,
             'email' => $data['email'],
             'birth_date'=>$data['birth_date'],
             'gender'=>$data['gender'],

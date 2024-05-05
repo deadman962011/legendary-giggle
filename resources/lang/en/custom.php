@@ -11,7 +11,9 @@
         'approve'=>'Approve',
         'reject'=>'Reject',
         'save'=>'Save',
-  
+
+        'shops'=>'Shops',
+        'categories'=>"Categories",
         
         'add_new_category'=>"Add New Category",
         'category_informations'=>'Category Informations',
@@ -65,8 +67,46 @@
         'latitude'=>'latitude',
         'longitude'=>'longitude',
         // ''
+        'zone'=>"Zone",
+        'zones'=>'Zones',
+        'select_checkout_amount'=>"Select Checkout Amount",
+        'select_zone'=>"Select Zone",
+
+        'language'=>'Language',
+        'arabic'=>'Arabic',
+        'english'=>'English',
+        'home'=>'Home',
+        'approval_requests' => 'Approval requests',
+        'no_data_available'=>"No data availabe",
+        'search'=>'Search',
+        
+
+        'shop_information'=>'Shop Admin',
+        'shop_admin_information'=>'Shop Admin Informations',
 
 
+        
+        'offers'=>'offers',
+        'offers_informations'=>"Offers Informations",
+
+
+        'home_slider'=>'Home Slider',
+        'sliders'=>'Sliders',
+
+        'add_new'=>'Add New',
+        'update'=>"Update",
+
+
+        'coordinates'=>'Coordinates',
+        'draw_your_zone_on_the_map'=>'Draw your zone on the map',
+        'zone_informations'=>'Zone Informations',
+
+        'zone_name_in_ar'=>'Zone name in arabic',
+        'zone_name_in_en'=>'Zone name in english',
+        'add_new_zone'=>'Add new zone',
+
+        'general_settings'=>'General Settings',
+        'settings'=>'Settings'
   
     ];
 

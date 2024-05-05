@@ -26,7 +26,8 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'gender',
         'birth_date',
-        'auth_token'
+        'auth_token',
+        'avatar'
     ];
 
     /**
@@ -40,6 +41,8 @@ class User extends Authenticatable implements JWTSubject
         'auth_token'
     ];
 
+    protected $appends=['avatar_image'];
+
     /**
      * The attributes that should be cast.
      *
@@ -49,6 +52,13 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function getAvatarImageAttribute() {
+        return getFileUrl($this->avatar);
+
+    }
+
 
     public function getJWTIdentifier()
     {

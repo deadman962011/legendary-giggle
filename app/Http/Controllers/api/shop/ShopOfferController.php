@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\offer\saveOfferRequest;
-use App\Http\Resources\OfferResource;
+use App\Http\Resources\merchant\MerchantOfferResource;
 use App\Models\ApprovalRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
@@ -56,7 +56,7 @@ class ShopOfferController extends Controller
 
         return response()->json([
             'success' => true,
-            'payload' =>OfferResource::collection($combined_collection),
+            'payload' =>MerchantOfferResource::collection($combined_collection),
             'message' => 'Offers Successfully Loaded'
         ], 200);
     }

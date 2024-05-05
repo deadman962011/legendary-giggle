@@ -14,6 +14,12 @@ return [
     "add_new_offer" => 'اضافة عرض جديد',
     'zones_list' => 'قاثمة المناطق',
     'add_new_zone' => 'اضافة منطقة جديدة',
+    'sliders'=>'السلايدات',
+    'home_slider'=>'الصفحة الرئيسية',
+    'settings'=>'الاعداادت',
+    'general_settings'=>"الاعدادات العامة",
+
+
 
     'main_navigation' => 'MAIN NAVIGATION',
     'blog' => 'Blog',

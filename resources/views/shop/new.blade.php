@@ -3,9 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Shops')
-@section('content_header_subtitle', 'Add New Shop')
+@section('content_header_title', trans('custom.home'))
+@section('content_header_subtitle', trans('custom.add_new_shop'))
 
 {{-- Content body: main page content --}}
 
@@ -27,7 +26,7 @@
                             </nav>
                         @endif
 
-                        Shop Informations
+                        {{trans('custom.shop_information')}}
                     </div>
                     <div class="card-body">
 
@@ -36,7 +35,7 @@
                                 @foreach ($languages as $key=>$lang)
                                     <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
                                         <div class="form-group">
-                                            <input type="text" name="shop_name_{{$lang->key}}" placeholder="shop name {{$lang->name}}" class="form-control">
+                                            <input type="text" name="shop_name_{{$lang->key}}" placeholder="{{ trans('custom.shop_name_'.$lang->key) }}" class="form-control">
                                             <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                     </div>
@@ -52,11 +51,11 @@
                                 data-target='mn_program_thumbnail' data-itemid=''>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
-                                        Browse
+                                        {{trans('custom.browse')}}
                                     </div>
                                 </div>
                                 <div class="form-control file-amount">
-                                    Choose File
+                                    {{trans('custom.choose_file')}}
                                 </div>
                                 <input class="selected-files" type='hidden' name='shop_logo'>
                             </div>
@@ -71,8 +70,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="tax_register"
-                                placeholder="Enter Shop Tex Register" required>
+                            <input type="text" class="form-control" name="tax_register" placeholder="{{trans('custom.shop_tax_register')}}" required>
                             {{-- <input type="hidden" name="shop_address" value="=="> --}}
                         </div>
                     </div>
@@ -81,25 +79,25 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                        Shop Admin Information
+                        {{trans('custom.shop_admin_information')}}
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_name"
-                                placeholder="Enter Admin Name" required>
+                                placeholder="{{trans('custom.shop_admin_name')}}" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_phone"
-                                placeholder="Enter Shop Admin Phone" required>
+                                placeholder="{{trans('custom.shop_admin_phone')}}" required>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" name="shop_admin_email"
-                                placeholder="Enter Shop Admin Email" required>
+                                placeholder="{{trans('custom.shop_admin_email')}}" required>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_password"
                                 placeholder="Enter Shop Admin Password" required>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -109,7 +107,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header">
-                            Shop Location
+                            {{trans('custom.shop_location')}}
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -117,20 +115,20 @@
                                     <div class="form-group">
                                         <label class="input-label" for="latitude">{{ __('custom.latitude') }}<span
                                                 data-toggle="tooltip" data-placement="right"
-                                                data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
+                                                data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
                                                 {{-- <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
                                             </span></label>
                                         <input type="text" id="latitude" name="latitude"
                                             class="form-control h--45px disabled"
-                                            placeholder="{{ __('messages.Ex:_-94.22213') }} " value="{{ old('latitude') }}"
+                                            placeholder="{{ __('Ex:_-94.22213') }} " value="{{ old('latitude') }}"
                                             required readonly>
                                     </div>
                                     <div class="form-group">
                                         <label class="input-label" for="longitude">{{ __('custom.longitude') }}
                                             <span data-toggle="tooltip" data-placement="right"
-                                                data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
+                                                data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
                                                 {{-- <img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
@@ -138,13 +136,13 @@
                                             </span>
                                         </label>
                                         <input type="text" name="longitude" class="form-control h--45px disabled"
-                                            placeholder="{{ __('messages.Ex:_103.344322') }} " id="longitude"
+                                            placeholder="{{ __('Ex:_103.344322') }} " id="longitude"
                                             value="{{ old('longitude') }}" required readonly>
                                     </div>
                                     <div class="form-group">
                                         {{-- <label class="input-label" for="longitude">{{ __('messages.address') }} --}}
                                             <span data-toggle="tooltip" data-placement="right"
-                                                data-original-title="{{ __('messages.restaurant_lat_lng_warning') }}"
+                                                data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
                                                 {{-- <img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
@@ -156,9 +154,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="input-label" for="choice_zones">{{ __('custom.zone') }}</label>
-                                        <select name="zone_id" id="choice_zones" required class="form-control h--45px js-select2-custom"
-                                            data-placeholder="{{ __('messages.select_zone') }}">
-                                            <option value="" selected disabled>{{ __('messages.select_zone') }}</option>
+                                        <select name="zone_id" id="choice_zones" required class="form-control h--45px js-example-basic-multiple" 
+                                            data-placeholder="{{ __('custom.select_zone') }}">
+                                            <option value="" selected disabled>{{ __('custom.select_zone') }}</option>
                                             @foreach (\App\Models\Zone::where('status',1 )->get(['id','name']) as $zone)
                                             <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
                                             </option> 
@@ -211,7 +209,7 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2({
-                placeholder:"Select Shop Category",
+                placeholder:"{{trans('custom.select_shop_category')}}",
                 allowClear: true
             });
 

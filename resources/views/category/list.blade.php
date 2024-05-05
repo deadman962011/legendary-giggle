@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', __('home'))
-@section('content_header_subtitle', __('add_new_category'))
+@section('content_header_title', trans('custom.home'))
+@section('content_header_subtitle', __('custom.categories'))
 
 {{-- Content body: main page content --}}
 

@@ -17,6 +17,14 @@ return [
     'zones_list' => 'List Zonees',
     'add_new_zone' => 'Add New Zone',
 
+
+    'sliders'=>'Slideers',
+    'home_slider'=>'Home Slider',
+    'settings'=>'Settings',
+    'general_settings'=>"General Settings",
+
+
+
     'main_navigation' => 'MAIN NAVIGATION',
     'blog' => 'Blog',
     'pages' => 'Pages',

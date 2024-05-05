@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Upload;
@@ -63,9 +64,8 @@ if (! function_exists('generate_random_token')) {
 
 if (! function_exists('getFileUrl')) {
     /**
-     * Generate a random token.
+     * Get Uploaded File Url.
      *
-     * @param int $length
      * @return string
      */
     function getFileUrl($id)
@@ -73,6 +73,24 @@ if (! function_exists('getFileUrl')) {
         $item = Upload::findOrFail($id);
         
         return url($item->file_name);
+        
+
+    }
+}
+
+
+if (! function_exists('getSetting')) {
+    /**
+     * Get Setting Value.
+     *
+     * @param string $key
+     * @return string
+     */
+    function getSetting($key)
+    {
+        $item = Setting::where('key',$key)->firstOrFail();
+        
+        return $item->value;
         
 
     }

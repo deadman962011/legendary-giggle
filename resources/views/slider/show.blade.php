@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Welcome')
+@section('content_header_title', trans('custom.home'))
+@section('content_header_subtitle', trans('custom.sliders'))
 
 
 
@@ -14,7 +14,7 @@
             <form class="custom-form" action="{{ route('slider.update',['name'=>$slider->name]) }}"  method="POST" >
             <div class="card">
                 <div class="card-header">
-                    Home Slider
+                    {{trans('custom.home_slider')}}
                 </div>
                 <div class="card-body">
                         @csrf
@@ -28,9 +28,9 @@
                                                 <div class="input-group" data-toggle="aizuploader" data-type="image">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
-                                                            {{ __('Browse') }}</div>
+                                                            {{ __('custom.browse') }}</div>
                                                     </div>
-                                                    <div class="form-control file-amount">{{ __('Choose File') }}
+                                                    <div class="form-control file-amount">{{trans('custom.choose_file')}}
                                                     </div>
                                                     <input type="hidden" name="slider_images[]" class="selected-files"
                                                         value="{{ $image->upload_id }}">
@@ -59,9 +59,9 @@
                                 <div class="form-group">
                                     <div class="input-group" data-toggle="aizuploader" data-type="image">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text bg-soft-secondary font-weight-medium">{{ __('Browse') }}</div>
+                                            <div class="input-group-text bg-soft-secondary font-weight-medium">{{ __('custom.browse') }}</div>
                                         </div>
-                                        <div class="form-control file-amount">{{ __('Choose File') }}</div>
+                                        <div class="form-control file-amount">{{trans('custom.choose_file')}}</div>
                                         <input type="hidden" name="slider_images[]" class="selected-files">
                                     </div>
                                     <div class="file-preview box sm">
@@ -77,12 +77,12 @@
                             </div>
                         </div>'
                             data-target=".home-slider-target">
-                            {{ __('Add New') }}
+                            {{ __('custom.add_new') }}
                         </button> 
 
                     </div>
                 </div>
-                <input type="submit" value="update" class="btn btn-primary">
+                <input type="submit" value="{{trans('custom.update')}}" class="btn btn-primary">
             </form>
         </div>
     </div>

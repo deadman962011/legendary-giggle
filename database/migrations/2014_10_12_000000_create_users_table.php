@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password');            
+            $table->bigInteger('avatar')->unsigned()->index()->nullable();
+            $table->foreign('avatar')->references('id')->on('uploads')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

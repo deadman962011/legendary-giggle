@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'add new zone')
+@section('content_header_title',   trans('custom.home'))
+@section('content_header_subtitle',trans('custom.add_new_zone'))
 
 {{-- Content body: main page content --}}
 
@@ -47,9 +47,9 @@
                                 @endforeach
                             </div>
                         @endif
-                        <label class="input-label" for="exampleFormControlInput1">{{ __('Coordinates') }}<span
+                        <label class="input-label" for="exampleFormControlInput1"><span
                                 class="form-label-secondary" data-toggle="tooltip" data-placement="right"
-                                data-original-title="{{ __('messages.draw_your_zone_on_the_map') }}">{{ __('messages.draw_your_zone_on_the_map') }}</span></label>
+                                data-original-title="{{ __('messages.draw_your_zone_on_the_map') }}">{{ __('custom.draw_your_zone_on_the_map') }}</span></label>
                         <textarea type="text" rows="8" name="coordinates" id="coordinates" class="form-control" readonly></textarea>
                         <div class="map-warper overflow-hidden rounded">
                             <input id="pac-input" class="controls rounded initial-8"

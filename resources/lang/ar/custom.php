@@ -14,10 +14,13 @@
         'save'=>'حفظ',
         
         
+        'shops'=>'المتاجر',
+        'categories'=>"التصنيفات",
+        
         'add_new_category'=>"اضافة تصنيف جديد",
         'category_informations'=>'معلومات التصنيف',
-        'category_name_in_arabic'=>'اسم التصنيف بالعربي',
-        'category_name_in_english'=>'اسم التصنيف بالانكليزي',
+        'category_name_in_ar'=>'اسم التصنيف بالعربي',
+        'category_name_in_en'=>'اسم التصنيف بالانكليزي',
   
 
         
@@ -37,7 +40,7 @@
 
         
         
-        'add_new_offer'=>"اضافة عرض جديدي",
+        'add_new_offer'=>"اضافة عرض جديد",
         'offer_name_ar'=>'اسم العرض بالعربي',
         'offer_name_en'=>'اسم العرض بالانكليزي',
         'offer_start_date'=>'تاريخ بداية العرض',
@@ -64,9 +67,48 @@
         'latitude'=>'العرض',
         'longitude'=>'الطول',
 
-    
-    
-    
+        'zones'=>'المناطق',
+        'zone'=>"المنطقة",
+        'select_checkout_amount'=>"اختر قيمة الكاش باك",
+        'select_zone'=>"اختر المنطقة",
+
+
+
+        'language'=>'اللفة',
+        'arabic'=>'العربية',
+        'english'=>'English',
+        'home'=>'الرئيسية',
+        'approval_requests' => 'طلبات الموافقة',
+        'no_data_available'=>"لا يوجد معلومات لعرضها",
+        'search'=>'بحث',
+
+
+        
+        'shop_information'=>'معلومات المتجر',
+        'shop_admin_information'=>'معلومات مدير المتجر',
+
+
+        'offers'=>'العروض',
+        'offers_informations'=>"معلومات العرض",
+        'home_slider'=>"سلايدر الصفحة الرئيسية",
+        'sliders'=>'السلايدرات',
+        'add_new'=>"اضافة المزيد",
+        'update'=>'تحديث',
+
+        'coordinates'=>'الاحداثيات',
+        'draw_your_zone_on_the_map'=>'ارسم منطقتك على الخريطة',
+        'zone_informations'=>'معلومات المنطقة',
+
+
+        'zone_name_in_ar'=>'اسم المنطقة بالعربي',
+        'zone_name_in_en'=>'اسم المنطقة بالانكليزي',
+        'add_new_zone'=>'اضافة منطقة جديدة',
+
+        'general_settings'=>'الاعدادال العامة',
+
+        
+        'settings'=>'الاعدادات'
+  
     
     ];
 
