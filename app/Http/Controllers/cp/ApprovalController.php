@@ -61,6 +61,7 @@ class ApprovalController extends Controller
                 'action_val'=> route('approval.list',['status'=>'pending','model'=>$approval_request->model,'action'=>$approval_request->action])
             ]);
         } catch (\Throwable $th) {
+            dd($th);
             DB::rollBack();
             return response()->json([
                 'success'=>false,

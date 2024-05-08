@@ -13,13 +13,12 @@ class MerchantOfferResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
-
-        if($this instanceof \App\Models\Offer){
+    {   
+        if($this->resource instanceof \App\Models\Offer){
             $name=$this->getTranslation('name');
         }
         else{
-            $name=$this->name;
+            $name=$this->name_ar;
         }
 
         return [

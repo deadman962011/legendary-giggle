@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Requests\api\offer;
+namespace App\Http\Requests\cp\role;
 
+use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 
-class saveOfferRequest extends FormRequest
+
+
+class saveRoleRequest extends FormRequest
 {
-
 
     protected $fetchedLanguages;
 
@@ -19,6 +20,7 @@ class saveOfferRequest extends FormRequest
         $langs =\App\Models\Language::where('status',true)->where('isDeleted',false)->get();
         $this->fetchedLanguages = $langs;   
     }
+
 
 
     /**
@@ -35,21 +37,23 @@ class saveOfferRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {   
+    {
+
         $rules=[];
+
         foreach ($this->fetchedLanguages as $key=>$lang) {
             $rules["name_".$lang->key] = 'required';
         }
-        $rules= [
-            'start_date'=>'required||after:today',
-            'end_date'=>'required|date|after:start_date',
-            'offer_thumbnail'=>'required|exists:uploads,id',
-            'cashback_amount'=>'required|numeric',
-            //
-        ];
+
+        $rules['permissions']='required';
 
         return $rules;
+
     }
+
+
+
+
 
     public function failedValidation(Validator $validator)
     {
@@ -59,4 +63,22 @@ class saveOfferRequest extends FormRequest
             'errors'      => $validator->errors()
         ],422));
     }
+
+
+    public function messages()
+    {
+    
+        $messages = [];
+
+        foreach ($this->fetchedLanguages as $lang) {
+            $messages["name_".$lang->key.".required"] = "shop name in ".$lang->name." is required.";
+        }
+
+        return $messages;
+    }
+
+
+
+
+
 }

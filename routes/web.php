@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\cp\AuthController;
+use App\Http\Controllers\cp\DashboardController;
 use App\Http\Controllers\cp\LanguageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -16,14 +18,14 @@ use Illuminate\Support\Facades\App;
 */
 
 Route::middleware('auth:web')->group(function(){
-    Route::get('/', function () {
-        return view('welcome',['action'=>'test','token'=>'1234']);
-    })->name('home');
+    Route::get('/', [DashboardController::class,'index'])->name('home');
 
+    Route::post('language_change',[LanguageController::class,'change'])->name('language.change');
+
+    Route::get('/logout',[AuthController::class,'Logout']);
 });
 
 
-Route::post('language_change',[LanguageController::class,'change'])->name('language.change');
 
 
 

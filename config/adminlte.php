@@ -297,18 +297,18 @@ return [
         // Navbar items:
         [
             'type' => 'navbar-notification',
-            'id' => 'my-notification',                
-            'icon' => 'fas fa-bell',                  
-            'icon_color' => 'warning',                
-            'label' => 0,                             
-            'label_color' => 'danger',                
-            'url' => 'notifications/show',            
-            'topnav_right' => true,                  
-            'dropdown_mode' => true,                
-            'dropdown_flabel' => 'All notifications', 
+            'id' => 'my-notification',
+            'icon' => 'fas fa-bell',
+            'icon_color' => 'warning',
+            'label' => 0,
+            'label_color' => 'danger',
+            'url' => 'notifications/show',
+            'topnav_right' => true,
+            'dropdown_mode' => true,
+            'dropdown_flabel' => 'All notifications',
             'update_cfg' => [
-                'url' => 'notifications/get',         
-                'period' => 30,                      
+                'url' => 'notifications/get',
+                'period' => 30,
             ],
         ],
 
@@ -320,20 +320,24 @@ return [
         [
             'text' => 'approval_requests',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['approval_offers','approval_shops'],
             'submenu' => [
                 [
                     'text' => 'shops',
                     'url' => '/approval?model=shop&status=pending&action=create',
+                    'can'=>['approval_shops']
                 ],
                 [
                     'text' => 'offers',
                     'url' => '/approval?model=offer&status=pending&action=create',
+                    'can'=>['approval_offers']
                 ],
             ],
         ],
         [
             'text' => 'categories',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['add_category','edit_category','delete_category'],
             'submenu' => [
                 [
                     'text' => 'categories_list',
@@ -342,12 +346,14 @@ return [
                 [
                     'text' => 'add_new_category',
                     'url' => '/category/new',
+                    'can'=>['add_category']
                 ],
             ],
         ],
         [
             'text' => 'shops',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['add_shop','edit_shop','delete_shop'],
             'submenu' => [
                 [
                     'text' => 'shops_list',
@@ -356,12 +362,14 @@ return [
                 [
                     'text' => 'add_new_shop',
                     'url' => '/shop/new',
+                    'can'=>['add_shop']
                 ],
             ],
         ],
         [
             'text' => 'offers',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['add_shop_offer','edit_shop_offer','delete_shop_offer'],
             'submenu' => [
                 [
                     'text' => 'offers_list',
@@ -370,12 +378,14 @@ return [
                 [
                     'text' => 'add_new_offer',
                     'url' => '/offer/new',
+                    'can'=>['add_shop_offer']
                 ],
             ],
         ],
         [
             'text' => 'sliders',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['home_slide_add_slide','home_slide_delete_slide'],
             'submenu' => [
                 [
                     'text' => 'home_slider',
@@ -387,6 +397,7 @@ return [
         [
             'text' => 'zones',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['add_zone','edit_zone','delete_zone'],
             'submenu' => [
                 [
                     'text' => 'zones_list',
@@ -395,16 +406,68 @@ return [
                 [
                     'text' => 'add_new_zone',
                     'url' => '/zone/new',
+                    'can'=>'add_zone'
                 ],
             ],
         ],
+
+        [
+            'text' => 'staff',
+            'icon' => 'far fa-fw fa-file',
+            'can'=>['add_staff','delete_staff','add_role','delete_role'],
+            'submenu' => [
+                [
+                    'text' => 'roles',
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_roles',
+                            'url' => '/role/list',
+                            'shift' => 'ms-3',
+                        ],
+                        [
+                            'text' => 'add_new_role',
+                            'url' => '/role/new',
+                            'shift' => 'ms-3',
+                            'can'=>['add_role']
+
+                        ]
+                    ]
+                ],
+                [
+                    'text' => 'staff',
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_staff',
+                            'url' => '/staff/list',
+                            'shift' => 'ms-3',
+                        ],
+                        [
+
+                            'text' => 'add_new_staff',
+                            'url' => '/staff/new',
+                            'shift' => 'ms-3',
+                            'can'=>['add_staff']
+                        ]
+
+                    ]
+                ],
+
+            ],
+        ],
+
+
+
         [
             'text' => 'settings',
             'icon' => 'far fa-fw fa-file',
+            'can'=>['edit_general_settings'],
             'submenu' => [
                 [
                     'text' => 'general_settings',
                     'url' => '/setting/general',
+                    'can'=>['edit_general_settings']
                 ],
             ],
         ]
@@ -500,13 +563,13 @@ return [
                 ],
 
 
-                
+
 
             ],
         ],
-        'tempusdominusBootstrap4'=>[
-            'active'=>false,
-            'files'=>[
+        'tempusdominusBootstrap4' => [
+            'active' => false,
+            'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
@@ -535,17 +598,23 @@ return [
                 ],
             ],
         ],
-        
-        // 'Chartjs' => [
-        //     'active' => true,
-        //     'files' => [
-        //         [
-        //             'type' => 'js',
-        //             'asset' => false,
-        //             'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
-        //         ],
-        //     ],
-        // ],
+
+        'Chartjs' => [
+            'active' => true,
+            'files' => [
+
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '/vendor/chart.js/Chart.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '/vendor/chart.js/Chart.bundle.min.js',
+                ],
+            ],
+        ],
         // 'Pace' => [
         //     'active' => false,
         //     'files' => [

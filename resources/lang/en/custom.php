@@ -106,8 +106,30 @@
         'add_new_zone'=>'Add new zone',
 
         'general_settings'=>'General Settings',
-        'settings'=>'Settings'
-  
+        'settings'=>'Settings',
+
+        'role'=>'Role',
+
+
+
+        'add_new_staff'=>'Add new staff',
+        'staff_informations'=>'Staff informations',
+        'staff_name'=>'Staff name ',
+        'staff_email'=>'Staff email',
+        'select_staff_role'=>'Select staff role',
+
+        'add_new_role'=>'Add new role',
+        'role_informations'=>'Role informations',
+        'permissions'=>'Permissions',
+        'role_name_in_ar'=>'Role name in arabic',
+        'role_name_in_en'=>'Role name in english',
+
+
+        'staff_password'=>"Staff password"
+
+
+
+
     ];
 
 ?>

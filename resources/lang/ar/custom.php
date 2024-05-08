@@ -107,7 +107,25 @@
         'general_settings'=>'الاعدادال العامة',
 
         
-        'settings'=>'الاعدادات'
+        'settings'=>'الاعدادات',
+        'role'=>"الدور",
+
+
+        'add_new_staff'=>'اضافة موظف جديد',
+        'staff_informations'=>'معلومات الموظف',
+        'staff_name'=>'اسم الموظف ',
+        'staff_email'=>'البريد الالكتروني للموظف',
+        'select_staff_role'=>'اختر دور الموظف',
+
+        'add_new_role'=>'اضافة دور جديد',
+        'role_informations'=>'معلومات الدور',
+        'permissions'=>'الصلاحيات',
+        'role_name_in_ar'=>'اسم الدور بالعربي',
+        'role_name_in_en'=>'اسم الدور بالانكليزي',
+
+
+        'staff_password'=>'كلمة سر الموظف'
+
   
     
     ];

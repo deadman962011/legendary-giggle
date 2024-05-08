@@ -164,6 +164,9 @@
         $('#datetimepicker1').datetimepicker({
             useCurrent: false,
             minDate: new Date(),
+            icons:{
+                time: 'fas fa-clock',
+            }
             // maxDate: new Date().setDate(new Date().getDate() + 14) 
             // options:{
             // }
@@ -173,6 +176,9 @@
         $('#datetimepicker2').datetimepicker({
             useCurrent: false,
             minDate: new Date(),
+            icons:{
+                time: 'fas fa-clock',
+            }
             // options:{
             //     minDate:new Date()
             // }

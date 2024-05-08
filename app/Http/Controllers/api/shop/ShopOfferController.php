@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\api\offer\saveOfferRequest;
 use App\Http\Resources\merchant\MerchantOfferResource;
 use App\Models\ApprovalRequest;
+use App\Models\Language;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Services\ApprovalService;
@@ -42,7 +43,7 @@ class ShopOfferController extends Controller
                 'sales'=>0,
                 'commission'=>0,
                 'thumbnail' =>'1',
-                'name'=>$payload->name,
+                'name_ar'=>$payload->name_ar,
                 'start_date'=>$payload->start_date,
                 'end_date'=>$payload->end_date,
                 'cashback_amount'=>$payload->cashback_amount,

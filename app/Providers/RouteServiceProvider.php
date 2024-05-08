@@ -19,9 +19,11 @@ use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
 use App\Http\Controllers\cp\CategoryController;
 use App\Http\Controllers\cp\OfferController;
+use App\Http\Controllers\cp\RoleController;
 use App\Http\Controllers\cp\SettingController;
 use App\Http\Controllers\cp\ShopController;
 use App\Http\Controllers\cp\SliderController;
+use App\Http\Controllers\cp\StaffController;
 use App\Http\Controllers\cp\ZoneController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -86,6 +88,11 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('offer')->controller(OfferController::class)->group(base_path('routes/cp/OfferRoutes.php'));
                 Route::prefix('slider')->controller(SliderController::class)->group(base_path('routes/cp/SliderRoutes.php'));
                 Route::prefix('zone')->controller(ZoneController::class)->group(base_path('routes/cp/ZoneRoutes.php'));
+                Route::prefix('staff')->controller(StaffController::class)->group(base_path('routes/cp/StaffRoutes.php'));
+                Route::prefix('role')->controller(RoleController::class)->group(base_path('routes/cp/RoleRoutes.php'));
+
+
+
                 Route::prefix('setting')->controller(SettingController::class)->group(base_path('routes/cp/SettingRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));
             });

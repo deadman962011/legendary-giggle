@@ -34,6 +34,11 @@ class saveOfferRequest extends FormRequest
     public function rules(): array
     {
 
+        $rules=[];
+        foreach ($this->fetchedLanguages as $key=>$lang) {
+            $rules["name_".$lang->key] = 'required';
+        }
+
         $rules=[
             'start_date'=>'required',
             'end_date'=>'required',
@@ -43,9 +48,6 @@ class saveOfferRequest extends FormRequest
         ];
 
 
-        foreach ($this->fetchedLanguages as $key=>$lang) {
-            $rules["name_".$lang->key] = 'required';
-        }
 
         return $rules;
     }

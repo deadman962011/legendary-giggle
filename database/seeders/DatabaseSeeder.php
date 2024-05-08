@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use MatanYadaev\EloquentSpatial\Objects\Point;
@@ -17,8 +19,7 @@ class DatabaseSeeder extends Seeder
      **/
     public function run(): void
     {
-
-
+        $this->seedAdminRole();
         $this->seedAdmin();
         $this->seedShopRoles();
         $this->seedLanguage();
@@ -26,26 +27,206 @@ class DatabaseSeeder extends Seeder
         $this->seedZones();
         $this->seedCategory();
         $this->seedConfig();
+    }
 
 
-        // try {
-        //     DB::beginTransaction();
 
-        //     $this->seedAdmin();
-        //     $this->seedShopRoles();
-        //     $this->seedLanguage();
-        //     $this->seedHomeSlider();
-        //     $this->seedZones();
-        //     $this->seedCategory();
-        //     $this->seedConfig();
+    public function seedAdminRole()
+    {
 
-        //     DB::commit();
-        // } catch (\Throwable $th) {
-        //     DB::rollBack();
-        //     // return $th->getMessage();
+        $admin_permissions = [
+
+            [
+                'name' => 'add_shop',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add Shop'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'اضافة متجر'],
+                ]
+            ],
+            [
+                'name' => 'edit_shop',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit Shop'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'تعديل المتجر'],
+                ]
+            ],
+            [
+                'name' => 'delete_shop',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delet Shop'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'حذف المتجر'],
+                ]
+
+            ],
+            [
+                'name' => 'approval_offers',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Approval Offers'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'طلبات الموافقة للعروض'],
+                ]
+            ],
+            [
+
+                'name' => 'approval_shops',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Approval Shops'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'طلبات الموافقة للمتاجر'],
+                ]
+            ],
+            [
+                'name' => 'add_category',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add new category'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'اضافة تصنيف جديد'],
+                ]
+            ],
+            [
+                'name' => 'edit_category',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit category'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'تعديل تصنيف '],
+                ]
+
+            ],
+            [
+                'name' =>'delete_category',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete category'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'حذف تصنيف '],
+                ]
+
+            ],
+            [
+                'name' => 'add_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' =>'home_slide_add_slide',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Home slide add slider'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'سلايدر الرئيسسية اضافة سلايدر '],
+                ]
+
+            ],
+
+            [
+                'name' => 'home_slide_delete_slide',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Home slide add slide'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'سلايدر الرئيسسية حذف سلايدر '],
+                ]
+
+            ],
 
 
-        // }
+            [
+                'name' => 'add_zone',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'اضافة منظقة'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'ازالة منطقة '],
+                ]
+
+            ],
+            [
+                'name' =>'edit_zone',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit Zone'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'تعديل منطقة '],
+                ]
+
+            ],
+            [
+                'name' => 'delete_zone',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Zone'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة منطقة"],
+                ]
+
+            ],
+            [
+                'name' =>
+                'edit_general_settings',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit general settings'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل الاعدادات العامة"],
+                ]
+
+            ],
+
+            [
+                'name' => 'add_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add Staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة موظف"],
+                ]
+
+            ],
+
+            [
+                'name' => 'delete_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف"],
+                ]
+
+            ],
+            [
+                'name' => 'add_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add Role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة دور"],
+                ]
+            ],
+            [
+                'name' => 'delete_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة دور"],
+                ]
+            ]
+        ];
+
+        $role = \App\Models\Role::query()->create([
+            'name' => 'Admin',
+            'guard_name' => 'web'
+        ]);
+
+        foreach ($admin_permissions as $permission) {
+            $perm = \App\Models\Permission::query()->create([
+                'name'          =>  $permission['name'],
+                'guard_name'    =>  'web',
+                // 'section'       =>  'Shop Admin',
+            ]);
+
+            //save translation
+            foreach ($permission['translation'] as $permTranslation) {
+                \App\Models\PermissionTranslation::create([
+                    'key' => $permTranslation['key'],
+                    'value' => $permTranslation['value'],
+                    'lang' => $permTranslation['lang'],
+                    'permission_id' => $perm->id
+                ]);
+            }
+
+            $role->givePermissionTo($perm->id);
+        }
     }
 
 
@@ -53,11 +234,15 @@ class DatabaseSeeder extends Seeder
     public function seedAdmin(): void
     {
 
-        \App\Models\Admin::create([
+        $admin = \App\Models\Admin::create([
             'name' => 'blaxk',
             'email' => 'blaxk@blaxk.cc',
             'password' => bcrypt('123456789')
         ]);
+
+        $role = Role::where('name', 'Admin')->first();
+
+        $admin->assignRole($role);
     }
 
 
@@ -71,22 +256,63 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+
+        // [
+        //     'name' =>'delete_staff',
+        //     'translation' => [
+        //         ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Staff'],
+        //         ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف"],
+        //     ]
+
+        // ],
+
+
+
         /**
          * Shop Admin Permissions
          */
 
         $shop_admin_permissions =   [
-            'add_shop_offer',
-            'edit_shop_offer',
-            'delete_shop_offer',
+            [
+                'name' => 'add_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_offer',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop offer'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة عرض للمتجر"],
+                ]
+            ]
         ];
 
         foreach ($shop_admin_permissions as $permission) {
+
             $perm = \App\Models\Permission::query()->create([
-                'name'          =>  $permission,
+                'name'          =>  $permission['name'],
                 'guard_name'    =>  'shop',
                 // 'section'       =>  'Shop Admin',
             ]);
+
+            foreach ($permission['translation'] as $permTranslation) {
+                \App\Models\PermissionTranslation::create([
+                    'key' => $permTranslation['key'],
+                    'value' => $permTranslation['value'],
+                    'lang' => $permTranslation['lang'],
+                    'permission_id' => $perm->id
+                ]);
+            }
+
 
             $role->givePermissionTo($perm->id);
         }
@@ -144,8 +370,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Al Malaz Area'],
-                    ['lang' => 'ar', 'value' => 'منطقة الملز'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Malaz Area'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة الملز'],
                 ],
             ],
             [
@@ -154,8 +380,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Al Faisaliyah Area'],
-                    ['lang' => 'ar', 'value' => 'منطقة الفيصلية'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Faisaliyah Area'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة الفيصلية'],
                 ],
             ],
             [
@@ -164,8 +390,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Al Anoud Area'],
-                    ['lang' => 'ar', 'value' => 'منطقة العنود'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Anoud Area'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة العنود'],
                 ],
             ],
             [
@@ -174,8 +400,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Al Aqiq Area'],
-                    ['lang' => 'ar', 'value' => 'منطقة العقيع'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Aqiq Area'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة العقيع'],
                 ],
             ],
             [
@@ -184,8 +410,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Al Murabba Area'],
-                    ['lang' => 'ar', 'value' => 'منطقة المربع'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Murabba Area'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة المربع'],
                 ],
             ],
         ];
@@ -254,8 +480,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Automotive'],
-                    ['lang' => 'ar', 'value' => 'تنقل'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Automotive'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'تنقل'],
                 ],
             ],
             [
@@ -266,8 +492,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Food'],
-                    ['lang' => 'ar', 'value' => 'أطعمة'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Food'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'أطعمة'],
                 ],
             ],
             [
@@ -278,8 +504,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Grocery'],
-                    ['lang' => 'ar', 'value' => 'بقالة'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Grocery'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'بقالة'],
                 ],
             ],
             [
@@ -290,8 +516,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Fashion'],
-                    ['lang' => 'ar', 'value' => 'أزياء'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Fashion'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'أزياء'],
                 ],
             ],
             [
@@ -302,8 +528,8 @@ class DatabaseSeeder extends Seeder
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['lang' => 'en', 'value' => 'Drinks'],
-                    ['lang' => 'ar', 'value' => 'مشروبات'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Drinks'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'مشروبات'],
                 ],
             ],
         ];
@@ -387,7 +613,7 @@ class DatabaseSeeder extends Seeder
                 'value' => $setting['value'],
                 'sub_value' => $setting['sub_value'],
                 'section' => $setting['section'],
-                'input_type'=>$setting['input_type']
+                'input_type' => $setting['input_type']
             ]);
 
             // Loop through each translation and insert into the setting_translations table

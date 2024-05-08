@@ -3,7 +3,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var form = $(this);
-        var url = form.attr("action"); // Get the action URL from the form
+        var url = form.attr("action");
         var method = form.attr("method");
         var beforeSubmitFuncName = form.data("before-submit");
 
@@ -13,6 +13,10 @@ $(document).ready(function () {
         ) {
             window[beforeSubmitFuncName](form);
         }
+
+
+        //set form submit button disabled state 
+        //display spinner at the button
 
         $.ajax({
             type: method,

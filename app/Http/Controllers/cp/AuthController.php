@@ -36,4 +36,16 @@ class AuthController extends Controller
     
 
 
+    public function Logout(Request $request) {
+        
+        Auth::guard('web')->logout();
+
+        
+        return view('vendor.adminlte.auth.login');
+
+
+    }
+
+
+
 }

@@ -18,6 +18,13 @@ return [
     'home_slider'=>'الصفحة الرئيسية',
     'settings'=>'الاعداادت',
     'general_settings'=>"الاعدادات العامة",
+    'roles'=>'الادوار',
+    'list_roles'=>'قائمة الادوار',
+    'add_new_role'=>'اضافة دور جديد',
+    'staff'=>'الموظفين',
+    'list_staff'=>'قائمة الموظفين',
+    'add_new_staff'=>'اضافة موظف جديد',
+    
 
 
 

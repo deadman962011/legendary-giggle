@@ -28,17 +28,15 @@
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         {{-- <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}"> --}}
         @if (app()->getLocale() == 'ar')
-            
             <style>
                 body {
                     direction: rtl;
                 }
-                .sidebar-search-results .list-group {
 
-                }
+                .sidebar-search-results .list-group {}
             </style>
             <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte-rtl.css') }}">
-            
+            <link rel="stylesheet" href="{{ asset('vendor/custom-rtl.css') }}">
         @else
             <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
         @endif

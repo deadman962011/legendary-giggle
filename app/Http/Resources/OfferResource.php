@@ -31,7 +31,9 @@ class OfferResource extends JsonResource
             'shop'=>[
                 'id'=>$this->shop->id,
                 'name'=>$this->shop->getTranslation('name'),
-                'distance'=>$this->shop->distance
+                'distance'=>$this->shop->distance,
+                'longitude'=>$this->shop->longitude,
+                'latitude'=>$this->shop->latitude
             ]
         ];
         // return parent::toArray($request);
