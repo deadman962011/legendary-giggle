@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\cp\staff\saveStaffRequest;
 use App\Models\Admin;
 use App\Models\Permission;
 use App\Models\Role;
@@ -31,7 +32,7 @@ class StaffController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(saveStaffRequest $request)
     {
 
         try {

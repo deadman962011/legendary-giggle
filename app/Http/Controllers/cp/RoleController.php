@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\cp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\cp\role\saveRoleRequest;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\RoleTranslation;
@@ -30,7 +31,7 @@ class RoleController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(saveRoleRequest $request)
     {
 
         try {
