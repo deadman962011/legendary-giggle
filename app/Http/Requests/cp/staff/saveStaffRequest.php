@@ -28,7 +28,7 @@ class saveStaffRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'reqiored|email|unique:admins,email',
+            'email'=>'required|email|unique:admins,email',
             'role_id'=>'required|exists:roles,id'
         ];
     }
