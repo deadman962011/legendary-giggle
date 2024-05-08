@@ -47,17 +47,17 @@ class saveStaffRequest extends FormRequest
     }
 
 
-    public function messages()
-    {
+    // public function messages()
+    // {
     
-        $messages = [];
+    //     $messages = [];
 
-        foreach ($this->fetchedLanguages as $lang) {
-            $messages["name_".$lang->key.".required"] = "shop name in ".$lang->name." is required.";
-        }
+    //     foreach ($this->fetchedLanguages as $lang) {
+    //         $messages["name_".$lang->key.".required"] = "shop name in ".$lang->name." is required.";
+    //     }
 
-        return $messages;
-    }
+    //     return $messages;
+    // }
 
 
 
