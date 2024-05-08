@@ -191,7 +191,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'add_role',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Add Role'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة دور"],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة دور"],
                 ]
             ],
             [
