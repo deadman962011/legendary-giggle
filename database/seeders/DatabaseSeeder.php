@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'home_slide_delete_slide',
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Home slide add slide'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Home slide delete slide'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'سلايدر الرئيسسية حذف سلايدر '],
                 ]
 
@@ -139,8 +139,8 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'add_zone',
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'اضافة منظقة'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => 'ازالة منطقة '],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add zone'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'اضافة منطقة '],
                 ]
 
             ],
