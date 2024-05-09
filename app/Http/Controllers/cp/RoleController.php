@@ -14,19 +14,31 @@ class RoleController extends Controller
 {
     //
 
+
+    public function __construct()
+    {
+        // Staff Permission Check
+        $this->middleware(['permission:edit_role', 'permission:delete_role'])->only('List');
+        $this->middleware(['permission:add_role'])->only(['Create', 'Store']);
+        $this->middleware(['permission:edit_role'])->only(['Edit', 'Update']);
+        $this->middleware(['permission:delete_role'])->only('Delete');
+    }
+
+
+
     public function List(Request $request)
     {
 
-        $roles=Role::where('shop_id',0)->get();
+        $roles = Role::where('shop_id', 0)->get();
 
-        return view('role.list',compact('roles'));
+        return view('role.list', compact('roles'));
     }
 
 
     public function Create()
     {
         //
-        $permissions = Permission::where('guard_name','web')->get();
+        $permissions = Permission::where('guard_name', 'web')->get();
         return view('role.new', compact('permissions'));
     }
 
@@ -62,7 +74,6 @@ class RoleController extends Controller
                 'payload' => null,
                 'message' => 'Somthing Went Wrong'
             ], 200);
-
         }
     }
 

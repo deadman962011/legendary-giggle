@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
+
+    public function __construct()
+    {
+        // Staff Permission Check
+        $this->middleware(['permission:edit_staff',],['permission:delete_staff'])->only('List');
+        $this->middleware(['permission:add_staff'])->only('Create');
+        $this->middleware(['permission:edit_staff'])->only('Edit');
+        $this->middleware(['permission:delete_staff'])->only('Delet');
+    }
+
+
+
     //
     public function List(Request $request)
     {

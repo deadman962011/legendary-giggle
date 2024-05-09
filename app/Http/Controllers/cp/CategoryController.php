@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        // Staff Permission Check
+        $this->middleware(['permission:edit_category','permission:delete_category'])->only('List');
+        $this->middleware(['permission:add_category'])->only(['Create','Store']);
+        $this->middleware(['permission:edit_category'])->only(['Edit','Update']);
+        $this->middleware(['permission:delete_category'])->only('Delete');
+    }
+
     //
     public function List(){
 

@@ -11,13 +11,20 @@ use App\Http\Requests\cp\offer\saveOfferRequest;
 use Illuminate\Support\Facades\DB;
 class OfferController extends Controller
 {
-
     
     protected $offerService;
 
     public function __construct(OfferService $offerService)
     {
         $this->offerService = $offerService;
+
+        // Staff Permission Check
+        $this->middleware(['permission:edit_shop_offer','permission:delete_shop_offer'])->only('List');
+        $this->middleware(['permission:add_shop_offer'])->only(['Create','Store']);
+        $this->middleware(['permission:edit_shop_offer'])->only(['Edit','Update']);
+        $this->middleware(['permission:delete_shop_offer'])->only('Delete');
+
+
     }
 
     //

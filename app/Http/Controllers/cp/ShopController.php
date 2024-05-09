@@ -14,11 +14,27 @@ class ShopController extends Controller
 {
 
 
+    // public function __construct()
+    // {
+    //     // Staff Permission Check
+    //     $this->middleware(['permission:edit_category','permission:delete_category'])->only('List');
+    //     $this->middleware(['permission:add_category'])->only(['Create','Store']);
+    //     $this->middleware(['permission:edit_category'])->only(['Edit','Update']);
+    //     $this->middleware(['permission:delete_category'])->only('Delete');
+    // }
+
     protected $shopService;
 
     public function __construct(ShopService $shopService)
     {
         $this->shopService = $shopService;
+    
+        // Staff Permission Check
+        $this->middleware(['permission:edit_shop','permission:delete_shop'])->only('List');
+        $this->middleware(['permission:add_shop'])->only(['Create','Store']);
+        $this->middleware(['permission:edit_shop'])->only(['Edit','Update']);
+        $this->middleware(['permission:delete_shop'])->only('Delete');
+    
     }
 
     //

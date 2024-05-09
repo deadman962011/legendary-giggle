@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\DB;
 
 class SliderController extends Controller
 {
+
+    public function __construct()
+    {
+        // Staff Permission Check
+        $this->middleware(['permission:home_slide_add_slide','permission:home_slide_delete_slide'])->only(['Get','Update']);
+    
+    }
+
+
     //
     public function List() {
         // no action

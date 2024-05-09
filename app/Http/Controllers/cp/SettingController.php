@@ -13,6 +13,14 @@ class SettingController extends Controller
 {
     //
 
+    public function __construct()
+    {
+        // Staff Permission Check
+        $this->middleware(['permission:edit_general_settings'])->only('List');
+    }
+
+
+
     public function List(Request $request)
     {
 

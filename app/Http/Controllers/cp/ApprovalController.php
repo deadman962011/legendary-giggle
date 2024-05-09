@@ -16,6 +16,8 @@ class ApprovalController extends Controller
     public function __construct(ApprovalService $approvalService)
     {
         $this->approvalService = $approvalService;
+        
+        $this->middleware(['permission:approval_shops','permission:approval_offers'])->only('List');
     }
 
 

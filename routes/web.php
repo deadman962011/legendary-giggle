@@ -22,7 +22,7 @@ Route::middleware('auth:web')->group(function(){
 
     Route::post('language_change',[LanguageController::class,'change'])->name('language.change');
 
-    Route::get('/logout',[AuthController::class,'Logout']);
+    Route::post('/logout',[AuthController::class,'Logout']);
 });
 
 
