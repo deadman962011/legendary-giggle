@@ -15,9 +15,17 @@ $(document).ready(function () {
         }
 
 
-        //set form submit button disabled state 
-        //display spinner at the button
+        //set form submit button disabled state
+        var submitButton = $(this).find("input[type='submit']");
+        if(submitButton.length > 0){
+            var button = submitButton.get(0);
+            $(button).hide();
+            var loadingBut='<button id="loadingBut" disabled="true" class="btn btn-primary "> <i class="fas fa-spinner fa-spin" style="margin-right: 5px"></i>  saveing</button>'
+            submitButton.after(loadingBut)
+        }
 
+        
+        //display spinner at the button
         $.ajax({
             type: method,
             url: url,
@@ -35,6 +43,10 @@ $(document).ready(function () {
                 } else {
                     toastr["error"](response.message);
                 }
+
+                
+                submitButton.show();
+                $('.loadingBut').remove();
             },
             error: function (response) {
                 if (response.status == 422) {
@@ -49,6 +61,8 @@ $(document).ready(function () {
                 } else {
                     toastr["error"]("somthing went wrong");
                 }
+                submitButton.show();
+                $('#loadingBut').remove();
             },
         });
     });
