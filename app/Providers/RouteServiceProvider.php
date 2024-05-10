@@ -5,6 +5,7 @@ namespace App\Providers;
 // use App\Http\Controllers\api\user\AuthController;
 
 use App\Http\Controllers\api\ApiCategoryController;
+use App\Http\Controllers\api\ApiFileController;
 use App\Http\Controllers\api\ApiSliderController;
 use App\Http\Controllers\api\ApiZoneController;
 use App\Http\Controllers\api\ApiSettingController;
@@ -59,6 +60,7 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('slider')->controller(ApiSliderController::class)->group(base_path('routes/api/v1/SliderRoutes.php'));
                     Route::prefix('zone')->controller(ApiZoneController::class)->group(base_path('routes/api/v1/ZoneRoutes.php'));
                     Route::prefix('setting')->controller(ApiSettingController::class)->group(base_path('routes/api/v1/SettingRoutes.php'));
+                    Route::prefix('file')->controller(ApiFileController::class)->group(base_path('routes/api/v1/FileRoutes.php'))->middleware(['auth:user','auth:shop']);                    
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
                         Route::prefix('offer')->controller(ApiOfferController::class)->group(base_path('routes/api/v1/user/UserOfferRoutes.php'));

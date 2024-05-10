@@ -21,8 +21,8 @@ class OfferService
         $offer=Offer::create([
             'name'=> $data->{'name_'.$data->lang[0]},
             'premalink'=>generate_random_token('5'),
-            'start_date'=>strtotime($data->start_date),
-            'end_date'=>strtotime($data->end_date),
+            'start_date'=>$data->start_date,
+            'end_date'=>$data->end_date,
             'cashback_amount'=>$data->cashback_amount,
             'thumbnail'=>$data->offer_thumbnail,    
             'shop_id'=>$data->shop_id,
