@@ -46,7 +46,7 @@ $(document).ready(function () {
 
                 
                 submitButton.show();
-                $('.loadingBut').remove();
+                $('#loadingBut').remove();
             },
             error: function (response) {
                 if (response.status == 422) {

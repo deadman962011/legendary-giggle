@@ -23,6 +23,22 @@ use MatanYadaev\EloquentSpatial\Objects\LineString;
 
 class ZoneController extends Controller
 {
+
+
+    public function __construct()
+    {
+    
+        // Staff Permission Check
+        $this->middleware(['permission:display_zones'])->only('List');
+        $this->middleware(['permission:add_zone'])->only(['Create','Store']);
+        $this->middleware(['permission:edit_zone'])->only(['Edit','Update']);
+        $this->middleware(['permission:delete_zone'])->only('Delete');
+    
+    }
+
+
+
+
     public function List(Request $request)
     {
         $zones = Zone::where('isDeleted',false)->get();

@@ -30,7 +30,7 @@ class ShopController extends Controller
         $this->shopService = $shopService;
     
         // Staff Permission Check
-        $this->middleware(['permission:edit_shop','permission:delete_shop'])->only('List');
+        $this->middleware(['permission:display_shops'])->only('List');
         $this->middleware(['permission:add_shop'])->only(['Create','Store']);
         $this->middleware(['permission:edit_shop'])->only(['Edit','Update']);
         $this->middleware(['permission:delete_shop'])->only('Delete');

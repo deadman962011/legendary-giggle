@@ -18,7 +18,7 @@ class RoleController extends Controller
     public function __construct()
     {
         // Staff Permission Check
-        $this->middleware(['permission:edit_role', 'permission:delete_role'])->only('List');
+        $this->middleware(['permission:display_roles'])->only('List');
         $this->middleware(['permission:add_role'])->only(['Create', 'Store']);
         $this->middleware(['permission:edit_role'])->only(['Edit', 'Update']);
         $this->middleware(['permission:delete_role'])->only('Delete');

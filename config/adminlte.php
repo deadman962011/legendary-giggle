@@ -424,6 +424,7 @@ return [
                             'text' => 'list_roles',
                             'url' => '/role/list',
                             'shift' => 'ms-3',
+                            'can'=>['add_role','delete_role']
                         ],
                         [
                             'text' => 'add_new_role',
@@ -442,6 +443,7 @@ return [
                             'text' => 'list_staff',
                             'url' => '/staff/list',
                             'shift' => 'ms-3',
+                            'can'=>['add_staff','delete_staff']
                         ],
                         [
 

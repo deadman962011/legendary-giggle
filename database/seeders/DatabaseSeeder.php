@@ -37,6 +37,13 @@ class DatabaseSeeder extends Seeder
         $admin_permissions = [
 
             [
+                'name' => 'display_shops',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Shops'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض المتاجر'],
+                ]
+            ],
+            [
                 'name' => 'add_shop',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Add Shop'],
@@ -74,6 +81,13 @@ class DatabaseSeeder extends Seeder
                 ]
             ],
             [
+                'name' => 'display_categories',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Categories'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض التصنيفات'],
+                ]
+            ],
+            [
                 'name' => 'add_category',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Add new category'],
@@ -95,6 +109,13 @@ class DatabaseSeeder extends Seeder
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'حذف تصنيف '],
                 ]
 
+            ],
+            [
+                'name' => 'display_shop_offers',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Shop offers '],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض عروض المتاجر'],
+                ]
             ],
             [
                 'name' => 'add_shop_offer',
@@ -135,7 +156,13 @@ class DatabaseSeeder extends Seeder
 
             ],
 
-
+            [
+                'name' => 'display_zones',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Zones '],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض المناطق'],
+                ]
+            ],
             [
                 'name' => 'add_zone',
                 'translation' => [
@@ -169,7 +196,13 @@ class DatabaseSeeder extends Seeder
                 ]
 
             ],
-
+            [
+                'name' => 'display_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Staff '],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض الموظفين'],
+                ]
+            ],
             [
                 'name' => 'add_staff',
                 'translation' => [
@@ -186,6 +219,13 @@ class DatabaseSeeder extends Seeder
                     ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف"],
                 ]
 
+            ],
+            [
+                'name' => 'display_roles',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Roles '],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض الادوار'],
+                ]
             ],
             [
                 'name' => 'add_role',
