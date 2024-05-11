@@ -385,7 +385,7 @@ class DatabaseSeeder extends Seeder
 
 
         $uploads = [
-            ['file_original_name' => 'dummy/default_avatar.png', 'file_name' => 'dummy/home_slide/1.jpg', 'file_size' => 3158, 'extension' => 'jpg', 'type' => 'image', 'external_link' => null],
+            ['file_original_name' => 'dummy/default_avatar.png', 'file_name' => 'dummy/default_avatar.png', 'file_size' => 3158, 'extension' => 'png', 'type' => 'image', 'external_link' => null],
         ];
 
         foreach ($uploads as $uploadData) {
