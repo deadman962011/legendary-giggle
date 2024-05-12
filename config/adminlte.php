@@ -382,6 +382,22 @@ return [
                 ],
             ],
         ],
+
+        [
+            'text' => 'notifications',
+            'icon' => 'far fa-fw fa-file',
+            'can'=>['home_slide_add_slide','home_slide_delete_slide'],
+            'submenu' => [
+                [
+                    'text' => 'list_notifications',
+                    'url' => '/notification/list',
+                ],
+                [
+                    'text' => 'add_new_notification',
+                    'url' => '/notification/new',
+                ],
+            ],
+        ],
         [
             'text' => 'sliders',
             'icon' => 'far fa-fw fa-file',

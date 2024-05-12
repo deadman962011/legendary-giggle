@@ -50,7 +50,10 @@ class OfferController extends Controller
         $data = $request->all();
         try {
 
-            DB::beginTransaction();            
+            DB::beginTransaction();        
+            $data['start_date']=strtotime($data['start_date']); 
+            $data['end_date']=strtotime($data['end_date']); 
+            
             $this->offerService->createOffer(json_decode(json_encode($data)),'cp');
             DB::commit();
 
@@ -65,7 +68,8 @@ class OfferController extends Controller
             DB::rollBack();
             return response()->json([
                 'success'=>false,
-                'message'=>'Somthing Went Wrong'
+                'message'=>'Somthing Went Wrong',
+                'debug'=>$th->getMessage()
             ]);
         }
     }

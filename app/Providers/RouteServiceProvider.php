@@ -19,6 +19,7 @@ use App\Http\Controllers\api\user\UserAuthController;
 use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
 use App\Http\Controllers\cp\CategoryController;
+use App\Http\Controllers\cp\NotificationController;
 use App\Http\Controllers\cp\OfferController;
 use App\Http\Controllers\cp\RoleController;
 use App\Http\Controllers\cp\SettingController;
@@ -88,6 +89,7 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('shop')->controller(ShopController::class)->group(base_path('routes/cp/ShopRoutes.php'));
                 Route::prefix('category')->controller(CategoryController::class)->group(base_path('routes/cp/CategoryRoutes.php'));
                 Route::prefix('offer')->controller(OfferController::class)->group(base_path('routes/cp/OfferRoutes.php'));
+                Route::prefix('notification')->controller(NotificationController::class)->group(base_path('routes/cp/NotificationRoutes.php'));
                 Route::prefix('slider')->controller(SliderController::class)->group(base_path('routes/cp/SliderRoutes.php'));
                 Route::prefix('zone')->controller(ZoneController::class)->group(base_path('routes/cp/ZoneRoutes.php'));
                 Route::prefix('staff')->controller(StaffController::class)->group(base_path('routes/cp/StaffRoutes.php'));
