@@ -45,7 +45,7 @@
                                         <div class="form-group">
                                             <textarea name="description_{{ $lang->key }}"
                                                 placeholder="{{ trans('custom.notification_description_in_' . $lang->key . '') }}" class="form-control"
-                                                id="" cols="30" rows="10"></textarea>
+                                                id="" cols="30" rows="6"></textarea>
                                         </div>
                                     </div>
                                 @endforeach
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <select name="send_to" class="form-control">
-                                    <option value="">Send To</option>
+                                    <option hidden >Send To</option>
                                     <option value="customer">Customer</option>
                                     <option value="customer">Shop</option>
                                 </select>
