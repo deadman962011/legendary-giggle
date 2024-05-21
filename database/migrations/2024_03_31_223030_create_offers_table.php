@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('end_date');
             $table->string('cashback_amount');
             $table->integer('thumbnail')->nullable();
+            $table->integer('menu')->nullable();
             $table->bigInteger('shop_id')->unsigned()->index();
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);

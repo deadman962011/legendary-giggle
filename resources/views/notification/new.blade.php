@@ -39,13 +39,13 @@
                                         <div class="form-group">
                                             <input type="text" name="title_{{ $lang->key }}"
                                                 placeholder="{{ trans('custom.notification_title_in_' . $lang->key . '') }}"
-                                                class="form-control">
+                                                class="form-control" >
                                             <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                         <div class="form-group">
                                             <textarea name="description_{{ $lang->key }}"
                                                 placeholder="{{ trans('custom.notification_description_in_' . $lang->key . '') }}" class="form-control"
-                                                id="" cols="30" rows="6"></textarea>
+                                                id="" cols="30" rows="6" ></textarea>
                                         </div>
                                     </div>
                                 @endforeach
@@ -73,7 +73,7 @@
                                 <div class="form-control file-amount">
                                     {{ trans('custom.choose_file') }}
                                 </div>
-                                <input class="selected-files" type='hidden' name='cover_image'>
+                                <input class="selected-files" type='hidden' name='image'>
                             </div>
                             <div class="file-preview box sm"></div>
                         </div>
@@ -81,7 +81,8 @@
                             <div class="col-sm-6">
                                 <select name="zone_id" required class="form-control h--45px js-example-basic-multiple"
                                     data-placeholder="{{ __('custom.select_zone') }}">
-                                    <option value="" selected disabled>{{ __('custom.select_zone') }}</option>
+                                    <option value="" selected hidden>{{ __('custom.select_zone') }}</option>
+                                    <option value="all"> All Zones</option>
                                     @foreach (\App\Models\Zone::where('status', 1)->get(['id', 'name']) as $zone)
                                         <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
                                         </option>
@@ -89,10 +90,10 @@
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <select name="send_to" class="form-control">
-                                    <option hidden >Send To</option>
+                                <select name="target" class="form-control" required>
+                                    <option hidden>Send To</option>
                                     <option value="customer">Customer</option>
-                                    <option value="customer">Shop</option>
+                                    <option value="shop">Shop</option>
                                 </select>
                             </div>
                         </div>
@@ -127,7 +128,7 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2({
-                placeholder:"{{trans('custom.select_shop_category')}}",
+                placeholder: "{{ trans('custom.select_shop_category') }}",
                 allowClear: true
             });
         })

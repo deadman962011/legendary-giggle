@@ -15,7 +15,7 @@ class Shop extends Model
 
     protected $with=['translations','categories'];
 
-    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id'];
+    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id','shop_contact_email','shop_contact_phone'];
 
     public function translations()
     {
@@ -59,10 +59,43 @@ class Shop extends Model
         
         if(!$translation){
             $default_translation=$this->translations->where('key', $field)->where('lang','en')->first();
-            return $default_translation->value;
+            return $lang ? '' : $default_translation->value;
         }
         return $translation->value;
     }
+
+
+    /**
+     * Get the zone associated with the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function zone() 
+    {
+        return $this->hasOne(Zone::class, 'zone_id', 'id');
+    }
+
+    /**
+     * Get all of the offers for the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'shop_id', 'id');
+    }
+
+
+    /**
+     * Get all of the shop_availability for the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shop_availability()
+    {
+        return $this->hasMany(ShopAvailabiltiy::class, 'shop_id', 'id');
+    }
+
 
 
 }

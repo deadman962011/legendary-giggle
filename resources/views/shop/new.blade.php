@@ -71,8 +71,14 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="tax_register" placeholder="{{trans('custom.shop_tax_register')}}" required>
-                            {{-- <input type="hidden" name="shop_address" value="=="> --}}
                         </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="shop_contact_email" placeholder="{{trans('custom.shop_contact_email')}}" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="shop_contact_phone" placeholder="{{trans('custom.shop_contact_phone')}}" required>
+                        </div>
+
                     </div>
                 </div>
             </div>

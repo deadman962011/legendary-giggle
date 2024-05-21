@@ -10,11 +10,13 @@ use App\Http\Controllers\api\ApiSliderController;
 use App\Http\Controllers\api\ApiZoneController;
 use App\Http\Controllers\api\ApiSettingController;
 use App\Http\Controllers\api\shop\ShopAuthController;
+use App\Http\Controllers\api\shop\ShopAvailabilityController;
+use App\Http\Controllers\api\shop\ShopController as ShopShopController;
 use App\Http\Controllers\api\shop\ShopOfferController;
 use App\Http\Controllers\api\shop\ShopStaffController;
 use App\Http\Controllers\api\user\ApiOfferController;
 use App\Http\Controllers\api\user\ApiOfferFavoriteController;
-
+use App\Http\Controllers\api\user\ApiOfferInvoiceController;
 use App\Http\Controllers\api\user\UserAuthController;
 use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
@@ -65,8 +67,8 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
                         Route::prefix('offer')->controller(ApiOfferController::class)->group(base_path('routes/api/v1/user/UserOfferRoutes.php'));
-                        
                         Route::middleware('auth:user')->group(function(){
+                            Route::prefix('offer_invoice')->controller(ApiOfferInvoiceController::class)->group(base_path('routes/api/v1/user/UserOfferInvoiceRoutes.php'));
                             Route::prefix('offer_favorite')->controller(ApiOfferFavoriteController::class)->group(base_path('routes/api/v1/user/UserOfferFavoriteRoutes.php'));
                         });
                     
@@ -75,8 +77,10 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('shop')->group(function () {
                         Route::prefix('auth')->controller(ShopAuthController::class)->group(base_path('routes/api/v1/shop/ShopAuthRoutes.php'));
                         Route::middleware('auth:shop')->group(function () {
+                            Route::prefix('/')->controller(ShopShopController::class)->group(base_path('routes/api/v1/shop/ShopRoutes.php'));
                             Route::prefix('staff')->controller(ShopStaffController::class)->group(base_path('routes/api/v1/shop/ShopStaffRoutes.php'));
                             Route::prefix('offer')->controller(ShopOfferController::class)->group(base_path('routes/api/v1/shop/ShopOfferRoutes.php'));
+                            Route::prefix('availability')->controller(ShopAvailabilityController::class)->group(base_path('routes/api/v1/shop/ShopAvailabilityRoutes.php'));
                         });
                     });
                 });

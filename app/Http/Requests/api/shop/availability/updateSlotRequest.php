@@ -1,26 +1,14 @@
 <?php
 
-namespace App\Http\Requests\api\offer;
+namespace App\Http\Requests\api\shop\availability;
 
-
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 
-class saveOfferRequest extends FormRequest
+
+class updateSlotRequest extends FormRequest
 {
-
-
-    protected $fetchedLanguages;
-
-
-    public function __construct() {
-        parent::__construct();
-        $langs =\App\Models\Language::where('status',true)->where('isDeleted',false)->get();
-        $this->fetchedLanguages = $langs;   
-    }
-
-
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -35,21 +23,16 @@ class saveOfferRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {   
-        $rules=[];
-        foreach ($this->fetchedLanguages as $key=>$lang) {
-            $rules["name_".$lang->key] = 'required';
-        }
-        $rules= [
-            'start_date'=>'required||after:today',
-            'end_date'=>'required|date|after:start_date',
-            'offer_thumbnail'=>'required|exists:uploads,id',
-            'cashback_amount'=>'required|numeric',
+    {
+        return [
             //
+            'id'=>'required',
+            'start'=>'required',
+            'end'=>'required'
         ];
-
-        return $rules;
     }
+
+
 
     public function failedValidation(Validator $validator)
     {
@@ -59,4 +42,6 @@ class saveOfferRequest extends FormRequest
             'errors'      => $validator->errors()
         ],422));
     }
+
+
 }

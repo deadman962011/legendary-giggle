@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('address')->nullable();
             $table->string('tax_register');
+            $table->string('shop_contact_email');
+            $table->string('shop_contact_phone');
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);

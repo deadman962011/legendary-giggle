@@ -104,6 +104,7 @@ class UserAuthController extends Controller
             if ($request->action === 'verifyUserLogin') {
                 $user = User::where('auth_token', $request->token)->first();
                 if ($user) {
+                    $user=$user->append('zone');
                     $token = Auth::guard('user')->login($user);
                     $payload = [
                         "user" => $user,
@@ -138,6 +139,7 @@ class UserAuthController extends Controller
     function CompleteRegister(saveUserRequest $request)
     {
         $user = $this->userService->createUser($request->all());
+        $user=$user->append('zone');
         //
         $token = auth('user')->login($user);
         // $token = $user->createToken('MyApp')->plainTextToken;

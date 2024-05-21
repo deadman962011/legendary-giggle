@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('shop_availabiltiys', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->bigInteger('image')->unsigned()->index();
-            $table->foreign('image')->references('id')->on('uploads')->onDelete('cascade');
-            $table->boolean('status')->default(true);
+            $table->string('day');
+            $table->boolean('status')->default(false);
+            $table->bigInteger('shop_id')->unsigned()->index();
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('shop_availabiltiys');
     }
 };

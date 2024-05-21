@@ -5,6 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Role;
+use App\Models\Shop;
+use App\Models\ShopAdmin;
+use App\Models\ShopAvailabiltiy;
+use App\Models\ShopCategory;
+use App\Models\ShopTranslation;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use MatanYadaev\EloquentSpatial\Objects\Point;
@@ -27,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->seedZones();
         $this->seedCategory();
         $this->seedConfig();
+        $this->seedShop();
     }
 
 
@@ -103,7 +109,7 @@ class DatabaseSeeder extends Seeder
 
             ],
             [
-                'name' =>'delete_category',
+                'name' => 'delete_category',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Delete category'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'حذف تصنيف '],
@@ -139,7 +145,7 @@ class DatabaseSeeder extends Seeder
                 ]
             ],
             [
-                'name' =>'home_slide_add_slide',
+                'name' => 'home_slide_add_slide',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Home slide add slider'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'سلايدر الرئيسسية اضافة سلايدر '],
@@ -172,7 +178,7 @@ class DatabaseSeeder extends Seeder
 
             ],
             [
-                'name' =>'edit_zone',
+                'name' => 'edit_zone',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Edit Zone'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'تعديل منطقة '],
@@ -595,13 +601,6 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-
-    public function seedShop()
-    {
-    }
-
-
-
     public function seedConfig()
     {
 
@@ -644,6 +643,25 @@ class DatabaseSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+                'key' => 'firebase_push_notification_key',
+                'value' => 'AAAAq2_rST8:APA91bGEo6H2ctbVIgvdnTSg5Jw2V85Yfi3cfhF9eVRorSiLsZy1-0wDRICeger-Im4xYfVMU2B-5zqIiovAkuED_FGTNwDCK1i7ID8fG8J8n7vyp8ZIpIwK-L8yKgqk6YHv-YoIjfOD',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'text',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Firebase push notification key ',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'Firebase push notification key',
+                    ],
+                ],
+            ],
         ];
 
 
@@ -665,6 +683,73 @@ class DatabaseSeeder extends Seeder
                     'setting_id' => $settingId,
                 ]);
             }
+        }
+    }
+
+    public function seedShop()
+    {
+
+        //
+        $shop = Shop::create([
+            'shop_name' => 'United Fuel Company',
+            'shop_logo' => '1',
+            'longitude' => '46.63744866638183',
+            'latitude' => '24.79895579253349',
+            'zone_id' => '1',
+            'address' => '',
+            'shop_contact_email'=>'deadman962111@gmail.com',
+            'shop_contact_phone'=>'1234567890',
+            'tax_register' => '301071869100003',
+            'status' => true
+        ]);
+
+        $shopAdmin = ShopAdmin::create([
+            'name' => 'blaxk',
+            'email' => 'deadman962011@gmail.com',
+            'phone' => '1234567890',
+            'password' => generate_random_token(12),
+            'auth_token' => generate_random_token(12),
+            'shop_id' => $shop->id
+        ]);
+
+
+        //save roles for the shop
+        $base_shop_admin_role = Role::query()->where('shop_id', 0)->where('name', 'Shop Admin')->first();
+        $shop_admin_role_name = $shop->shop_name . '- Shop Admin' . now();
+
+        $adminRole = Role::create([
+            'name' => $shop_admin_role_name,
+            'guard_name' => 'shop',
+            'shop_id' => $shop->id
+        ]);
+
+        $adminRole->givePermissionTo($base_shop_admin_role->permissions()->pluck('id'));
+
+
+        $shopAdmin->assignRole($adminRole);
+
+        //save shop categories items 
+        $categories_ids = ['1', '2', '3'];
+
+        foreach ($categories_ids as  $cat_id) {
+            ShopCategory::create(['category_id' => $cat_id, 'shop_id' => $shop->id]);
+        }
+
+        ShopTranslation::create([
+            'key' => 'name',
+            'lang' => 'en', //default language
+            'value' => 'Macdonalds',
+            'shop_id' => $shop->id
+        ]);
+
+        $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        $status = true;
+        foreach ($daysOfWeek as $day) {
+            ShopAvailabiltiy::create([
+                'day' => $day,
+                'status' => $status,
+                'shop_id' => $shop->id,
+            ]);
         }
     }
 }

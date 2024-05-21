@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\api\offer\saveOfferRequest;
+use App\Http\Requests\api\shop\offer\saveOfferRequest;
 use App\Http\Resources\merchant\MerchantOfferResource;
 use App\Models\ApprovalRequest;
 use App\Models\Language;

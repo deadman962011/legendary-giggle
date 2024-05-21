@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements JWTSubject
@@ -69,4 +70,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    function getZoneAttribute()  {
+        
+        $request = request();
+        $lat = $request->header('latitude');
+        $lon = $request->header('longitude');
+        $zone=Zone::whereContains('coordinates', new Point($lat, $lon, 4326))->first(); // For MariaDB use 4326 0 for mysql
+        return $zone->id ?? null;
+
+    }
+
+
 }

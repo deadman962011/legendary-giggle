@@ -51,6 +51,17 @@ class OfferController extends Controller
         try {
 
             DB::beginTransaction();        
+            
+            //check shop has no active offer
+            $checkOffer=Offer::active()->count();
+            if($checkOffer > 0){
+                return response()->json([
+                    'success'=>false,
+                    'message'=>'Shop already have active offer',
+                    
+                ]);
+            }
+            
             $data['start_date']=strtotime($data['start_date']); 
             $data['end_date']=strtotime($data['end_date']); 
             
