@@ -27,6 +27,11 @@ return [
     'list_staff'=>'List Staff',
     'add_new_staff'=>'Add new staff',
 
+    
+    'notifications'=>'Notifications',
+    'list_notifications'=>'List notifications',
+    'add_new_notification'=>'Add new notification',
+    'coupons'=>'Coupons',
 
 
     'main_navigation' => 'MAIN NAVIGATION',

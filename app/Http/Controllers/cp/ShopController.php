@@ -12,17 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
-
-
-    // public function __construct()
-    // {
-    //     // Staff Permission Check
-    //     $this->middleware(['permission:edit_category','permission:delete_category'])->only('List');
-    //     $this->middleware(['permission:add_category'])->only(['Create','Store']);
-    //     $this->middleware(['permission:edit_category'])->only(['Edit','Update']);
-    //     $this->middleware(['permission:delete_category'])->only('Delete');
-    // }
-
+ 
     protected $shopService;
 
     public function __construct(ShopService $shopService)
@@ -82,6 +72,26 @@ class ShopController extends Controller
             ], 200);
         }
     }
+
+
+
+    public function Show(Request $request)  {
+        
+        $shop_id=$request->id;
+        try {
+            
+            $shop=Shop::findOrFail($shop_id);
+            return view('shop.show',compact('shop'));
+ 
+        } catch (\Throwable $th) {
+            return abort(404);
+        }
+        
+
+
+
+    }
+
 
 
     function UpdateStatus(Request $request)  {

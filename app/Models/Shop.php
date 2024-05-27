@@ -32,6 +32,16 @@ class Shop extends Model
         return $this->hasOne(ShopCategory::class, 'shop_id', 'id');
     }
 
+    
+    /**
+     * Get all of the admins for the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function admins()
+    {
+        return $this->hasMany(ShopAdmin::class, 'shop_id', 'id');
+    }
 
     public function getDistanceAttribute()
     {

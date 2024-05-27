@@ -25,7 +25,12 @@ return [
     'list_staff'=>'قائمة الموظفين',
     'add_new_staff'=>'اضافة موظف جديد',
     
-
+    'notifications'=>'الاشعارات',
+    'list_notifications'=>'قائمة الاشعارات',
+    'add_new_notification'=>'اضافة اشعار جديد',
+    'coupons'=>'الكوبونات',
+    'list_coupons'=>'قائمة الكوبونات',
+    'add_coupon'=>'اضافة كوبون جديد',
 
 
     'main_navigation' => 'MAIN NAVIGATION',

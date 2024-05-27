@@ -74,9 +74,9 @@
                         <div class="form-group">
                             <select name="category" placeholder="{{ trans('custom.coupon_category') }}"
                                 class="form-control">
-                                <option value="" hidden>Select coupon category</option>
-                                <option value="onsite">On site</option>
-                                <option value="online">Online</option>
+                                <option value="" hidden>{{trans('custom.select_coupon_category')}}</option>
+                                <option value="onsite">{{trans('onsite')}}</option>
+                                <option value="online">{{trans('online')}}</option>
                             </select>
                         </div>
                     </div>
@@ -88,9 +88,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            {{ trans('custom.coupon_informations') }}
-                            <button id="add_variation_button" type="button" class="btn btn-primary">+ Add
-                                variation</button>
+                            {{ trans('custom.coupon_variations') }}
+                            <button id="add_variation_button" type="button" class="btn btn-primary">+ {{trans('custom.add_variation')}}</button>
                         </div>
                     </div>
                     <div id="variations" class="card-body">

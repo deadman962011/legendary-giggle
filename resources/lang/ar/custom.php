@@ -122,9 +122,25 @@
         'permissions'=>'الصلاحيات',
         'role_name_in_ar'=>'اسم الدور بالعربي',
         'role_name_in_en'=>'اسم الدور بالانكليزي',
-
-
-        'staff_password'=>'كلمة سر الموظف'
+        'staff_password'=>'كلمة سر الموظف',
+        'shop_contact_email'=>'ايميل التواصل للمتجر',
+        'shop_contact_phone'=>'ايميل التواصل لرقم الهاتف',
+        'shop_owner_email'=>'ايميل صاحب المتجر',
+        'shop_owner_phone'=>'رقم هاتف صاحب المتجر',
+        'coupon_name_in_ar'=>'اسم الكوبون بالعربي',
+        'coupon_name_in_en'=>'اسم الكوبون بالانكليزي',
+        'coupon_description_in_ar'=>'شرح عن الكوبون بالعربي',
+        'coupon_description_in_en'=>'شرح عن الكوبون بالانكليزي',
+        'coupon_refund_details_in_ar'=>'سياسة الاسترداد للكوبون بالعربي',
+        'coupon_refund_details_in_en'=>'سياسة الاسترداد للكوبون بالانكليزي',
+        'select_coupon_category'=>'اختر تصنيف الكوبون',
+        'onsite'=>'في المتجر',
+        'online'=>'اون لاين',
+        'coupon_informations'=>'معلومات الكوبون',
+        'coupon_variations'=>'انواع الكوبون',
+        'add_variation'=>'اضافة نوع',
+        'amount'=>'القيمة',
+        'add_new_coupon'=>'اضافة كوبون جديد'
 
   
     

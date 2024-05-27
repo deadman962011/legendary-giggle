@@ -125,8 +125,28 @@
         'role_name_in_en'=>'Role name in english',
 
 
-        'staff_password'=>"Staff password"
+        'staff_password'=>"Staff password",
 
+
+        'shop_contact_email'=>'Shop contact email',
+        'shop_contact_phone'=>'Shop contact phone',
+        'shop_owner_email'=>'Shop owner email',
+        'shop_owner_phone'=>'Shop owner phone',
+        'coupon_name_in_ar'=>'Coupon name in arabic',
+        'coupon_name_in_en'=>'Coupon name in english',
+        'coupon_description_in_ar'=>'Coupon description in arabic',
+        'coupon_description_in_en'=>'Coupon description in english',
+        'coupon_refund_details_in_ar'=>'Coupon refund details in arabic',
+        'coupon_refund_details_in_en'=>'Coupon refund details in english',
+        'select_coupon_category'=>'Select coupon category',
+        'onsite'=>'Onsite',
+        'online'=>'Online',
+        'coupon_informations'=>'Coupon informations',
+        'coupon_variations'=>'Coupon variations',
+        'add_variation'=>'Add variation',
+        'amount'=>'Amount',
+        'add_new_coupon'=>'Add new coupon'
+        
 
 
 

@@ -22,8 +22,12 @@
                                 {{trans('custom.name')}}
                             </th>
                             <th>
+                                {{trans('custom.category')}}
+                            </th>
+                            <th>
                                 {{trans('custom.status')}}
                             </th>
+                            
                             <th>
                                 {{trans('custom.action')}}
                             </th>
@@ -37,6 +41,14 @@
                                     <td>
                                         {{ $shop->getTranslation('name') }}
                                     </td>
+                                    <td> 
+
+                                        @foreach ($shop->categories->get() as $shopCategory)
+                                        {{  $shopCategory->category->getTranslation('name')  }} ,
+                                            
+                                        @endforeach
+
+                                    </td>
                                     <td>
                                         <label class="switch">
                                             <input type="checkbox" data-id='{{ $shop->id }}' oninput="update_status(this)"
@@ -45,7 +57,7 @@
                                         </label>
                                     </td>
                                     <td>
-                                        {{-- <a href="{{route('approval.show',['id'=>$shop->id])}}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
+                                        <a href="{{route('shop.show',['id'=>$shop->id])}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

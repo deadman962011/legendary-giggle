@@ -11,5 +11,18 @@ class ShopCategory extends Model
 
     protected $fillable=['shop_id','category_id'];
 
-    
+    protected $with=['category'];
+
+    /**
+     * Get the Category associated with the ShopCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function Category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+
+
 }
