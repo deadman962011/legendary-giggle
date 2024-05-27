@@ -24,7 +24,10 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
+            $table->boolean('isPaid')->default(false);
+            $table->date('paid_at')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

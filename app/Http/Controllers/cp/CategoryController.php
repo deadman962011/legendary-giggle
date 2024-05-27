@@ -7,6 +7,7 @@ use App\Http\Requests\cp\category\saveCategoryRequest;
 use App\Models\Category;
 use App\Models\CategoryTranslation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -38,7 +39,7 @@ class CategoryController extends Controller
     }
     
     public function Store(saveCategoryRequest $request){
-
+        DB::beginTransaction();
 
         try {
             
@@ -62,6 +63,7 @@ class CategoryController extends Controller
             }
 
 
+            DB::commit();
 
             return response()->json([
                 'success'=>true,
@@ -71,6 +73,7 @@ class CategoryController extends Controller
             ]);
             
         } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json([
                 'success'=>false,
                 'message'=>'Somthing Went Wrong'
@@ -125,7 +128,6 @@ class CategoryController extends Controller
             'action_val'=>route('category.list'),
             'message'=>__('category_successfully_deleted')
         ],200);
-
 
     }
 

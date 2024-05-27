@@ -342,6 +342,7 @@ return [
                 [
                     'text' => 'categories_list',
                     'url' => '/category/list',
+                    'can'=>['display_categoires']
                 ],
                 [
                     'text' => 'add_new_category',
@@ -406,6 +407,23 @@ return [
                 [
                     'text' => 'home_slider',
                     'url' => '/slider/home',
+                ],
+            ],
+        ],
+        [
+            'text' => 'coupons',
+            'icon' => 'far fa-fw fa-file', 
+            'can'=>['display_coupons','add_coupon','edit_coupon','delete_coupon '],
+            'submenu' => [
+                [
+                    'text' => 'list_coupons',
+                    'url' => '/coupon/list',
+                    'can'=>['display_coupons']
+                ],
+                [
+                    'text' => 'add_coupon',
+                    'url' => '/coupon/new',
+                    'can'=>['add_coupon']
                 ],
             ],
         ],

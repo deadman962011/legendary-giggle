@@ -16,7 +16,7 @@ class Offer extends Model
 
     protected $with = ['shop'];
 
-    protected $fillable = ['name', 'premalink', 'start_date', 'end_date', 'cashback_amount', 'thumbnail', 'shop_id', 'featured', 'status', 'state', 'isDeleted'];
+    protected $fillable = ['name', 'premalink', 'start_date', 'end_date', 'cashback_amount', 'thumbnail', 'shop_id', 'featured', 'status', 'state', 'isDeleted','isPaid','paid_at'];
 
     public function scopeActive(Builder $query): void
     {

@@ -59,7 +59,7 @@ class Shop extends Model
         
         if(!$translation){
             $default_translation=$this->translations->where('key', $field)->where('lang','en')->first();
-            return $lang ? '' : $default_translation->value;
+            return  $default_translation ? $default_translation->value : '';
         }
         return $translation->value;
     }

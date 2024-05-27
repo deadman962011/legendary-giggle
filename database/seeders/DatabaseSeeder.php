@@ -246,7 +246,39 @@ class DatabaseSeeder extends Seeder
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Role'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة دور"],
                 ]
-            ]
+            ],
+
+
+            [
+                'name' => 'display_coupons',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Coupons'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض الكوبونات'],
+                ]
+            ],
+            [
+                'name' => 'add_coupon',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add new coupon'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'اضافة كوبون جديد'],
+                ]
+            ],
+            [
+                'name' => 'edit_coupon',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit coupon'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'تعديل كوبون '],
+                ]
+
+            ],
+            [
+                'name' => 'delete_coupon',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete coupon'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'حذف كوبون '],
+                ]
+
+            ],
         ];
 
         $role = \App\Models\Role::query()->create([
@@ -697,8 +729,8 @@ class DatabaseSeeder extends Seeder
             'latitude' => '24.79895579253349',
             'zone_id' => '1',
             'address' => '',
-            'shop_contact_email'=>'deadman962111@gmail.com',
-            'shop_contact_phone'=>'1234567890',
+            'shop_contact_email' => 'deadman962111@gmail.com',
+            'shop_contact_phone' => '1234567890',
             'tax_register' => '301071869100003',
             'status' => true
         ]);
@@ -735,11 +767,22 @@ class DatabaseSeeder extends Seeder
             ShopCategory::create(['category_id' => $cat_id, 'shop_id' => $shop->id]);
         }
 
-        ShopTranslation::create([
-            'key' => 'name',
-            'lang' => 'en', //default language
-            'value' => 'Macdonalds',
-            'shop_id' => $shop->id
+        ShopTranslation::insert([
+
+            [
+                'key' => 'name',
+                'lang' => 'en', //default language
+                'value' => 'Macdonalds',
+                'shop_id' => $shop->id
+            ],
+            [
+                'key' => 'name',
+                'lang' => 'ar', //default language
+                'value' => 'ماكدونالدز',
+                'shop_id' => $shop->id
+            ],
+            
+
         ]);
 
         $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
