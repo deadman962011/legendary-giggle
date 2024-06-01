@@ -126,7 +126,40 @@ input:checked + .slider:before {
     height: 36px;
     display: block;
 }
+/* 
+ .nav-item.has-treeview a p {
+    word-break: break-all;
+ } 
 
-/* .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus{
-    height: 30px !important;
-  } */
+ 
+.main-sidebar,.sidebar {
+    width: 340px!important;  
+}
+ 
+.nav-sidebar >.nav-item.nav-icon {
+    margin-left: 0rem!important;
+    font-size: 1.2rem;
+    margin-right: 0rem!important;
+    text-align: center;
+    width: 1.6rem!important;
+}
+ 
+.sidebar-mini .wrapper .main-sidebar .sidebar nav.pt-2 .nav.nav-pills .nav-item .nav-link,
+.sidebar-mini-md.main-sidebar.nav-link,
+.sidebar-mini-xs.main-sidebar.nav-link {
+    width: 336px!important; 
+}
+ 
+.sidebar-collapse.main-sidebar.sidebar {
+    width: 336px!important;  
+}
+ 
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav).content-wrapper,
+body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav).main-header {
+    transition: margin-left.3s ease-in-out;
+    margin-left: 336px!important;  
+}
+ 
+.layout-navbar-fixed.wrapper.brand-link {
+    width: 336px!important; 
+} */

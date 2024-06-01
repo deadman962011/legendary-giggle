@@ -10376,7 +10376,7 @@
   
   .layout-navbar-fixed .wrapper .main-sidebar:hover .brand-link {
     transition: width 0.3s ease-in-out;
-    width: 250px;
+    width: 330px;
   }
   
   .layout-navbar-fixed .wrapper .brand-link {
@@ -10384,7 +10384,7 @@
     position: fixed;
     top: 0;
     transition: width 0.3s ease-in-out;
-    width: 250px;
+    width: 330px;
     z-index: 1035;
   }
   
@@ -10537,7 +10537,7 @@
   
   .layout-navbar-fixed .wrapper.sidebar-collapse .main-sidebar:hover .brand-link {
     transition: width 0.3s ease-in-out;
-    width: 250px;
+    width: 330px;
   }
   
   .layout-navbar-fixed .wrapper .brand-link {
@@ -10545,7 +10545,7 @@
     position: fixed;
     top: 0;
     transition: width 0.3s ease-in-out;
-    width: 250px;
+    width: 330px;
     z-index: 1035;
   }
   
@@ -10698,14 +10698,14 @@
     }
     .layout-sm-navbar-fixed .wrapper.sidebar-collapse .main-sidebar:hover .brand-link {
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
     }
     .layout-sm-navbar-fixed .wrapper .brand-link {
       overflow: hidden;
       position: fixed;
       top: 0;
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
       z-index: 1035;
     }
     .layout-sm-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -10833,14 +10833,14 @@
     }
     .layout-md-navbar-fixed .wrapper.sidebar-collapse .main-sidebar:hover .brand-link {
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
     }
     .layout-md-navbar-fixed .wrapper .brand-link {
       overflow: hidden;
       position: fixed;
       top: 0;
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
       z-index: 1035;
     }
     .layout-md-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -10968,14 +10968,14 @@
     }
     .layout-lg-navbar-fixed .wrapper.sidebar-collapse .main-sidebar:hover .brand-link {
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
     }
     .layout-lg-navbar-fixed .wrapper .brand-link {
       overflow: hidden;
       position: fixed;
       top: 0;
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
       z-index: 1035;
     }
     .layout-lg-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -11103,14 +11103,14 @@
     }
     .layout-xl-navbar-fixed .wrapper.sidebar-collapse .main-sidebar:hover .brand-link {
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
     }
     .layout-xl-navbar-fixed .wrapper .brand-link {
       overflow: hidden;
       position: fixed;
       top: 0;
       transition: width 0.3s ease-in-out;
-      width: 250px;
+      width: 330px;
       z-index: 1035;
     }
     .layout-xl-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -11349,7 +11349,7 @@
     body:not(.sidebar-mini-md) .main-footer,
     body:not(.sidebar-mini-md) .main-header {
       transition: margin-right 0.3s ease-in-out;
-      margin-right: 250px;
+      margin-right: 330px;
     }
   }
   
@@ -11384,7 +11384,7 @@
     .sidebar-mini-md .main-footer,
     .sidebar-mini-md .main-header {
       transition: margin-right 0.3s ease-in-out;
-      margin-right: 250px;
+      margin-right: 330px;
     }
   }
   
@@ -11424,7 +11424,7 @@
   
   .main-sidebar, .main-sidebar::before {
     transition: margin-right 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: 250px;
+    width: 330px;
   }
   
   @media (prefers-reduced-motion: reduce) {
@@ -11438,7 +11438,7 @@
   }
   
   .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-    margin-right: -250px;
+    margin-right: -330px;
   }
   
   .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
@@ -11448,7 +11448,7 @@
   @media (max-width: 767.98px) {
     .main-sidebar, .main-sidebar::before {
       box-shadow: none !important;
-      margin-right: -250px;
+      margin-right: -330px;
     }
     .sidebar-open .main-sidebar, .sidebar-open .main-sidebar::before {
       margin-right: 0;
@@ -11463,7 +11463,7 @@
   }
   
   .layout-fixed .brand-link {
-    width: 250px;
+    width: 330px;
   }
   
   .layout-fixed .main-sidebar {
@@ -12909,10 +12909,10 @@
       float: none;
     }
     .sidebar-mini.sidebar-collapse .main-sidebar:hover, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-link, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .brand-link {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel, .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .user-panel {
       text-align: right;
@@ -12962,7 +12962,7 @@
       display: block !important;
     }
     .sidebar-mini.sidebar-collapse.layout-fixed .main-sidebar:hover .brand-link {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini.sidebar-collapse.layout-fixed .brand-link {
       width: 4.6rem;
@@ -13038,10 +13038,10 @@
       float: none;
     }
     .sidebar-mini-md.sidebar-collapse .main-sidebar:hover, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .brand-link, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .brand-link {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel, .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .user-panel {
       text-align: right;
@@ -13091,7 +13091,7 @@
       display: block !important;
     }
     .sidebar-mini-md.sidebar-collapse.layout-fixed .main-sidebar:hover .brand-link {
-      width: 250px;
+      width: 330px;
     }
     .sidebar-mini-md.sidebar-collapse.layout-fixed .brand-link {
       width: 4.6rem;
@@ -13271,8 +13271,8 @@
   .control-sidebar, .control-sidebar::before {
     bottom: calc(3.5rem + 1px);
     display: none;
-    left: -250px;
-    width: 250px;
+    left: -330px;
+    width: 330px;
     transition: left 0.3s ease-in-out, display 0.3s ease-in-out;
   }
   
@@ -13326,7 +13326,7 @@
   .control-sidebar-open.control-sidebar-push .content-wrapper,
   .control-sidebar-open.control-sidebar-push .main-footer, .control-sidebar-open.control-sidebar-push-slide .content-wrapper,
   .control-sidebar-open.control-sidebar-push-slide .main-footer {
-    margin-left: 250px;
+    margin-left: 330px;
   }
   
   .control-sidebar-slide-open .control-sidebar {
@@ -13347,7 +13347,7 @@
   .control-sidebar-slide-open.control-sidebar-push .content-wrapper,
   .control-sidebar-slide-open.control-sidebar-push .main-footer, .control-sidebar-slide-open.control-sidebar-push-slide .content-wrapper,
   .control-sidebar-slide-open.control-sidebar-push-slide .main-footer {
-    margin-left: 250px;
+    margin-left: 330px;
   }
   
   .control-sidebar-dark,
@@ -19579,7 +19579,7 @@
   .direct-chat-messages {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
-    height: 250px;
+    height: 330px;
     overflow: auto;
     padding: 10px;
   }
@@ -19686,7 +19686,7 @@
     background: #343a40;
     bottom: 0;
     color: #ffffff;
-    height: 250px;
+    height: 330px;
     overflow: auto;
     position: absolute;
     top: 0;

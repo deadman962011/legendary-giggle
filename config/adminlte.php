@@ -342,7 +342,7 @@ return [
                 [
                     'text' => 'categories_list',
                     'url' => '/category/list',
-                    'can'=>['display_categoires']
+                    'can'=>['display_categories']
                 ],
                 [
                     'text' => 'add_new_category',
@@ -444,7 +444,6 @@ return [
                 ],
             ],
         ],
-
         [
             'text' => 'staff',
             'icon' => 'far fa-fw fa-file',
@@ -494,6 +493,42 @@ return [
         ],
 
 
+
+
+
+        
+        [
+            'text' => 'financial_transactions',
+            'icon' => 'far fa-fw fa-file',
+            'can'=>['add_staff','delete_staff','add_role','delete_role'],
+            'submenu' => [
+                [
+                    'text' => 'users_withdraw_balance_requests',
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_withdraw_balance_requests',
+                            'url' => '/role/list',
+                            'shift' => 'ms-3',
+                            'can'=>['add_role','delete_role']
+                        ],
+                    ]
+                ],
+                [
+                    'text' => 'shops_offers_commission_payment',
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_offers_commission_paymet',
+                            'url' => '/staff/list',
+                            'shift' => 'ms-3',
+                            'can'=>['add_staff','delete_staff']
+                        ],
+                    ]
+                ],
+
+            ],
+        ],
 
         [
             'text' => 'settings',

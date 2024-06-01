@@ -63,7 +63,8 @@ class ShopAuthController extends Controller
             // dd($th);
             return response()->json([
                 'success' => false,
-                'message' => 'Somthing Went Wrong'
+                'message' => 'Somthing Went Wrong',
+                'debug'=>$th->getMessage()
             ], 500);
         }
     }

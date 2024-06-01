@@ -4,18 +4,22 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\District;
+use App\Models\DistrictTranslation;
 use App\Models\Role;
 use App\Models\Shop;
 use App\Models\ShopAdmin;
 use App\Models\ShopAvailabiltiy;
 use App\Models\ShopCategory;
 use App\Models\ShopTranslation;
+use App\Models\ShopWallet;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Objects\LineString;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder
 {
@@ -439,59 +443,40 @@ class DatabaseSeeder extends Seeder
     public function seedZones()
     {
 
-        $coordinates = '(24.68378854671517, 46.72524386721549),(24.671933803036012, 46.75545626955924),(24.646972765194313, 46.75476962405143),(24.633866222353177, 46.732110322293615),(24.637611089203887, 46.70533114748893),(24.664729487638667, 46.696404755887365),(24.68157633831391, 46.71357089358268)';
-
+        $ryCoordinates = '(24.850466661767697, 46.81010626482896),(24.70583069558511, 46.88975714373521),(24.62346270793282, 46.88701056170396),(24.556030317950675, 46.94194220232896),(24.493560569073278, 46.90623663592271),(24.501058579334394, 46.74418829607896),(24.51105523074001, 46.60136603045396),(24.536043379713945, 46.48051642107896),(24.815569968678023, 46.56016729998521),(24.885353514061144, 46.70573614764146)';
+        $jeCoordinates = '(21.822721107238852, 39.06673741544988),(21.802321591224008, 39.02828526701238),(21.391166610482507, 39.16012120451238),(21.273480093676476, 39.13814854826238),(21.270179611315047, 39.29745030607488),(21.39554087309879, 39.33315587248113),(21.45690316338791, 39.40182042326238),(21.607642251891797, 39.30019688810613),(21.804133378007727, 39.22878575529363)';
+        $makkahCoordinatis= '(21.497349775105906, 39.83950588718258),(21.414271862093248, 39.93014309421383),(21.34010088869307, 39.93426296726071),(21.337542598904726, 39.80380032077633),(21.359286639308245, 39.71041653171383),(21.4053221878885, 39.67883083835446)';
         $zones = [
             [
-                'name' => 'Al Malaz Area',
-                'coordinates' => $coordinates,
+                'name' => 'Al Ryiadh City',
+                'coordinates' => $ryCoordinates,
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Malaz Area'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة الملز'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Ryiadh City'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => ' مدينة الرياض'],
                 ],
             ],
             [
-                'name' => 'Al Faisaliyah Area',
-                'coordinates' => $coordinates,
+                'name' => 'Jaddeh City',
+                'coordinates' => $jeCoordinates,
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Faisaliyah Area'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة الفيصلية'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Jaddeh City'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة جدة'],
                 ],
-            ],
+            ], 
             [
-                'name' => 'Al Anoud Area',
-                'coordinates' => $coordinates,
+                'name' => 'Makkah City',
+                'coordinates' => $makkahCoordinatis,
                 'status' => false,
                 'isDeleted' => false,
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Anoud Area'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة العنود'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Makkah City'],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة مكة'],
                 ],
-            ],
-            [
-                'name' => 'Al Aqiq Area',
-                'coordinates' => $coordinates,
-                'status' => false,
-                'isDeleted' => false,
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Aqiq Area'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة العقيع'],
-                ],
-            ],
-            [
-                'name' => 'Al Murabba Area',
-                'coordinates' => $coordinates,
-                'status' => false,
-                'isDeleted' => false,
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Al Murabba Area'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'منطقة المربع'],
-                ],
-            ],
+            ], 
         ];
 
         foreach ($zones as $zoneData) {
@@ -512,6 +497,34 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        $json = File::get(public_path("/static_json/districts.json"));
+        $data = json_decode($json);
+        foreach ($data as $data) {
+            $s_district = new District();
+            $s_district->name = $data->name_en;
+            $s_district->zone_id = $data->zone_id;
+            $s_district->save();
+
+            // Create translations for the district
+            $translations = [
+                ['lang' => 'ar', 'value' => $data->name_ar],
+                ['lang' => 'en', 'value' => $data->name_en],
+            ];
+
+            foreach ($translations as $translation) {
+                $districtTranslation = new DistrictTranslation();
+                $districtTranslation->district_id = $s_district->id;
+                $districtTranslation->key = 'name';
+                $districtTranslation->value = $translation['value'];
+                $districtTranslation->lang = $translation['lang'];
+                $districtTranslation->save();
+            }
+
+        }
+
+
+
     }
 
     private function processCoordinates($coordinatesString)
@@ -694,6 +707,25 @@ class DatabaseSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+                'key' => 'user_minimum_withdraw_amount',
+                'value' => '1000',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'User minimum withdraw balance amount',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'الحد الادنى لسحب الرصيد للعميل',
+                    ],
+                ],
+            ],
         ];
 
 
@@ -728,11 +760,17 @@ class DatabaseSeeder extends Seeder
             'longitude' => '46.63744866638183',
             'latitude' => '24.79895579253349',
             'zone_id' => '1',
+            'district_id'=>'1',
             'address' => '',
             'shop_contact_email' => 'deadman962111@gmail.com',
             'shop_contact_phone' => '1234567890',
             'tax_register' => '301071869100003',
             'status' => true
+        ]);
+
+        //save shop wallet
+        ShopWallet::create([
+            'shop_id'=>$shop->id
         ]);
 
         $shopAdmin = ShopAdmin::create([

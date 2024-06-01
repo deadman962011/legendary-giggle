@@ -22,6 +22,7 @@ class Zone extends Model
 
     protected $with = ['translations'];
 
+
     protected $fillable = [
         'coordinates',
         'status'
@@ -50,11 +51,9 @@ class Zone extends Model
         //fallback lang
         if(!$translation){
             $default_translation=$this->translations->where('key', $field)->where('lang','en')->first();
-            return $default_translation->value;
+            return ''; // $default_translation->value;
         }
         return $translation->value;
     }
-
-
 
 }

@@ -53,6 +53,7 @@ class ZoneController extends Controller
 
     public function Store(saveZoneRequest $request){
         try {
+            dd($request->all());
             
             DB::beginTransaction();   
             

@@ -8,6 +8,7 @@ use App\Models\ShopAdmin;
 use App\Models\ShopAvailabiltiy;
 use App\Models\ShopCategory;
 use App\Models\ShopTranslation;
+use App\Models\ShopWallet;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Passport;
@@ -28,8 +29,9 @@ class ShopService
                 'longitude' => $data->longitude,
                 'latitude' => $data->latitude,
                 'zone_id' => $data->zone_id,
-                'address' => '',
+                'district_id'=>$data->district_id,
                 'tax_register' => $data->tax_register,
+                'address' => '',
                 'shop_contact_email'=>'',
                 'shop_contact_phone'=>'',
                 'status' => $from === 'cp' ? false : true
@@ -101,6 +103,10 @@ class ShopService
             }
 
 
+            //save shop wallet
+            ShopWallet::create([
+                'shop_id'=>$shop->id
+            ]);
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\UserWallet;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Passport;
 
@@ -11,7 +12,7 @@ class UserService
 {
     public function createUser($data)
     { 
-        return User::create([
+       $user= User::create([
             'first_name' => $data['first_name'],
             'last_name'=>$data['last_name'],
             'avatar'=>1,
@@ -21,6 +22,17 @@ class UserService
             'password' => Hash::make(generate_random_token(12)),
             'auth_token'=>generate_random_token(6)
         ]);
+
+        //save shop wallet
+        UserWallet::create([
+            'user_id'=>$user->id
+        ]);
+
+        return $user;
+
+        //
+
+
     }
 
     public function getUserById($id)

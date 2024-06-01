@@ -45,6 +45,7 @@ class saveShopRequest extends FormRequest
         $rules =[
             'shop_logo'=>'required|exists:uploads,id',
             'zone_id'=>'required|exists:zones,id',
+            'district_id'=>'required|exists:districts,id',
             'longitude'=>'required',
             'latitude'=>'required',
             'categories_ids'=>'required',

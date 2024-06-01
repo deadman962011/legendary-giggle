@@ -19,23 +19,30 @@
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     @foreach ($languages as $key => $lang)
-                                        <button class="nav-link {{$key==0 ? 'active':''}} " id="nav-{{ $lang->id }}-tab" data-toggle="tab" data-target="#nav-{{ $lang->id }}" type="button" role="tab" aria-controls="nav-{{ $lang->id }}"aria-selected="true">{{ $lang->name }}</button>
+                                        <button class="nav-link {{ $key == 0 ? 'active' : '' }} "
+                                            id="nav-{{ $lang->id }}-tab" data-toggle="tab"
+                                            data-target="#nav-{{ $lang->id }}" type="button" role="tab"
+                                            aria-controls="nav-{{ $lang->id }}"aria-selected="true">{{ $lang->name }}</button>
                                     @endforeach
 
                                 </div>
                             </nav>
                         @endif
 
-                        {{trans('custom.shop_information')}}
+                        {{ trans('custom.shop_information') }}
                     </div>
                     <div class="card-body">
 
                         @if ($languages)
                             <div class="tab-content" id="nav-tabContent">
-                                @foreach ($languages as $key=>$lang)
-                                    <div class="tab-pane fade  {{$key==0 ? 'show active':''}}" id="nav-{{ $lang->id }}" role="tabpanel" aria-labelledby="nav-{{ $lang->id }}-tab">
+                                @foreach ($languages as $key => $lang)
+                                    <div class="tab-pane fade  {{ $key == 0 ? 'show active' : '' }}"
+                                        id="nav-{{ $lang->id }}" role="tabpanel"
+                                        aria-labelledby="nav-{{ $lang->id }}-tab">
                                         <div class="form-group">
-                                            <input type="text" name="shop_name_{{$lang->key}}" placeholder="{{ trans('custom.shop_name_'.$lang->key) }}" class="form-control">
+                                            <input type="text" name="shop_name_{{ $lang->key }}"
+                                                placeholder="{{ trans('custom.shop_name_' . $lang->key) }}"
+                                                class="form-control">
                                             <input type="hidden" name="lang[]" value="{{ $lang->key }}">
                                         </div>
                                     </div>
@@ -51,11 +58,11 @@
                                 data-target='mn_program_thumbnail' data-itemid=''>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-soft-secondary font-weight-medium">
-                                        {{trans('custom.browse')}}
+                                        {{ trans('custom.browse') }}
                                     </div>
                                 </div>
                                 <div class="form-control file-amount">
-                                    {{trans('custom.choose_file')}}
+                                    {{ trans('custom.choose_file') }}
                                 </div>
                                 <input class="selected-files" type='hidden' name='shop_logo'>
                             </div>
@@ -63,20 +70,25 @@
                         </div>
                         <div class="form-group">
 
-                            <select class="js-example-basic-multiple w-100" name="categories_ids[]" multiple="multiple" placeholder='Select Shop Category'>
+                            <select class="js-example-basic-multiple w-100" name="categories_ids"
+                                placeholder='Select Shop Category'>
+                                <option value="" hidden >Select category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="tax_register" placeholder="{{trans('custom.shop_tax_register')}}" required>
+                            <input type="text" class="form-control" name="tax_register"
+                                placeholder="{{ trans('custom.shop_tax_register') }}" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="shop_contact_email" placeholder="{{trans('custom.shop_contact_email')}}" required>
+                            <input type="text" class="form-control" name="shop_contact_email"
+                                placeholder="{{ trans('custom.shop_contact_email') }}" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="shop_contact_phone" placeholder="{{trans('custom.shop_contact_phone')}}" required>
+                            <input type="text" class="form-control" name="shop_contact_phone"
+                                placeholder="{{ trans('custom.shop_contact_phone') }}" required>
                         </div>
 
                     </div>
@@ -85,20 +97,20 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                        {{trans('custom.shop_admin_information')}}
+                        {{ trans('custom.shop_admin_information') }}
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_name"
-                                placeholder="{{trans('custom.shop_admin_name')}}" required>
+                                placeholder="{{ trans('custom.shop_admin_name') }}" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_phone"
-                                placeholder="{{trans('custom.shop_admin_phone')}}" required>
+                                placeholder="{{ trans('custom.shop_admin_phone') }}" required>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" name="shop_admin_email"
-                                placeholder="{{trans('custom.shop_admin_email')}}" required>
+                                placeholder="{{ trans('custom.shop_admin_email') }}" required>
                         </div>
                         {{-- <div class="form-group">
                             <input type="text" class="form-control" name="shop_admin_password"
@@ -113,60 +125,75 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header">
-                            {{trans('custom.shop_location')}}
+                            {{ trans('custom.shop_location') }}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div class="form-group">
+                                    <input type="text" name="longitude" hidden class="form-control h--45px disabled"
+                                        placeholder="{{ __('Ex:_103.344322') }} " id="longitude"
+                                        value="{{ old('longitude') }}" required readonly>
+
+                                    <input type="text" id="latitude" hidden name="latitude"
+                                        class="form-control h--45px disabled" placeholder="{{ __('Ex:_-94.22213') }} "
+                                        value="{{ old('latitude') }}" required readonly>
+
+                                    {{-- <div class="form-group">
                                         <label class="input-label" for="latitude">{{ __('custom.latitude') }}<span
                                                 data-toggle="tooltip" data-placement="right"
                                                 data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
-                                                class="input-label-secondary">
-                                                {{-- <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
-                                                    alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
+                                                class="input-label-secondary"> 
                                             </span></label>
-                                        <input type="text" id="latitude" name="latitude"
-                                            class="form-control h--45px disabled"
-                                            placeholder="{{ __('Ex:_-94.22213') }} " value="{{ old('latitude') }}"
-                                            required readonly>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label class="input-label" for="longitude">{{ __('custom.longitude') }}
                                             <span data-toggle="tooltip" data-placement="right"
                                                 data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary">
-                                                {{-- <img
-                                                    src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
-                                                    alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
+ 
                                             </span>
                                         </label>
-                                        <input type="text" name="longitude" class="form-control h--45px disabled"
-                                            placeholder="{{ __('Ex:_103.344322') }} " id="longitude"
-                                            value="{{ old('longitude') }}" required readonly>
-                                    </div>
+                                        
+                                    </div> --}}
                                     <div class="form-group">
                                         {{-- <label class="input-label" for="longitude">{{ __('messages.address') }} --}}
-                                            <span data-toggle="tooltip" data-placement="right"
-                                                data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
-                                                class="input-label-secondary">
-                                                {{-- <img
+                                        <span data-toggle="tooltip" data-placement="right"
+                                            data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
+                                            class="input-label-secondary">
+                                            {{-- <img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ __('messages.restaurant_lat_lng_warning') }}"> --}}
-                                            </span>
+                                        </span>
                                         {{-- </label> --}}
                                         {{-- <input type="text" name="shop_address" class="form-control h--45px"
                                             placeholder="Shop address Ex: ryiadh" value="{{ old('address') }}" required> --}}
                                     </div>
                                     <div class="form-group">
                                         <label class="input-label" for="choice_zones">{{ __('custom.zone') }}</label>
-                                        <select name="zone_id" id="choice_zones" required class="form-control h--45px js-example-basic-multiple" 
+                                        <select name="zone_id" id="choice_zones" required
+                                            class="form-control h--45px js-example-basic-multiple"
                                             data-placeholder="{{ __('custom.select_zone') }}">
-                                            <option value="" selected disabled>{{ __('custom.select_zone') }}</option>
-                                            @foreach (\App\Models\Zone::where('status',1 )->get(['id','name']) as $zone)
-                                            <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
-                                            </option> 
+                                            <option value="" selected disabled>{{ __('custom.select_zone') }}
+                                            </option>
+                                            @foreach (\App\Models\Zone::where('status', 1)->get(['id', 'name']) as $zone)
+                                                <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
+                                                </option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="input-label"
+                                            for="choice_district">{{ __('custom.district') }}</label>
+                                        <select name="district_id" id="choice_districts" required
+                                            class="form-control h--45px js-example-basic-multiple"
+                                            data-placeholder="{{ __('custom.select_district') }}">
+                                            <option value="" selected disabled>{{ __('custom.select_district') }}
+                                            </option>
+                                            {{-- @foreach (\App\Models\District::get(['id', 'name']) as $district)
+                                            <option value="{{ $district->id }}">{{ $district->getTranslation('name') }}
+                                            </option> 
+                                            @endforeach --}}
                                         </select>
                                     </div>
                                 </div>
@@ -215,8 +242,37 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2({
-                placeholder:"{{trans('custom.select_shop_category')}}",
+                placeholder: "{{ trans('custom.select_shop_category') }}",
                 allowClear: true
+            });
+
+
+            $('#choice_zones').on('select2:select', function(e) {
+                var data = e.params.data;
+
+
+                var url = '{{ route('api.zone.get_destricts', ['id' => ':id']) }}';
+                url = url.replace(':id', data.id)
+
+                $.ajax({
+                    url,
+                    method: "GET",
+                    success: function(resp) {
+                        var districtsSelect = $("#choice_districts")
+                        districtsSelect.find('option').remove();
+                        districtsSelect.append($('<option></option>').text('select district')).attr('hidden',true   );
+                        if (resp.success && resp.payload.length > 0) { 
+                            $.each(resp.payload, function(index, district) {
+                                districtsSelect.append($('<option></option>').attr(
+                                    'value', district.id).text(district.name));
+                            });
+
+                        }
+                        districtsSelect.trigger('change');
+                    }
+                })
+
+
             });
 
 
@@ -323,48 +379,53 @@
             }
 
             $('#choice_zones').on('change', function() {
-                    var id = $(this).val();
-                    $.get({
-                        url: '{{ url('/') }}/zone/get-coordinates/' + id,
-                        dataType: 'json',
-                        success: function(data) {
-                            if (zonePolygon) {
-                                zonePolygon.setMap(null);
-                            }
-                            zonePolygon = new google.maps.Polygon({
-                                paths: data.coordinates,
-                                strokeColor: "#FF0000",
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
-                                fillColor: 'white',
-                                fillOpacity: 0,
-                            });
-                            zonePolygon.setMap(map);
-                            zonePolygon.getPaths().forEach(function(path) {
-                                path.forEach(function(latlng) {
-                                    bounds.extend(latlng);
-                                    map.fitBounds(bounds);
-                                });
-                            });
-                            map.setCenter(data.center);
-                            google.maps.event.addListener(zonePolygon, 'click', function(mapsMouseEvent) {
-                                infoWindow.close();
-                                // Create a new InfoWindow.
-                                infoWindow = new google.maps.InfoWindow({
-                            position: mapsMouseEvent.latLng,
-                            content: JSON.stringify(mapsMouseEvent.latLng.toJSON(),
-                                null, 2),
+                var id = $(this).val();
+                $.get({
+                    url: '{{ url('/') }}/zone/get-coordinates/' + id,
+                    dataType: 'json',
+                    success: function(data) {
+                        if (zonePolygon) {
+                            zonePolygon.setMap(null);
+                        }
+                        zonePolygon = new google.maps.Polygon({
+                            paths: data.coordinates,
+                            strokeColor: "#FF0000",
+                            strokeOpacity: 0.8,
+                            strokeWeight: 2,
+                            fillColor: 'white',
+                            fillOpacity: 0,
                         });
-                        var coordinates = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null,
-                            2);
-                        var coordinates = JSON.parse(coordinates);
-                                    document.getElementById('latitude').value = coordinates['lat'];
-                                    document.getElementById('longitude').value = coordinates['lng'];
-                                    infoWindow.open(map);
-                                });
-                            },
+                        zonePolygon.setMap(map);
+                        zonePolygon.getPaths().forEach(function(path) {
+                            path.forEach(function(latlng) {
+                                bounds.extend(latlng);
+                                map.fitBounds(bounds);
+                            });
                         });
-                    })
+                        map.setCenter(data.center);
+                        google.maps.event.addListener(zonePolygon, 'click', function(
+                            mapsMouseEvent) {
+                            infoWindow.close();
+                            // Create a new InfoWindow.
+                            infoWindow = new google.maps.InfoWindow({
+                                position: mapsMouseEvent.latLng,
+                                content: JSON.stringify(mapsMouseEvent.latLng
+                                    .toJSON(),
+                                    null, 2),
+                            });
+                            var coordinates = JSON.stringify(mapsMouseEvent.latLng
+                                .toJSON(), null,
+                                2);
+                            var coordinates = JSON.parse(coordinates);
+                            document.getElementById('latitude').value = coordinates[
+                                'lat'];
+                            document.getElementById('longitude').value = coordinates[
+                                'lng'];
+                            infoWindow.open(map);
+                        });
+                    },
+                });
+            })
 
             google.maps.event.addListener(map, 'click', function(mapsMouseEvent) {
                 infoWindow.close();

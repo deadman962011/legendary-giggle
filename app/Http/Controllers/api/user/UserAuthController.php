@@ -104,7 +104,7 @@ class UserAuthController extends Controller
             if ($request->action === 'verifyUserLogin') {
                 $user = User::where('auth_token', $request->token)->first();
                 if ($user) {
-                    $user=$user->append('zone');
+                    $user = $user->append('zone');
                     $token = Auth::guard('user')->login($user);
                     $payload = [
                         "user" => $user,
@@ -138,20 +138,36 @@ class UserAuthController extends Controller
 
     function CompleteRegister(saveUserRequest $request)
     {
-        $user = $this->userService->createUser($request->all());
-        $user=$user->append('zone');
-        //
-        $token = auth('user')->login($user);
+
+        try {
+
+            DB::beginTransaction();
+            $user = $this->userService->createUser($request->all());
+            $user = $user->append('zone');
+            //
+            $token = auth('user')->login($user);
+
+            DB::commit();
+            return response()->json([
+                'success' => true,
+                'payload' => [
+                    'user' => $user,
+                    'token' => $token
+                ],
+                'message' => 'user registration successfully completed'
+            ], 201);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'Somthing went wrong',
+                'debug' => $th->getMessage()
+            ], 500);
+        }
         // $token = $user->createToken('MyApp')->plainTextToken;
 
-        return response()->json([
-            'success' => true,
-            'payload' => [
-                'user' => $user,
-                'token' => $token
-            ],
-            'message' => 'user registration request successfully saved'
-        ], 201);
+
     }
 
     function Profile(Request $request)
@@ -194,7 +210,7 @@ class UserAuthController extends Controller
                 'success' => false,
                 'payload' => null,
                 'message' => 'Somthing went wrong',
-                'debug'=>$th->getMessage()
+                'debug' => $th->getMessage()
             ], 500);
         }
     }
@@ -270,7 +286,7 @@ class UserAuthController extends Controller
 
             $newPath = "uploads/all/$newFileName";
 
-            $upload->file_original_name=$newPath;
+            $upload->file_original_name = $newPath;
             $upload->extension = $extension;
             $upload->file_name = $newPath;
             $upload->type = $type[$upload->extension];

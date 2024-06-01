@@ -29,6 +29,8 @@ return new class extends Migration
             $table->foreign('shop_logo')->references('id')->on('uploads')->onDelete('cascade');
             $table->bigInteger('zone_id')->unsigned()->index();
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
+            $table->bigInteger('district_id')->unsigned()->index();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
 
             $table->timestamps();
         });

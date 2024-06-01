@@ -55,6 +55,18 @@ class User extends Authenticatable implements JWTSubject
     ];
 
 
+    /**
+     * Get the wallet a the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function wallet()
+    {
+        return $this->hasOne(UserWallet::class, 'user_id', 'id');
+    }
+
+
+
     public function getAvatarImageAttribute() {
         return getFileUrl($this->avatar);
 

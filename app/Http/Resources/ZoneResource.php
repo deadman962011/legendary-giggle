@@ -15,10 +15,19 @@ class ZoneResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        
+
+        preg_match('/POINT\((-?\d+\.\d+)-?\s*(-?\d+\.\d+)\)/', $this->center, $matches);
+        $longitude = floatval($matches[1]);
+        $latitude = floatval($matches[2]);
+    
+
         return [
             'id' => $this->id,
             'name' => $this->getTranslation('name'),
+            'center'=>[
+                'latitude'=>$latitude,
+                'longitude'=>$longitude,
+            ]
         ];
         // return parent::toArray($request);
     }

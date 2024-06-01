@@ -32,6 +32,7 @@ class saveShopRequest extends FormRequest
             'longitude'=>'required',
             'latitude'=>'required',
             'zone_id'=>'required|exists:zones,id',
+            'district_id'=>'required|exists:districts,id',
             'categories_ids'=>'required',
             'tax_register'=>[
                 'required',

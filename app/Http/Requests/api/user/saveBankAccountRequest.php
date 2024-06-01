@@ -44,5 +44,4 @@ class saveBankAccountRequest extends FormRequest
         ],422));
     }
 
-
 }

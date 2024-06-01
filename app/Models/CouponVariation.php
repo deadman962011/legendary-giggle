@@ -12,6 +12,18 @@ class CouponVariation extends Model
     protected $fillable=['amount','coupon_id'];
 
 
+
+    /**
+     * Get the Coupon associated with the CouponVariation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function Coupon() 
+    {
+        return $this->hasOne(Coupon::class, 'id', 'coupon_id');
+    }
+
+
     /**
      * Get all of the CouponVariationLicences f CouponVariation
      *

@@ -24,7 +24,16 @@ class CouponDetailsResource extends JsonResource
             'name'=>$this->getTranslation('name'),
             'description'=>$this->getTranslation('description'),
             'refund_details'=>$this->getTranslation('refund_details'),
-            'variations'=>$this->couponVariations,
+            'thumbnail'=>getFileUrl($this->thumbnail),
+            'variations'=>$this->couponVariations->map(function($variation){
+                $active_keys_count=$variation->CouponVariationLicences->where('isGranted',false)->count();
+                return [
+                    'id'=>$variation->id,
+                    'amount'=>$variation->amount,
+                    'is_active'=>$active_keys_count > 0
+
+                ];
+            })->sortBy('amount')->toArray(),
             'min_amount'=>$min_amount,
             'max_amount'=>$max_amoun
         ];

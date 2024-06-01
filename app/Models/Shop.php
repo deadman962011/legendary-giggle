@@ -15,7 +15,7 @@ class Shop extends Model
 
     protected $with=['translations','categories'];
 
-    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id','shop_contact_email','shop_contact_phone'];
+    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id','district_id','shop_contact_email','shop_contact_phone'];
 
     public function translations()
     {

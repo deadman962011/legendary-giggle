@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\App;
 class Notification extends Model
 {
     use HasFactory;
+ 
+    protected $table='push_notifications';
 
-    // title	description 	image	status	created_at	updated_at	
     protected $fillable=['title','description','image'];
 
 
