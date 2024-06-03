@@ -145,8 +145,12 @@
         'coupon_variations'=>'Coupon variations',
         'add_variation'=>'Add variation',
         'amount'=>'Amount',
-        'add_new_coupon'=>'Add new coupon'
-        
+        'add_new_coupon'=>'Add new coupon',
+
+
+
+
+      
 
 
 

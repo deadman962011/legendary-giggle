@@ -29,9 +29,11 @@ use App\Http\Controllers\cp\NotificationController;
 use App\Http\Controllers\cp\OfferController;
 use App\Http\Controllers\cp\RoleController;
 use App\Http\Controllers\cp\SettingController;
+use App\Http\Controllers\cp\ShopCommissionAmountController;
 use App\Http\Controllers\cp\ShopController;
 use App\Http\Controllers\cp\SliderController;
 use App\Http\Controllers\cp\StaffController;
+use App\Http\Controllers\cp\UserWithdrawBalanceRequestController;
 use App\Http\Controllers\cp\ZoneController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -106,10 +108,9 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('zone')->controller(ZoneController::class)->group(base_path('routes/cp/ZoneRoutes.php'));
                 Route::prefix('staff')->controller(StaffController::class)->group(base_path('routes/cp/StaffRoutes.php'));
                 Route::prefix('role')->controller(RoleController::class)->group(base_path('routes/cp/RoleRoutes.php'));
-
-                Route::prefix('withdraw_balance_requests')->controller(RoleController::class)->group(base_path('routes/cp/RoleRoutes.php'));
+                Route::prefix('user_withdraw_balance_requests')->controller(UserWithdrawBalanceRequestController::class)->group(base_path('routes/cp/UserWithdrawBalanceRoutes.php'));
+                Route::prefix('shop_commission_payment')->controller(ShopCommissionAmountController::class)->group(base_path('routes/cp/ShopCommissionPaymentRoutes.php'));
                 
-
 
                 Route::prefix('setting')->controller(SettingController::class)->group(base_path('routes/cp/SettingRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));

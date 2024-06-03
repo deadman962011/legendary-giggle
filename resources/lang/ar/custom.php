@@ -140,8 +140,10 @@
         'coupon_variations'=>'انواع الكوبون',
         'add_variation'=>'اضافة نوع',
         'amount'=>'القيمة',
-        'add_new_coupon'=>'اضافة كوبون جديد'
+        'add_new_coupon'=>'اضافة كوبون جديد',
 
+
+        
   
     
     ];

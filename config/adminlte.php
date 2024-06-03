@@ -507,8 +507,20 @@ return [
                     'shift' => 'ms-2',
                     'submenu' => [
                         [
-                            'text' => 'list_withdraw_balance_requests',
-                            'url' => '/role/list',
+                            'text' => 'list_pending_withdraw_balance_requests',
+                            'url' => '/user_withdraw_balance_requests/list?status=pending',
+                            'shift' => 'ms-3',
+                            'can'=>['add_role','delete_role']
+                        ],
+                        [
+                            'text' => 'list_approved_withdraw_balance_requests',
+                            'url' => '/user_withdraw_balance_requests/list?status=approved',
+                            'shift' => 'ms-3',
+                            'can'=>['add_role','delete_role']
+                        ],
+                        [
+                            'text' => 'list_rejected_withdraw_balance_requests',
+                            'url' => '/user_withdraw_balance_requests/list?status=rejected',
                             'shift' => 'ms-3',
                             'can'=>['add_role','delete_role']
                         ],

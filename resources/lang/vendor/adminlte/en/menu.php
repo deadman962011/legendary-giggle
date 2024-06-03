@@ -48,4 +48,12 @@ return [
     'important' => 'Important',
     'warning' => 'Warning',
     'information' => 'Information',
+
+      
+    'financial_transactions'=>'Financial Transactions',
+    'users_withdraw_balance_requests'=>'Users Withdraw balance requests',
+    'list_pending_withdraw_balance_requests'=>'Pending withdraw balance requests',
+    'list_approved_withdraw_balance_requests'=>'Approved withdraw balance requests',
+    'list_rejected_withdraw_balance_requests'=>'Rejected withdraw balance requests'
+
 ];

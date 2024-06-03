@@ -33,6 +33,14 @@ return [
     'add_coupon'=>'اضافة كوبون جديد',
 
 
+    
+
+    'financial_transactions'=>'التعاملات المالية',
+    'users_withdraw_balance_requests'=>'طلبات سحب الرصيد للعملاء',
+    'list_pending_withdraw_balance_requests'=>'طلبات سحب الرصيد المعلقة',
+    'list_approved_withdraw_balance_requests'=>'طلبات سحب الرصيد الموافقة',
+    'list_rejected_withdraw_balance_requests'=>'طلبات سحب الرصيد المرفوضة',
+
     'main_navigation' => 'MAIN NAVIGATION',
     'blog' => 'Blog',
     'pages' => 'Pages',
