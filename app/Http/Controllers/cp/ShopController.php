@@ -32,8 +32,7 @@ class ShopController extends Controller
     public function List(Request $request)
     {
 
-        //
-        return view('emails.shop_approved');
+        // 
         $shops = Shop::where('isDeleted', 0)->get();
         return view('shop.list', ['shops' => $shops]);
     }
