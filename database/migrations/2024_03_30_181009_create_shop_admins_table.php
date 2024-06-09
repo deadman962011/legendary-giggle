@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('shop_id');
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->boolean('status')->default(false);
+            $table->boolean('isDeleted')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

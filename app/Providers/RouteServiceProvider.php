@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Http\Controllers\api\ApiCategoryController;
 use App\Http\Controllers\api\ApiCouponController;
+use App\Http\Controllers\api\ApiDepositBankAccountController;
 use App\Http\Controllers\api\ApiFileController;
 use App\Http\Controllers\api\ApiSliderController;
 use App\Http\Controllers\api\ApiZoneController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\api\shop\ShopAuthController;
 use App\Http\Controllers\api\shop\ShopAvailabilityController;
 use App\Http\Controllers\api\shop\ShopController as ShopShopController;
 use App\Http\Controllers\api\shop\ShopOfferController;
+use App\Http\Controllers\api\shop\ShopPayCommissionController;
 use App\Http\Controllers\api\shop\ShopStaffController;
 use App\Http\Controllers\api\user\ApiBankAccountController;
 use App\Http\Controllers\api\user\ApiOfferController;
@@ -25,12 +27,14 @@ use App\Http\Controllers\cp\AizUploadController;
 use App\Http\Controllers\cp\ApprovalController;
 use App\Http\Controllers\cp\CategoryController;
 use App\Http\Controllers\cp\CouponController;
+use App\Http\Controllers\cp\DepoistBankAccountController;
 use App\Http\Controllers\cp\NotificationController;
 use App\Http\Controllers\cp\OfferController;
 use App\Http\Controllers\cp\RoleController;
 use App\Http\Controllers\cp\SettingController;
 use App\Http\Controllers\cp\ShopCommissionAmountController;
 use App\Http\Controllers\cp\ShopController;
+use App\Http\Controllers\cp\ShopPayCommissionAmountController;
 use App\Http\Controllers\cp\SliderController;
 use App\Http\Controllers\cp\StaffController;
 use App\Http\Controllers\cp\UserWithdrawBalanceRequestController;
@@ -70,6 +74,7 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('zone')->controller(ApiZoneController::class)->group(base_path('routes/api/v1/ZoneRoutes.php'));
                     Route::prefix('setting')->controller(ApiSettingController::class)->group(base_path('routes/api/v1/SettingRoutes.php'));
                     Route::prefix('coupon')->controller(ApiCouponController::class)->group(base_path('routes/api/v1/CouponRoutes.php'));                    
+                    Route::prefix('deposit_bank_accounts')->controller(ApiDepositBankAccountController::class)->group(base_path('routes/api/v1/DepositBankAccountRoutes.php'));                    
                     Route::prefix('file')->controller(ApiFileController::class)->group(base_path('routes/api/v1/FileRoutes.php'))->middleware(['auth:user','auth:shop']);                    
                     Route::prefix('user')->group(function () {
                         Route::prefix('auth')->controller(UserAuthController::class)->group(base_path('routes/api/v1/user/UserAuthRoutes.php'));
@@ -90,6 +95,8 @@ class RouteServiceProvider extends ServiceProvider
                             Route::prefix('staff')->controller(ShopStaffController::class)->group(base_path('routes/api/v1/shop/ShopStaffRoutes.php'));
                             Route::prefix('offer')->controller(ShopOfferController::class)->group(base_path('routes/api/v1/shop/ShopOfferRoutes.php'));
                             Route::prefix('availability')->controller(ShopAvailabilityController::class)->group(base_path('routes/api/v1/shop/ShopAvailabilityRoutes.php'));
+                            Route::prefix('shop_pay_commission')->controller(ShopPayCommissionController::class)->group(base_path('routes/api/v1/shop/ShopPayCommissionRoutes.php'));
+                            
                         });
                     });
                 });
@@ -109,9 +116,8 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('staff')->controller(StaffController::class)->group(base_path('routes/cp/StaffRoutes.php'));
                 Route::prefix('role')->controller(RoleController::class)->group(base_path('routes/cp/RoleRoutes.php'));
                 Route::prefix('user_withdraw_balance_requests')->controller(UserWithdrawBalanceRequestController::class)->group(base_path('routes/cp/UserWithdrawBalanceRoutes.php'));
-                Route::prefix('shop_commission_payment')->controller(ShopCommissionAmountController::class)->group(base_path('routes/cp/ShopCommissionPaymentRoutes.php'));
-                
-
+                Route::prefix('shop_commission_payment')->controller(ShopPayCommissionAmountController::class)->group(base_path('routes/cp/ShopCommissionPaymentRoutes.php'));
+                Route::prefix('deposit_bank_account')->controller(DepoistBankAccountController::class)->group(base_path('routes/cp/DepositBankAccount.php'));
                 Route::prefix('setting')->controller(SettingController::class)->group(base_path('routes/cp/SettingRoutes.php'));
                 Route::prefix('aiz-uploader')->controller(AizUploadController::class)->group(base_path('routes/cp/UploaderRoutes.php'));
             });

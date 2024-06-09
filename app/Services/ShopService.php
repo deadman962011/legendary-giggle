@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Mail\ShopApproved;
 use App\Models\Role;
 use App\Models\Shop;
 use App\Models\ShopAdmin;
@@ -13,9 +14,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Passport;
 
-use Illuminate\Support\Facades\DB;
-use function PHPSTORM_META\map;
-
+use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\Mail;
 class ShopService
 {
     public function createShop($data, $from)
@@ -102,12 +102,12 @@ class ShopService
                 ]);
             }
 
-
             //save shop wallet
             ShopWallet::create([
                 'shop_id'=>$shop->id
             ]);
-
+            
+            Mail::to($data->shop_admin_email)->send(new ShopApproved());
 
 
             DB::commit();

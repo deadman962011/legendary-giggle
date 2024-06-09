@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DepositBankAccount;
 use App\Models\District;
 use App\Models\DistrictTranslation;
 use App\Models\Role;
@@ -37,6 +38,9 @@ class DatabaseSeeder extends Seeder
         $this->seedCategory();
         $this->seedConfig();
         $this->seedShop();
+        $this->seedDepositBankAccouts();
+
+
     }
 
 
@@ -283,6 +287,40 @@ class DatabaseSeeder extends Seeder
                 ]
 
             ],
+
+
+            [
+                'name' => 'display_deposit_bank_accounts',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Depoist Bank Accounts'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض حسابات الايداع'],
+                ]
+            ],
+            [
+                'name' => 'add_deposit_bank_account',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add Depoist Bank Account'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة حساب ايداع"],
+                ]
+            ],
+            [
+                'name' => 'edit_deposit_bank_account',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit Deposit Bank Account'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل حساب ايداع"],
+                ]
+            ],
+            [
+                'name' => 'delete_deposit_bank_account',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete Depoist Bank Account'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة حساب ايداع"],
+                ]
+            ],
+
+
+
+
         ];
 
         $role = \App\Models\Role::query()->create([
@@ -833,4 +871,27 @@ class DatabaseSeeder extends Seeder
             ]);
         }
     }
+
+    public function seedDepositBankAccouts()  {
+        
+        DepositBankAccount::insert([
+            [
+                'bank_name' => 'Al-Rajhi Bank',
+                'full_name' => 'MyBill LLC',
+                'iban' => 'SA465412789621544521748565238451',
+                'account_number' => '8654408562102368'
+            ],
+            [
+                'bank_name' => 'Arab National Bank (ANB)',
+                'full_name' => 'MyBill2 LLC',
+                'iban' => 'SA465412789621544521748565238451',
+                'account_number' => '7654428562102231'
+            ],
+        ]);
+
+
+    }
+
+
+
 }

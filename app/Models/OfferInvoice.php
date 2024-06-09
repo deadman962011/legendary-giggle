@@ -15,6 +15,7 @@ class OfferInvoice extends Model
 
     protected $appends=['points','state'];
 
+    protected $with=['offer','user'];
 
     /**
      * Get the offer associated with the OfferInvoice
@@ -26,6 +27,17 @@ class OfferInvoice extends Model
         return $this->hasOne(Offer::class, 'id', 'offer_id');
     }
 
+    /**
+     * Get the user associated with the OfferInvoice
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+
     public function getPointsAttribute() {
         $amount=$this->amount;
         $offer_cashback_amount=intval($this->offer->cashback_amount);
@@ -34,8 +46,8 @@ class OfferInvoice extends Model
 
     public function getStateAttribute()   {
  
-        $this->offer->state;
-        if($this->offer->state==='active'){
+        $this->offer->state; 
+        if($this->offer->state==='active'|| $this->offer->state==='expired' && !$this->isCanceled){
             return 'pending';
         }
         if($this->offer->state==='expired' && $this->isCanceled){

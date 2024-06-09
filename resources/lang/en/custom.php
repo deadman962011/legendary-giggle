@@ -146,7 +146,12 @@
         'add_variation'=>'Add variation',
         'amount'=>'Amount',
         'add_new_coupon'=>'Add new coupon',
+        'category'=>'Category',
+        'shop_details'=>'Shop details',
 
+
+        'city'=>'City',
+        'district'=>'District'
 
 
 

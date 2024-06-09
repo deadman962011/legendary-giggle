@@ -531,14 +531,44 @@ return [
                     'shift' => 'ms-2',
                     'submenu' => [
                         [
+                            'text' => 'list_pending_offers_commission_paymet',
+                            'url' => '/shop_commission_payment/list?status=pending',
+                            'shift' => 'ms-3',
+                            'can'=>['add_staff','delete_staff']
+                        ],
+                        [
+                            'text' => 'list_approved_offers_commission_paymet',
+                            'url' => '/shop_commission_payment/list?status=approved',
+                            'shift' => 'ms-3',
+                            'can'=>['add_staff','delete_staff']
+                        ],
+                        [
                             'text' => 'list_offers_commission_paymet',
-                            'url' => '/staff/list',
+                            'url' => '/shop_commission_payment/list?status=rejected',
                             'shift' => 'ms-3',
                             'can'=>['add_staff','delete_staff']
                         ],
                     ]
                 ],
-
+                [
+                    'text' => 'deposit_bank_accounts',
+                    'can'=>['add_deposit_bank_account','edit_deposit_bank_account','delete_deposit_bank_account'],
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_deposit_bank_accounts',
+                            'url' => '/deposit_bank_account/list',
+                            'shift' => 'ms-3',
+                            'can'=>['edit_deposit_bank_account','delete_deposit_bank_account']
+                        ],
+                        [
+                            'text' => 'add_deposit_bank_accounts',
+                            'url' => '/deposit_bank_account/new',
+                            'shift' => 'ms-3',
+                            'can'=>['add_deposit_bank_account']
+                        ],
+                    ]
+                ],
             ],
         ],
 

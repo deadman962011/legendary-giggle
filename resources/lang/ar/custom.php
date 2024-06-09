@@ -141,7 +141,12 @@
         'add_variation'=>'اضافة نوع',
         'amount'=>'القيمة',
         'add_new_coupon'=>'اضافة كوبون جديد',
-
+        'category'=>'التصنيفات',
+        'shop_details'=>'معلومات المتجر',
+        
+        
+        'city'=>'المدنية',
+        'district'=>'النتطقة'
 
         
   

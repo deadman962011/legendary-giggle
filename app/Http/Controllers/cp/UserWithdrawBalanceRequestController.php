@@ -16,11 +16,8 @@ class UserWithdrawBalanceRequestController extends Controller
 
 
     public function List(Request $request) { 
-        
-        
-
          
-        $users_withdraw_requests = UserWithdrawBalanceRequest::when($request->category, function ($query) use ($request) {
+        $users_withdraw_requests = UserWithdrawBalanceRequest::when($request->status, function ($query) use ($request) {
             return $query->where('state', $request->status);
         })
         ->get();

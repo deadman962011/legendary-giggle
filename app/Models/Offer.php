@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class Offer extends Model
 {
     use HasFactory;
-    protected $appends = ['commission', 'sales', 'is_favorite'];
+    protected $appends = ['commission','commission_amount_percentage', 'sales', 'is_favorite'];
 
     protected $with = ['shop'];
 
@@ -56,8 +56,6 @@ class Offer extends Model
         });
     }
 
-
-
     /**
      * Get the shop associated with the Offer
      *
@@ -92,20 +90,27 @@ class Offer extends Model
         return $this->hasMany(OfferInvoice::class, 'offer_id', 'id');
     }
 
+    function getCommissionAttribute() {
 
-    function getCommissionAttribute()
+        $total_sales=$this->invoices->sum('amount');
+
+        $total_commission= $total_sales == 0 ? $total_sales :  $total_sales / getSetting('commission_amount');
+
+        return $total_commission;
+    }
+
+    function getCommissionAmountPercentageAttribute()
     {
-        return 0;
+        return intval(getSetting('commission_amount'));
     }
 
     function getSalesAttribute()
     {
-        return 0;
+        return $this->invoices->sum('amount');
     }
 
     function getIsFavoriteAttribute()
     {
-
         if (Auth::guard('user')->check()) {
             $user = Auth::guard('user')->user();
             return OfferFavorite::where('user_id', $user->id)->where('offer_id', $this->id)->count() > 0;

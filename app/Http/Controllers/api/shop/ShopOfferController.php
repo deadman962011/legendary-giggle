@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\shop\offer\saveOfferRequest;
+use App\Http\Resources\merchant\MerchantOfferDetails;
 use App\Http\Resources\merchant\MerchantOfferResource;
 use App\Models\ApprovalRequest;
 use App\Models\Language;
@@ -96,13 +97,13 @@ class ShopOfferController extends Controller
             
             return response()->json([
                 'success' => true,
-                'payload' =>$getOffer,
+                'payload' =>new MerchantOfferDetails($getOffer),
                 'message' => 'Offers Successfully Loaded'
             ], 200);
 
 
         } catch (\Throwable $th) {
-            dd($th);
+
             return response()->json([
                 'success' => false,
                 'payload' =>null,
@@ -112,4 +113,5 @@ class ShopOfferController extends Controller
 
     }
 
+ 
 }

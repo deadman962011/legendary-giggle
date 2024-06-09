@@ -38,4 +38,5 @@ class AuthenticateShopRequest extends FormRequest
             'errors'      => $validator->errors()
         ],422));
     }
+
 }

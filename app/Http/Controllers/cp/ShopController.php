@@ -33,6 +33,7 @@ class ShopController extends Controller
     {
 
         //
+        return view('emails.shop_approved');
         $shops = Shop::where('isDeleted', 0)->get();
         return view('shop.list', ['shops' => $shops]);
     }

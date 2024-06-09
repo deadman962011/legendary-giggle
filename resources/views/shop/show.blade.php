@@ -3,8 +3,8 @@
 {{-- Customize layout sections --}}
 
 @section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Welcome')
+@section('content_header_title', trans('custom.home'))
+@section('content_header_subtitle', trans('custom.shop_details'))
 
 {{-- Content body: main page content --}}
 
@@ -84,42 +84,27 @@
 
                     <div class="row">
                         <div class="col-sm-4">
+ 
                             <div class="form-group">
-                                <label class="input-label" for="latitude">{{ __('custom.latitude') }}<span
-                                        data-toggle="tooltip" data-placement="right"
-                                        data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
-                                        class="input-label-secondary">
-                                    </span></label>
-                                <input type="text" id="latitude" name="latitude" class="form-control h--45px disabled"
-                                    placeholder="{{ __('Ex:_-94.22213') }} " value="{{ $shop->latitude }}" required
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label class="input-label" for="longitude">{{ __('custom.longitude') }}
-                                    <span data-toggle="tooltip" data-placement="right"
-                                        data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
-                                        class="input-label-secondary">
-                                    </span>
-                                </label>
-                                <input type="text" name="longitude" class="form-control h--45px disabled"
-                                    placeholder="{{ __('Ex:_103.344322') }} " id="longitude"
-                                    value="{{ $shop->longitude }}" required readonly>
-                            </div>
-                            <div class="form-group">
-                                <span data-toggle="tooltip" data-placement="right"
-                                    data-original-title="{{ __('custom.restaurant_lat_lng_warning') }}"
-                                    class="input-label-secondary">
-
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label class="input-label" for="choice_zones">{{ __('custom.zone') }}</label>
+                                <label class="input-label" for="choice_zones">{{ __('custom.city') }}</label>
                                 <select name="zone_id" id="choice_zones" required readonly
                                     class="form-control h--45px js-example-basic-multiple"
-                                    data-placeholder="{{ __('custom.select_zone') }}">
-                                    @foreach (\App\Models\Zone::where('status', 1)->get(['id', 'name']) as $zone)
+                                    data-placeholder="{{ __('custom.select_city') }}">
+                                    @foreach (\App\Models\Zone::where('status', 1)->where('id',$shop->zone_id)->get(['id', 'name']) as $zone)
                                         <option value="{{ $zone->id }}" @selected($shop->zone_id === $zone->id)>
                                             {{ $zone->getTranslation('name') }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label" for="choice_zones">{{ __('custom.district') }}</label>
+                                <select name="zone_id" id="choice_zones" required readonly
+                                    class="form-control"
+                                    data-placeholder="{{ __('custom.select_district') }}">
+                                    @foreach (\App\Models\District::where('id',$shop->district_id)->where('zone_id',$zone->id)->get(['id', 'name']) as $district)
+                                        <option value="{{ $district->id }}" @selected($shop->district_id === $district->id)>
+                                            {{ $district->getTranslation('name') }}
                                         </option>
                                     @endforeach
                                 </select>
