@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('thumbnail')->unsigned()->index();
             $table->foreign('thumbnail')->references('id')->on('uploads')->onDelete('cascade');
             $table->enum('category',['online','onsite']);
+            $table->string('expirey_unit');
+            $table->string('expirey_amount');
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();

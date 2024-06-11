@@ -149,10 +149,20 @@
         'category'=>'Category',
         'shop_details'=>'Shop details',
 
-
         'city'=>'City',
-        'district'=>'District'
+        'district'=>'District',
 
+        "year"=>'Year',
+        "month"=>'Month',
+        "day"=>'Day',
+        "hour"=>'Hour',
+        "expirey_unit"=>"Expirey Unit",
+        "select_expirey_unit"=>'Select Expirey Unit',
+        "expirey_amount"=>'Expirey Amount',
+        'coupons'=>"Coupons",
+        'user_already_has_registered_invoice_for_this_offer'=>'User already has registerd invoice for this offer',
+        'offer_invoice_successfully_registerd'=>'Offer invoice successfully registered',
+        'no_active_offer_for'=>'No active offer for'
 
 
       

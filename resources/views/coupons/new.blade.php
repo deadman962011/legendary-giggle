@@ -74,10 +74,28 @@
                         <div class="form-group">
                             <select name="category" placeholder="{{ trans('custom.coupon_category') }}"
                                 class="form-control">
-                                <option value="" hidden>{{trans('custom.select_coupon_category')}}</option>
-                                <option value="onsite">{{trans('onsite')}}</option>
-                                <option value="online">{{trans('online')}}</option>
+                                <option value="" hidden>{{ trans('custom.select_coupon_category') }}</option>
+                                <option value="onsite">{{ trans('onsite') }}</option>
+                                <option value="online">{{ trans('online') }}</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <select name="expirey_unit" placeholder="{{ trans('custom.expirey_unit') }}"
+                                        class="form-control">
+                                        <option value="" hidden>{{ trans('custom.select_expirey_unit') }}</option>
+                                        <option value="hour">{{ trans('custom.hour') }}</option>
+                                        <option value="day">{{ trans('custom.day') }}</option>
+                                        <option value="month">{{ trans('custom.month') }}</option>
+                                        <option value="year">{{ trans('custom.year') }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" name='expirey_amount' placeholder="{{ trans('custom.expirey_amount') }}" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +107,8 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             {{ trans('custom.coupon_variations') }}
-                            <button id="add_variation_button" type="button" class="btn btn-primary">+ {{trans('custom.add_variation')}}</button>
+                            <button id="add_variation_button" type="button" class="btn btn-primary">+
+                                {{ trans('custom.add_variation') }}</button>
                         </div>
                     </div>
                     <div id="variations" class="card-body">
@@ -132,7 +151,7 @@
             e.preventDefault();
 
             variations.append(
-                '<div class="card bg-light my-2 variation_item"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between mb-3"> <div class=""></div> <button type="button" class="btn btn-danger delete_variation_button "> <i class="far fa-trash"></i></button> </div> <div class="row"> <div class="col-12 col-sm-6"> <div class="form-group"><label>Amount</label><input type="number" name="variation[' +
+                '<div class="card bg-light my-2 variation_item"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between mb-3"> <div class=""></div> <button type="button" class="btn btn-danger delete_variation_button "> <i class="fas fa-trash"></i></button> </div> <div class="row"> <div class="col-12 col-sm-6"> <div class="form-group"><label>Amount</label><input type="number" name="variation[' +
                 variation_count +
                 '][amount]" placeholder="amount" class="form-control" /></div></div> </div> <div class="variation_keys_' +
                 variation_count +
@@ -149,22 +168,22 @@
         $(document).on('click', '.add_variation_key_button', function(e) {
             e.preventDefault();
             variation_key_count++;
-            var id = $(this).data('id'); 
-            
-            $('.variation_keys_'+id).append(
-                '<div class="row variation_key_item_'+ variation_count +'_'+variation_key_count+
+            var id = $(this).data('id');
+
+            $('.variation_keys_' + id).append(
+                '<div class="row variation_key_item_' + variation_count + '_' + variation_key_count +
                 '" ><div class="col-sm-4"><div class="form-group"><input type="text" name="variation[' +
                 variation_count +
                 '][key][]" placeholder="key" class="form-control" required /></div></div><div class="col-sm-2"><button class="btn btn-danger delete_variation_key_item" data-id="' +
                 variation_count +
-                '" data-keyid="'+variation_key_count+'"><i class="far fa-trash"></i></button></div>');
+                '" data-keyid="' + variation_key_count + '"><i class="fas fa-trash"></i></button></div>');
         })
 
         $(document).on('click', '.delete_variation_key_item', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
-            var keyid=$(this).data('keyid');
-            $('.variation_key_item_'+id+'_'+keyid).remove();
+            var keyid = $(this).data('keyid');
+            $('.variation_key_item_' + id + '_' + keyid).remove();
 
         })
     </script>

@@ -41,7 +41,9 @@ class saveCouponRequest extends FormRequest
             'image'=>'required|exists:uploads,id',
             'lang.*' => 'required',
             'variation.*.amount' => 'required|numeric|min:0',
-            'variation.*.key' => 'required'
+            'variation.*.key' => 'required',
+            'expirey_unit'=>'required',
+            'expirey_amount'=>'required|numeric'
         ];
       
         foreach ($this->fetchedLanguages as $key=>$lang) {

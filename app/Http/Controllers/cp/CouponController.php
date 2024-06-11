@@ -41,18 +41,18 @@ class CouponController extends Controller
 
     function Store(saveCouponRequest $request)
     {
-
         //
         DB::beginTransaction();
 
         try {
-
             //save  
             $coupon = Coupon::create([
                 'name' => $request->{'name_' . $request->lang[0]},
                 'validity' => 'test',
                 'thumbnail' => $request->image,
                 'category' => $request->category,
+                'expirey_amount'=>$request->expirey_amount,
+                'expirey_unit'=>$request->expirey_unit
             ]);
 
             if (isset($request->variation)) {

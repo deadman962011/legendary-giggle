@@ -72,7 +72,7 @@
 
                             <select class="js-example-basic-multiple w-100" name="categories_ids"
                                 placeholder='Select Shop Category'>
-                                <option value="" hidden >Select category</option>
+                                <option value="" hidden>Select category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                 @endforeach
@@ -87,8 +87,8 @@
                                 placeholder="{{ trans('custom.shop_contact_email') }}" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="shop_contact_phone"
-                                placeholder="{{ trans('custom.shop_contact_phone') }}" required>
+                            <input id="phone"  name="shop_contact_phone" class="form-control" placeholder="{{ trans('custom.shop_contact_phone') }}" required>
+  
                         </div>
 
                     </div>
@@ -105,8 +105,8 @@
                                 placeholder="{{ trans('custom.shop_admin_name') }}" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="shop_admin_phone"
-                                placeholder="{{ trans('custom.shop_admin_phone') }}" required>
+                            <input id="phone"  name="shop_admin_phone" class="form-control" placeholder="{{ trans('custom.shop_admin_phone') }}" required>
+ 
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" name="shop_admin_email"
@@ -170,11 +170,11 @@
                                             placeholder="Shop address Ex: ryiadh" value="{{ old('address') }}" required> --}}
                                     </div>
                                     <div class="form-group">
-                                        <label class="input-label" for="choice_zones">{{ __('custom.zone') }}</label>
+                                        <label class="input-label" for="choice_zones">{{ __('custom.city') }}</label>
                                         <select name="zone_id" id="choice_zones" required
                                             class="form-control h--45px js-example-basic-multiple"
                                             data-placeholder="{{ __('custom.select_zone') }}">
-                                            <option value="" selected disabled>{{ __('custom.select_zone') }}
+                                            <option value="" selected disabled>{{ __('custom.select_city') }}
                                             </option>
                                             @foreach (\App\Models\Zone::where('status', 1)->get(['id', 'name']) as $zone)
                                                 <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
@@ -226,6 +226,24 @@
     <link rel="stylesheet" href="/vendor/media-manager/uppy.min.css">
     <link rel="stylesheet" href="/vendor/media-manager/media-manger.css">
     <link rel="stylesheet" href="/vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.11/build/css/intlTelInput.css">
+    <style>
+        #phone {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 100%;
+            }
+            #phone > input {
+            width: 100%!important;
+            }
+            #phone > .flag-container {
+            z-index: 4;
+            }
+            .iti.iti--allow-dropdown.iti--show-flags.iti--inline-dropdown{
+                width: 100%;
+            }
+    </style>
 
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
@@ -239,12 +257,28 @@
     <script src="/vendor/select2/select2.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places&v=3.45.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.11/build/js/intlTelInput.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2({
                 placeholder: "{{ trans('custom.select_shop_category') }}",
                 allowClear: true
             });
+
+
+            const phoneInputs = document.querySelectorAll("#phone");
+            if(phoneInputs.length > 0){
+                phoneInputs.forEach(input => {
+                    window.intlTelInput(input, {
+                        initialCountry:"sa",
+                        countryOrder :['sa'],
+                        preferredCountries:['sa'],
+                        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.11/build/js/utils.js",
+                    });
+                    
+                })
+
+            }
 
 
             $('#choice_zones').on('select2:select', function(e) {
@@ -260,8 +294,9 @@
                     success: function(resp) {
                         var districtsSelect = $("#choice_districts")
                         districtsSelect.find('option').remove();
-                        districtsSelect.append($('<option></option>').text('select district')).attr('hidden',true   );
-                        if (resp.success && resp.payload.length > 0) { 
+                        districtsSelect.append($('<option></option>').text('select district'))
+                            .attr('hidden', true);
+                        if (resp.success && resp.payload.length > 0) {
                             $.each(resp.payload, function(index, district) {
                                 districtsSelect.append($('<option></option>').attr(
                                     'value', district.id).text(district.name));

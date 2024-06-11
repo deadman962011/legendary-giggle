@@ -44,7 +44,7 @@ class saveNotificationRequest extends FormRequest
         }
 
         $rules = [
-            'image' => 'required|exists:uploads,id',
+            // 'image' => 'sometimes|exists:uploads,id',
             'lang.*' => 'required',
             'zone_id' => [
                 'required',

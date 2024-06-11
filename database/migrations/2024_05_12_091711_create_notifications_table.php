@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->bigInteger('image')->unsigned()->index();
+            $table->bigInteger('image')->unsigned()->index()->nullable();
             $table->foreign('image')->references('id')->on('uploads')->onDelete('cascade');
             $table->boolean('status')->default(true);
             $table->timestamps();

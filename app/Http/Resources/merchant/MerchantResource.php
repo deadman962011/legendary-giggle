@@ -20,7 +20,8 @@ class MerchantResource extends JsonResource
             'shop_name_ar'=>$this->getTranslation('name','ar'),
             'shop_name_en'=>$this->getTranslation('name','en'),
             'shop_contact_email'=>$this->shop_contact_email,
-            'shop_contact_phone'=>$this->shop_contact_phone
+            'shop_contact_phone'=>$this->shop_contact_phone,
+            'shop_contact_website'=>$this->shop_contact_website
         ];
         return parent::toArray($request);
     }

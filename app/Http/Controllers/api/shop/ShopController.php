@@ -102,7 +102,8 @@ class ShopController extends Controller
 
             $updateShop->update([
                 'shop_contact_email'=>$request->email,
-                'shop_contact_phone'=>$request->phone
+                'shop_contact_phone'=>$request->phone,
+                'shop_contact_website'=>$request->website
             ]);
 
 

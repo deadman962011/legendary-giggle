@@ -12,7 +12,7 @@ class Coupon extends Model
 {
     use HasFactory;
  
-    protected $fillable=['name','validity','','thumbnail','category','status','isDeleted'];
+    protected $fillable=['name','validity','','thumbnail','category','status','isDeleted','expirey_amount','expirey_unit'];
 
 
     public function scopeActive(Builder $query): void

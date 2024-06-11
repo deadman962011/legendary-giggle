@@ -49,11 +49,24 @@ return [
     'warning' => 'Warning',
     'information' => 'Information',
 
+    
+    'list_coupons'=>"List coupons",
+    'add_new_coupon'=>'Add new coupon',
       
     'financial_transactions'=>'Financial Transactions',
     'users_withdraw_balance_requests'=>'Users Withdraw balance requests',
     'list_pending_withdraw_balance_requests'=>'Pending withdraw balance requests',
     'list_approved_withdraw_balance_requests'=>'Approved withdraw balance requests',
-    'list_rejected_withdraw_balance_requests'=>'Rejected withdraw balance requests'
+    'list_rejected_withdraw_balance_requests'=>'Rejected withdraw balance requests',
+    
+    
+    'deposit_bank_accounts'=>'Deposit bank accounts',
+    'list_deposit_bank_accounts'=>'List deposit bank accounts',
+    'add_deposit_bank_accounts'=>'Add new deposit bank account',
+    'shops_offers_commission_payment'=>'Shops offers commission payment',
+    'list_pending_offers_commission_paymet'=>'List pending offers commission paymet',
+    'list_approved_offers_commission_paymet'=>'List approved offers commission paymet',
+    'list_rejected_offers_commission_paymet'=>'List rejected offers commission paymet',
+    // 'list_offers_commission_paymet'
 
 ];

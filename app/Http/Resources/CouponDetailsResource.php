@@ -25,6 +25,8 @@ class CouponDetailsResource extends JsonResource
             'description'=>$this->getTranslation('description'),
             'refund_details'=>$this->getTranslation('refund_details'),
             'thumbnail'=>getFileUrl($this->thumbnail),
+            'expirey_unit'=>$this->expirey_unit,
+            'expirey_amount'=>intval($this->expirey_amount),
             'variations'=>$this->couponVariations->map(function($variation){
                 $active_keys_count=$variation->CouponVariationLicences->where('isGranted',false)->count();
                 return [

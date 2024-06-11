@@ -24,7 +24,6 @@ class Category extends Model
     {
         $lang = $lang == false ? App::getLocale() : $lang;
         $translation = $this->translations->where('key', $field)->where('lang',$lang)->first();
-        
         //fallback lang
         if(!$translation){
             $default_translation=$this->translations->where('key', $field)->where('lang','en')->first();

@@ -47,7 +47,7 @@ class ApiOfferInvoiceController extends Controller
                 return response()->json([
                     'success' => false,
                     'payload' => null,
-                    'message' => 'no active offer for ' . $shop_name
+                    'message' => trans('custom.no_active_offer_for') . $shop_name
                 ], 200);
             }
 
@@ -56,7 +56,7 @@ class ApiOfferInvoiceController extends Controller
                 return response()->json([
                     'success' => false,
                     'payload' => null,
-                    'message' => 'user alraedy has invoice for this offer '
+                    'message' =>  trans('custom.user_already_has_registered_invoice_for_this_offer') 
                 ], 200);
             }
 
@@ -75,7 +75,7 @@ class ApiOfferInvoiceController extends Controller
             return response()->json([
                 'success' => true,
                 'payload' => null,
-                'message' => 'offer invoice request successfully registerd'
+                'message' =>  trans('custom.offer_invoice_successfully_registerd')
             ], 200);
         } catch (\Throwable $th) {
             DB::rollBack();

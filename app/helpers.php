@@ -125,7 +125,7 @@ if (!function_exists('my_asset')) {
                 "notification" : {
                     "title":"' . $data['title'] . '",
                     "body" : "' . $data['description'] . '",
-                    "image" : "' . $data['image'] . '",
+                    "image" : "' . getFileUrl($data['image']) . '",
                     "body_loc_key":"' . $type . '",
                     "type":"' . $type . '",
                     "is_read": 0,
@@ -135,7 +135,9 @@ if (!function_exists('my_asset')) {
                     ' . $click_action . '
                   }
             }';
-
+            
+            // dd($postdata);
+                    
             $ch = curl_init();
             $timeout = 120;
             curl_setopt($ch, CURLOPT_URL, $url);

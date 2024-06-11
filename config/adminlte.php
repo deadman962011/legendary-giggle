@@ -421,7 +421,7 @@ return [
                     'can'=>['display_coupons']
                 ],
                 [
-                    'text' => 'add_coupon',
+                    'text' => 'add_new_coupon',
                     'url' => '/coupon/new',
                     'can'=>['add_coupon']
                 ],
@@ -429,16 +429,16 @@ return [
         ],
 
         [
-            'text' => 'zones',
+            'text' => 'cities',
             'icon' => 'far fa-fw fa-file',
             'can'=>['add_zone','edit_zone','delete_zone'],
             'submenu' => [
                 [
-                    'text' => 'zones_list',
+                    'text' => 'cities_list',
                     'url' => '/zone/list',
                 ],
                 [
-                    'text' => 'add_new_zone',
+                    'text' => 'add_new_city',
                     'url' => '/zone/new',
                     'can'=>'add_zone'
                 ],
@@ -500,7 +500,7 @@ return [
         [
             'text' => 'financial_transactions',
             'icon' => 'far fa-fw fa-file',
-            'can'=>['add_staff','delete_staff','add_role','delete_role'],
+            'can'=>['display_withdraw_balance_requests','display_shop_offers_commission_payment_requests'],
             'submenu' => [
                 [
                     'text' => 'users_withdraw_balance_requests',
@@ -510,19 +510,19 @@ return [
                             'text' => 'list_pending_withdraw_balance_requests',
                             'url' => '/user_withdraw_balance_requests/list?status=pending',
                             'shift' => 'ms-3',
-                            'can'=>['add_role','delete_role']
+                            'can'=>['display_withdraw_balance_requests']
                         ],
                         [
                             'text' => 'list_approved_withdraw_balance_requests',
                             'url' => '/user_withdraw_balance_requests/list?status=approved',
                             'shift' => 'ms-3',
-                            'can'=>['add_role','delete_role']
+                            'can'=>['display_withdraw_balance_requests']
                         ],
                         [
                             'text' => 'list_rejected_withdraw_balance_requests',
                             'url' => '/user_withdraw_balance_requests/list?status=rejected',
                             'shift' => 'ms-3',
-                            'can'=>['add_role','delete_role']
+                            'can'=>['display_withdraw_balance_requests']
                         ],
                     ]
                 ],
@@ -534,19 +534,19 @@ return [
                             'text' => 'list_pending_offers_commission_paymet',
                             'url' => '/shop_commission_payment/list?status=pending',
                             'shift' => 'ms-3',
-                            'can'=>['add_staff','delete_staff']
+                            'can'=>['display_shop_offers_commission_payment_requests']
                         ],
                         [
                             'text' => 'list_approved_offers_commission_paymet',
                             'url' => '/shop_commission_payment/list?status=approved',
                             'shift' => 'ms-3',
-                            'can'=>['add_staff','delete_staff']
+                            'can'=>['display_shop_offers_commission_payment_requests']
                         ],
                         [
-                            'text' => 'list_offers_commission_paymet',
+                            'text' => 'list_rejected_offers_commission_paymet',
                             'url' => '/shop_commission_payment/list?status=rejected',
                             'shift' => 'ms-3',
-                            'can'=>['add_staff','delete_staff']
+                            'can'=>['display_shop_offers_commission_payment_requests']
                         ],
                     ]
                 ],

@@ -26,8 +26,8 @@ class updateShopContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'=>'required|email',
-            'phone'=>'required|min:10|regex:/[0-9]{9}/'
+            'email'=>'nullable|email',
+            'phone'=>'nullable|min:10|regex:/[0-9]{9}/'
         ];
     }
 

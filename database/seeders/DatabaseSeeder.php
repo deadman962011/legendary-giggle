@@ -290,6 +290,66 @@ class DatabaseSeeder extends Seeder
 
 
             [
+                'name' => 'display_withdraw_balance_requests',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض طلبات سحب الرصيد '],
+                ]
+            ],
+            [
+                'name' => 'show_withdraw_balance_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض  معلومات طلب سحب الرصيد '],
+                ]
+            ],
+
+            [
+                'name' => 'approve_withdraw_balance_requests',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Approve Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'موافقة طلبات سحب الرصيد '],
+                ]
+            ],
+
+                        [
+                'name' => 'reject_withdraw_balance_requests',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Reject Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'رفض طلبات سحب الرصيد '],
+                ]
+            ],
+            [
+                'name' => 'display_shop_offers_commission_payment_requests',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض طلبات دفع عمولة العروض '],
+                ]
+            ],
+            [
+                'name' => 'show_shop_offers_commission_payment_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض معلومات طلبات سحب الرصيد '],
+                ]
+            ],
+
+            [
+                'name' => 'approve_shop_offers_commission_payment_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'موافقة طلبات سحب الرصيد '],
+                ]
+            ],
+
+                        [
+                'name' => 'reject_shop_offers_commission_payment_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'رفض طلبات سحب الرصيد '],
+                ]
+            ],
+            [
                 'name' => 'display_deposit_bank_accounts',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Display Depoist Bank Accounts'],
@@ -610,7 +670,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Automotive'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'تنقل'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'تنقل'],
                 ],
             ],
             [
@@ -622,7 +682,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Food'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'أطعمة'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'أطعمة'],
                 ],
             ],
             [
@@ -634,7 +694,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Grocery'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'بقالة'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'بقالة'],
                 ],
             ],
             [
@@ -646,7 +706,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Fashion'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'أزياء'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'أزياء'],
                 ],
             ],
             [
@@ -658,7 +718,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Drinks'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'مشروبات'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'مشروبات'],
                 ],
             ],
         ];

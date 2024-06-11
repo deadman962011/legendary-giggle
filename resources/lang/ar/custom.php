@@ -146,7 +146,20 @@
         
         
         'city'=>'المدنية',
-        'district'=>'النتطقة'
+        'district'=>'النتطقة',
+        "year"=>'السنة',
+        "month"=>'الشهر',
+        "day"=>'اليوم',
+        "hour"=>'الساعة',
+        "expirey_unit"=>"وحدة الصلاحية",
+        "select_expirey_unit"=>"اختر وحدة الصلاحية",
+        "expirey_amount"=>'قيمة الصلاحية',
+        "coupons"=>'الكوبونات',
+        
+        'user_already_has_registered_invoice_for_this_offer'=>'لديك فاتورة مسجلة مسبقا للعرض',
+        'offer_invoice_successfully_registerd'=>'تم تسجيل الفاتورة بنجاح',
+        'no_active_offer_for'=>'لا يوجد عرض نشط للمتجر'
+        
 
         
   

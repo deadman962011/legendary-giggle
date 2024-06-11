@@ -30,7 +30,7 @@ return [
     'add_new_notification'=>'اضافة اشعار جديد',
     'coupons'=>'الكوبونات',
     'list_coupons'=>'قائمة الكوبونات',
-    'add_coupon'=>'اضافة كوبون جديد',
+    'add_new_coupon'=>'اضافة كوبون جديد',
 
 
     
@@ -40,6 +40,15 @@ return [
     'list_pending_withdraw_balance_requests'=>'طلبات سحب الرصيد المعلقة',
     'list_approved_withdraw_balance_requests'=>'طلبات سحب الرصيد الموافقة',
     'list_rejected_withdraw_balance_requests'=>'طلبات سحب الرصيد المرفوضة',
+ 
+    'deposit_bank_accounts'=>'حسابات البنكية  للودائع',
+    'list_deposit_bank_accounts'=>'قاثمة حسابات البنكية  للودائع',
+    'add_deposit_bank_accounts'=>'اضافة حساب بنكي للودائع',
+    'shops_offers_commission_payment'=>'مدفوعات عمولة العروض للمتاجر', 
+    'list_pending_offers_commission_paymet'=>'مدفوعات عمولة العروض المعلقة',
+    'list_approved_offers_commission_paymet'=>'مدفوعات عمولة العروض الموافقة',
+    'list_rejected_offers_commission_paymet'=>'مدفوعات عمولة العروض المرفوضة',
+
 
     'main_navigation' => 'MAIN NAVIGATION',
     'blog' => 'Blog',

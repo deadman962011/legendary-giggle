@@ -14,9 +14,7 @@ class MerchantOfferDetails extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
         return [
-
             'id' => $this->id,
             'name' => $this->getTranslation('name'),
             'cashback_amount'=> intval($this->cashback_amount),

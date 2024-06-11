@@ -31,10 +31,10 @@ class ShopService
                 'zone_id' => $data->zone_id,
                 'district_id'=>$data->district_id,
                 'tax_register' => $data->tax_register,
+                'shop_contact_email'=>$from === 'cp' ? $data->shop_contact_email : '',
+                'shop_contact_phone'=> $from === 'cp' ? $data->shop_contact_phone :'',
+                'status' => $from === 'cp' ? false : true,
                 'address' => '',
-                'shop_contact_email'=>'',
-                'shop_contact_phone'=>'',
-                'status' => $from === 'cp' ? false : true
             ]);
 
 
@@ -107,7 +107,9 @@ class ShopService
                 'shop_id'=>$shop->id
             ]);
             
-            Mail::to($data->shop_admin_email)->send(new ShopApproved());
+            if($from === 'api'){
+                Mail::to($data->shop_admin_email)->send(new ShopApproved());
+            }
 
 
             DB::commit();

@@ -48,8 +48,8 @@ class ShopController extends Controller
 
     function Store(saveShopRequest $request)
     {
-        $data = $request->all();
-        $data['categories_ids'] = implode(',', $request->categories_ids);
+        $data = $request->all(); 
+        // $data['categories_ids'] = implode(',', $request->categories_ids);
 
         try {
             
