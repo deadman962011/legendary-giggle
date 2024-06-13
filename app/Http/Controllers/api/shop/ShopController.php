@@ -8,9 +8,11 @@ use App\Http\Resources\merchant\MerchantResource;
 use App\Models\Language;
 use App\Models\Shop;
 use App\Models\ShopTranslation;
+use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ShopController extends Controller
 {
@@ -127,11 +129,202 @@ class ShopController extends Controller
 
     public  function UpdateMenu(Request $request) {
         
+                try {
+            $shop = Shop::find(auth()->user()->id);
+            $type = array(
+                "jpg" => "image",
+                "jpeg" => "image",
+                "png" => "image",
+                "svg" => "image",
+                "webp" => "image",
+                "gif" => "image",
+            );
+            $image = $request->image;
+            $request->filename;
+            $realImage = base64_decode($image);
+            $dir = public_path('uploads/all');
+            $full_path = "$dir/$request->filename";
 
-        
+            $file_put = file_put_contents($full_path, $realImage); // int or false
+
+            if ($file_put == false) {
+                return response()->json([
+                    'result' => false,
+                    'message' => "File uploading error",
+                    'path' => ""
+                ]);
+            }
+
+            $upload = new Upload;
+            $extension = strtolower(File::extension($full_path));
+            $size = File::size($full_path);
+
+            if (!isset($type[$extension])) {
+                unlink($full_path);
+                return response()->json([
+                    'sucess' => false,
+                    'message' => "Only image can be uploaded",
+                    'path' => ""
+                ]);
+            }
+
+
+
+            $upload->file_original_name = null;
+            $arr = explode('.', File::name($full_path));
+            for ($i = 0; $i < count($arr) - 1; $i++) {
+                if ($i == 0) {
+                    $upload->file_original_name .= $arr[$i];
+                } else {
+                    $upload->file_original_name .= "." . $arr[$i];
+                }
+            }
+
+            //unlink and upload again with new name
+            unlink($full_path);
+            $newFileName = rand(10000000000, 9999999999) . date("YmdHis") . "." . $extension;
+            $newFullPath = "$dir/$newFileName";
+
+            $file_put = file_put_contents($newFullPath, $realImage);
+
+            if ($file_put == false) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Uploading error",
+                    'path' => ""
+                ]);
+            }
+
+            $newPath = "uploads/all/$newFileName";
+
+            $upload->file_original_name = $newPath;
+            $upload->extension = $extension;
+            $upload->file_name = $newPath;
+            $upload->type = $type[$upload->extension];
+            $upload->file_size = $size;
+            $upload->save();
+
+            $shop->menu = $upload->id;
+            $shop->save();
+
+
+            return response()->json([
+                'success' => true,
+                'message' => trans("custom.menu_updated"),
+                'path' => getFileUrl($upload->id)
+            ]);
+        } catch (\Throwable $th) {
+
+            return response()->json([
+                'result' => false,
+                'message' => $th->getMessage(),
+                'path' => ""
+            ]);
+        }
+
 
 
 
     }
+
+    public  function UpdateLogo(Request $request) {
+        
+        try {
+    $shop = Shop::find(auth()->user()->id);
+    $type = array(
+        "jpg" => "image",
+        "jpeg" => "image",
+        "png" => "image",
+        "svg" => "image",
+        "webp" => "image",
+        "gif" => "image",
+    );
+    $image = $request->image;
+    $request->filename;
+    $realImage = base64_decode($image);
+    $dir = public_path('uploads/all');
+    $full_path = "$dir/$request->filename";
+
+    $file_put = file_put_contents($full_path, $realImage); // int or false
+
+    if ($file_put == false) {
+        return response()->json([
+            'result' => false,
+            'message' => "File uploading error",
+            'path' => ""
+        ]);
+    }
+
+    $upload = new Upload;
+    $extension = strtolower(File::extension($full_path));
+    $size = File::size($full_path);
+
+    if (!isset($type[$extension])) {
+        unlink($full_path);
+        return response()->json([
+            'sucess' => false,
+            'message' => "Only image can be uploaded",
+            'path' => ""
+        ]);
+    }
+
+
+
+    $upload->file_original_name = null;
+    $arr = explode('.', File::name($full_path));
+    for ($i = 0; $i < count($arr) - 1; $i++) {
+        if ($i == 0) {
+            $upload->file_original_name .= $arr[$i];
+        } else {
+            $upload->file_original_name .= "." . $arr[$i];
+        }
+    }
+
+    //unlink and upload again with new name
+    unlink($full_path);
+    $newFileName = rand(10000000000, 9999999999) . date("YmdHis") . "." . $extension;
+    $newFullPath = "$dir/$newFileName";
+
+    $file_put = file_put_contents($newFullPath, $realImage);
+
+    if ($file_put == false) {
+        return response()->json([
+            'success' => false,
+            'message' => "Uploading error",
+            'path' => ""
+        ]);
+    }
+
+    $newPath = "uploads/all/$newFileName";
+
+    $upload->file_original_name = $newPath;
+    $upload->extension = $extension;
+    $upload->file_name = $newPath;
+    $upload->type = $type[$upload->extension];
+    $upload->file_size = $size;
+    $upload->save();
+
+    $shop->shop_logoOP = $upload->id;
+    $shop->save();
+
+
+    return response()->json([
+        'success' => true,
+        'message' => trans("custom.menu_updated"),
+        'path' => getFileUrl($upload->id)
+    ]);
+} catch (\Throwable $th) {
+
+    return response()->json([
+        'result' => false,
+        'message' => $th->getMessage(),
+        'path' => ""
+    ]);
+}
+
+
+
+
+}
 
 }

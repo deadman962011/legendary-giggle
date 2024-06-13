@@ -21,6 +21,7 @@ use App\Http\Controllers\api\user\ApiBankAccountController;
 use App\Http\Controllers\api\user\ApiOfferController;
 use App\Http\Controllers\api\user\ApiOfferFavoriteController;
 use App\Http\Controllers\api\user\ApiOfferInvoiceController;
+use App\Http\Controllers\api\user\ApiUserWalletController;
 use App\Http\Controllers\api\user\ApiWithdrawRequestController;
 use App\Http\Controllers\api\user\UserAuthController;
 use App\Http\Controllers\cp\AizUploadController;
@@ -84,6 +85,7 @@ class RouteServiceProvider extends ServiceProvider
                             Route::prefix('offer_favorite')->controller(ApiOfferFavoriteController::class)->group(base_path('routes/api/v1/user/UserOfferFavoriteRoutes.php'));
                             Route::prefix('bank_account')->controller(ApiBankAccountController::class)->group(base_path('routes/api/v1/user/UserBankAccountRoutes.php'));
                             Route::prefix('withdraw_balance')->controller(ApiWithdrawRequestController::class)->group(base_path('routes/api/v1/user/UserWithdrawBalanceRoutes.php'));
+                            Route::prefix('wallet')->controller(ApiUserWalletController::class)->group(base_path('routes/api/v1/user/UserWalletRoutes.php'));
                         });
                     
                     });

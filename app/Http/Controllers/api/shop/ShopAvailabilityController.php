@@ -23,16 +23,30 @@ class ShopAvailabilityController extends Controller
             $shop_availability = ShopAvailabiltiy::where('shop_id', $shop->id)->get();
             return response()->json([
                 'success' => true,
-                'payload' => $shop_availability,
+                'payload' => $shop_availability->map(function ($day) {
+                    return [
+                        'id' => $day->id,
+                        'day' => trans('custom.' . $day->day),
+                        'status' => $day->status,
+                        'slots' => $day->slots->map(function ($slot) {
+                            return [
+                                'id' => $slot->id,
+                                'start' => $slot->start,
+                                'end' => $slot->end,
+                                'start_formatted' => $slot->start_formatted,
+                                'end_formatted' => $slot->end_formatted
+                            ];
+                        })
+                    ];
+                }),
                 'message' => 'shop availability successfully loaded'
             ], 200);
-            
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
                 'payload' => null,
                 'message' => 'unale to load shop availability',
-                'debug'=>$th->getMessage()
+                'debug' => $th->getMessage()
             ], 500);
         }
     }
@@ -42,7 +56,7 @@ class ShopAvailabilityController extends Controller
         try {
             DB::beginTransaction();
             $shop = Auth::guard('shop')->user();
-            $shop_availability = ShopAvailabiltiy::where('id',$request->shop_availability_id)->where('shop_id',$shop->id)->firstOrFail();
+            $shop_availability = ShopAvailabiltiy::where('id', $request->shop_availability_id)->where('shop_id', $shop->id)->firstOrFail();
             $shop_availability->update([
                 'status' => !$shop_availability->status
             ]);
@@ -102,10 +116,10 @@ class ShopAvailabilityController extends Controller
     {
         try {
 
-            $shop=Auth::guard('shop')->user();
+            $shop = Auth::guard('shop')->user();
             DB::beginTransaction();
-            $slot = ShopAvailabiltiySlot::where('id',$request->id)->whereHas('shopAvailability',function($query) use($shop) {
-                return $query->where('shop_id',$shop->id);
+            $slot = ShopAvailabiltiySlot::where('id', $request->id)->whereHas('shopAvailability', function ($query) use ($shop) {
+                return $query->where('shop_id', $shop->id);
             })->firstOrFail();
             $slot->delete();
             DB::commit();
@@ -126,18 +140,19 @@ class ShopAvailabilityController extends Controller
 
 
 
-    public function UpdateSlot(updateSlotRequest $request)  {
+    public function UpdateSlot(updateSlotRequest $request)
+    {
 
         try {
 
-            $shop=Auth::guard('shop')->user();
+            $shop = Auth::guard('shop')->user();
             DB::beginTransaction();
-            $slot = ShopAvailabiltiySlot::where('id',$request->id)->whereHas('shopAvailability',function($query) use($shop) {
-                return $query->where('shop_id',$shop->id);
+            $slot = ShopAvailabiltiySlot::where('id', $request->id)->whereHas('shopAvailability', function ($query) use ($shop) {
+                return $query->where('shop_id', $shop->id);
             })->firstOrFail();
             $slot->update([
-                'start'=>$request->start !=='null' ? $request->start : null,
-                'end'=>$request->end !=='null' ?  $request->end : null
+                'start' => $request->start !== 'null' ? $request->start : null,
+                'end' => $request->end !== 'null' ?  $request->end : null
             ]);
             DB::commit();
             return response()->json([
@@ -146,16 +161,12 @@ class ShopAvailabilityController extends Controller
                 'message' => 'slot successfully updated'
             ], 200);
         } catch (\Throwable $th) {
-        DB::rollBack();
+            DB::rollBack();
             return response()->json([
                 'success' => false,
                 'payload' => null,
                 'message' => 'Somthing went wrong'
             ], 500);
         }
-
-
-
     }
-
 }

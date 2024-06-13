@@ -13,7 +13,7 @@ class MerchantOfferDetails extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
+    { 
         return [
             'id' => $this->id,
             'name' => $this->getTranslation('name'),
@@ -21,6 +21,8 @@ class MerchantOfferDetails extends JsonResource
             'start_date'=>date("m/d/Y",$this->start_date),
             'end_date'=>date("m/d/Y",$this->end_date) ,
             'state'=>$this->state,
+            'isPaid'=>$this->isPaid > 0,
+            'paid_at'=>$this->paid_at,
             'sales'=>$this->sales,
             'commission_amount_percentage'=>$this->commission_amount_percentage,
             'commission'=>$this->commission,

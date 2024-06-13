@@ -30,12 +30,14 @@ class OfferService
 
 
         for ($i=0; $i < count($data->lang); $i++) { 
-            OfferTranslation::create([
-                'key'=>'name',
-                'lang'=>$data->lang[$i], //default language
-                'value'=>$data->{"name_".$data->lang[$i]},
-                'offer_id'=>$offer->id
-            ]);
+            if(array_key_exists("name_".$data->lang[$i],$data)){
+                OfferTranslation::create([
+                    'key'=>'name',
+                    'lang'=>$data->lang[$i], //default language
+                    'value'=>$data->{"name_".$data->lang[$i]},
+                    'offer_id'=>$offer->id
+                ]);
+            }
         }
 
         // if($from==='approval'){

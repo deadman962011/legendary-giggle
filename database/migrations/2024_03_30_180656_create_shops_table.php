@@ -26,6 +26,9 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
             
+            $table->bigInteger('menu')->unsigned()->index()->nullable();
+            $table->foreign('menu')->references('id')->on('uploads')->onDelete('cascade');
+
             $table->bigInteger('shop_logo')->unsigned()->index();
             $table->foreign('shop_logo')->references('id')->on('uploads')->onDelete('cascade');
             $table->bigInteger('zone_id')->unsigned()->index();

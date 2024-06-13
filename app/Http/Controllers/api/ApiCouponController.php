@@ -117,7 +117,7 @@ class ApiCouponController extends Controller
                 //save user wallet transaction 		
                 $transaction=UserWalletTransaction::create([
                     'amount'=>$coupon_lic->CouponVariation->amount,
-                    'reason'=>'redeem coupon',
+                    'reason'=>'redeem_coupon',
                     'type'=> 'reduce',
                     'wallet_id'=>$user->wallet->id
                 ]);

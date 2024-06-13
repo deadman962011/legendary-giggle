@@ -49,7 +49,7 @@ class UserWithdrawBalanceRequestController extends Controller
                 //reduce user balance amount 
                 UserWalletTransaction::create([
                     'amount'=>$user_withdraw_request->amount,
-                    'reason'=>'withdraw balance',
+                    'reason'=>'withdraw_balance',
                     'type'=> 'reduce',
                     'wallet_id'=>$user_withdraw_request->user_id
                 ]);
@@ -64,7 +64,7 @@ class UserWithdrawBalanceRequestController extends Controller
                 'success' => true,
                 'payload' => null,
                 'action' => 'redirect_to_url',
-                'action_val' => route('user_withdraw_balance_request.list'),
+                'action_val' => route('user_withdraw_balance_request.list',['status'=> $request->action ==='approve' ?'pending' : '']),
                 'message' => 'withdraw_balance_request_'.$request->action
             ], 200);
 

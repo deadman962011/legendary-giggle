@@ -17,15 +17,23 @@ class OfferDetailsResource extends JsonResource
         return $this->shop->shop_availability
         ->load(['slots' => function ($query) {
             $query->whereNotNull('start')->whereNotNull('end');
-        }]);
-        
-        
-        
-        // ->map(function ($item) {
-        //     $item->slots = $item->slots()->where('start', '!=', null)->where('end', '!=', null)->get();
-        //     return $item;
-        // });
-    
+        }])
+        ->map(function($day){
+            return [
+                'id'=>$day->id,
+                'day'=>trans('custom.'.$day->day),
+                'status'=>$day->status,
+                'slots'=>$day->slots->map(function($slot){
+                    return [
+                        'id'=>$slot->id,
+                        'start'=>$slot->start,
+                        'end'=>$slot->end,
+                        'start_formatted'=>$slot->start_formatted,
+                        'end_formatted'=>$slot->end_formatted
+                    ];
+                })
+            ]; 
+        });
     }
 
     /**
@@ -51,6 +59,8 @@ class OfferDetailsResource extends JsonResource
                 'latitude' => $this->shop->latitude,
                 'shop_contact_email' => $this->shop->shop_contact_email,
                 'shop_contact_phone' => $this->shop->shop_contact_phone,
+                'shop_contact_website' => $this->shop->shop_contact_website,
+                'menu'=>$this->shop->menu !=null ? getFileUrl($this->shop->menu) : null ,
                 'availability' => $this->getFilteredAvailabilityItems(),
             ],
             'ratings' => []

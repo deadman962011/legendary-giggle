@@ -44,7 +44,7 @@ class ShopOfferController extends Controller
                 'sales'=>0,
                 'commission'=>0,
                 'thumbnail' =>'1',
-                'name_ar'=>$payload->name_ar,
+                'name_ar'=>$payload->name_en,
                 'start_date'=>$payload->start_date,
                 'end_date'=>$payload->end_date,
                 'cashback_amount'=>$payload->cashback_amount,

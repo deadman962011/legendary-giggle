@@ -158,11 +158,14 @@
         
         'user_already_has_registered_invoice_for_this_offer'=>'لديك فاتورة مسجلة مسبقا للعرض',
         'offer_invoice_successfully_registerd'=>'تم تسجيل الفاتورة بنجاح',
-        'no_active_offer_for'=>'لا يوجد عرض نشط للمتجر'
-        
-
-        
-  
+        'no_active_offer_for'=>'لا يوجد عرض نشط للمتجر',
+        "sunday" => "الأحد",
+        "monday" => "الإثنين",
+        "tuesday" => "الثلاثاء",
+        "wednesday" => "الأربعاء",
+        "thursday" => "الخميس",
+        "friday" => "الجمعة",
+        "saturday" => "السبت",
     
     ];
 

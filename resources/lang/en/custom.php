@@ -162,12 +162,14 @@
         'coupons'=>"Coupons",
         'user_already_has_registered_invoice_for_this_offer'=>'User already has registerd invoice for this offer',
         'offer_invoice_successfully_registerd'=>'Offer invoice successfully registered',
-        'no_active_offer_for'=>'No active offer for'
-
-
-      
-
-
+        'no_active_offer_for'=>'No active offer for',
+        "sunday" => "Sunday",
+        "monday" => "Monday",
+        "tuesday" => "Tuesday",
+        "wednesday" => "Wednesday",
+        "thursday" => "Thursday",
+        "friday" => "Friday",
+        "saturday" => "Saturday",
 
     ];
 
