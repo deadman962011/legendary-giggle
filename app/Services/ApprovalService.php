@@ -27,6 +27,8 @@ class ApprovalService
                 break;
             case 'offer':
                 (new OfferService())->createOffer(json_decode($data->changes),'approval');
+            case 'cancel_offer_invoice':
+                // (new OfferService())->createOffer(json_decode($data->changes),'approval');
             default:
                 break;
         }

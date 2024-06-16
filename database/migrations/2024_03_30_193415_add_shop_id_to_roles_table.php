@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('roles', function (Blueprint $table) {
             //
             $table->unsignedBigInteger('shop_id')->default(0);
+            $table->boolean('isDeleted')->default(false);
         });
     }
 

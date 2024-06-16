@@ -16,6 +16,7 @@ use App\Http\Controllers\api\shop\ShopAvailabilityController;
 use App\Http\Controllers\api\shop\ShopController as ShopShopController;
 use App\Http\Controllers\api\shop\ShopOfferController;
 use App\Http\Controllers\api\shop\ShopPayCommissionController;
+use App\Http\Controllers\api\shop\ShopRoleController;
 use App\Http\Controllers\api\shop\ShopStaffController;
 use App\Http\Controllers\api\user\ApiBankAccountController;
 use App\Http\Controllers\api\user\ApiOfferController;
@@ -95,6 +96,7 @@ class RouteServiceProvider extends ServiceProvider
                         Route::middleware('auth:shop')->group(function () {
                             Route::prefix('/')->controller(ShopShopController::class)->group(base_path('routes/api/v1/shop/ShopRoutes.php'));
                             Route::prefix('staff')->controller(ShopStaffController::class)->group(base_path('routes/api/v1/shop/ShopStaffRoutes.php'));
+                            Route::prefix('role')->controller(ShopRoleController::class)->group(base_path('routes/api/v1/shop/ShopRoleRoutes.php'));
                             Route::prefix('offer')->controller(ShopOfferController::class)->group(base_path('routes/api/v1/shop/ShopOfferRoutes.php'));
                             Route::prefix('availability')->controller(ShopAvailabilityController::class)->group(base_path('routes/api/v1/shop/ShopAvailabilityRoutes.php'));
                             Route::prefix('shop_pay_commission')->controller(ShopPayCommissionController::class)->group(base_path('routes/api/v1/shop/ShopPayCommissionRoutes.php'));

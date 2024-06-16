@@ -39,8 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->seedConfig();
         $this->seedShop();
         $this->seedDepositBankAccouts();
-
-
     }
 
 
@@ -312,7 +310,7 @@ class DatabaseSeeder extends Seeder
                 ]
             ],
 
-                        [
+            [
                 'name' => 'reject_withdraw_balance_requests',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Reject Withdraw balance requests'],
@@ -342,7 +340,7 @@ class DatabaseSeeder extends Seeder
                 ]
             ],
 
-                        [
+            [
                 'name' => 'reject_shop_offers_commission_payment_request',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
@@ -454,6 +452,48 @@ class DatabaseSeeder extends Seeder
 
         $shop_admin_permissions =   [
             [
+                'name' => 'add_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'add_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة موظف للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل موظف للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف للمتجر"],
+                ]
+            ],
+            [
                 'name' => 'add_shop_offer',
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop offer'],
@@ -472,6 +512,41 @@ class DatabaseSeeder extends Seeder
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop offer'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة عرض للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_informations',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop informations'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل معلومات المتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_contact_informations',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop contact informations'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل معلومات التواصل للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_availability',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'edit shop availabiliy'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل مواعيد المتجر"],
+                ]
+            ],
+            [
+                'name' => 'pay_offer_commission',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'pay offer commission'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "دفع عمولة العرض"],
+                ]
+            ],
+            [
+                'name' => 'upgrade_shop',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Upgrade shop'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ترقية المتجر"],
                 ]
             ]
         ];
@@ -543,7 +618,7 @@ class DatabaseSeeder extends Seeder
 
         $ryCoordinates = '(24.850466661767697, 46.81010626482896),(24.70583069558511, 46.88975714373521),(24.62346270793282, 46.88701056170396),(24.556030317950675, 46.94194220232896),(24.493560569073278, 46.90623663592271),(24.501058579334394, 46.74418829607896),(24.51105523074001, 46.60136603045396),(24.536043379713945, 46.48051642107896),(24.815569968678023, 46.56016729998521),(24.885353514061144, 46.70573614764146)';
         $jeCoordinates = '(21.822721107238852, 39.06673741544988),(21.802321591224008, 39.02828526701238),(21.391166610482507, 39.16012120451238),(21.273480093676476, 39.13814854826238),(21.270179611315047, 39.29745030607488),(21.39554087309879, 39.33315587248113),(21.45690316338791, 39.40182042326238),(21.607642251891797, 39.30019688810613),(21.804133378007727, 39.22878575529363)';
-        $makkahCoordinatis= '(21.497349775105906, 39.83950588718258),(21.414271862093248, 39.93014309421383),(21.34010088869307, 39.93426296726071),(21.337542598904726, 39.80380032077633),(21.359286639308245, 39.71041653171383),(21.4053221878885, 39.67883083835446)';
+        $makkahCoordinatis = '(21.497349775105906, 39.83950588718258),(21.414271862093248, 39.93014309421383),(21.34010088869307, 39.93426296726071),(21.337542598904726, 39.80380032077633),(21.359286639308245, 39.71041653171383),(21.4053221878885, 39.67883083835446)';
         $zones = [
             [
                 'name' => 'Al Ryiadh City',
@@ -564,7 +639,7 @@ class DatabaseSeeder extends Seeder
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Jaddeh City'],
                     ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة جدة'],
                 ],
-            ], 
+            ],
             [
                 'name' => 'Makkah City',
                 'coordinates' => $makkahCoordinatis,
@@ -574,7 +649,7 @@ class DatabaseSeeder extends Seeder
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Makkah City'],
                     ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة مكة'],
                 ],
-            ], 
+            ],
         ];
 
         foreach ($zones as $zoneData) {
@@ -618,11 +693,7 @@ class DatabaseSeeder extends Seeder
                 $districtTranslation->lang = $translation['lang'];
                 $districtTranslation->save();
             }
-
         }
-
-
-
     }
 
     private function processCoordinates($coordinatesString)
@@ -858,7 +929,7 @@ class DatabaseSeeder extends Seeder
             'longitude' => '46.63744866638183',
             'latitude' => '24.79895579253349',
             'zone_id' => '1',
-            'district_id'=>'1',
+            'district_id' => '1',
             'address' => '',
             'shop_contact_email' => 'deadman962111@gmail.com',
             'shop_contact_phone' => '1234567890',
@@ -868,7 +939,7 @@ class DatabaseSeeder extends Seeder
 
         //save shop wallet
         ShopWallet::create([
-            'shop_id'=>$shop->id
+            'shop_id' => $shop->id
         ]);
 
         $shopAdmin = ShopAdmin::create([
@@ -917,7 +988,7 @@ class DatabaseSeeder extends Seeder
                 'value' => 'ماكدونالدز',
                 'shop_id' => $shop->id
             ],
-            
+
 
         ]);
 
@@ -932,8 +1003,9 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    public function seedDepositBankAccouts()  {
-        
+    public function seedDepositBankAccouts()
+    {
+
         DepositBankAccount::insert([
             [
                 'bank_name' => 'Al-Rajhi Bank',
@@ -948,10 +1020,5 @@ class DatabaseSeeder extends Seeder
                 'account_number' => '7654428562102231'
             ],
         ]);
-
-
     }
-
-
-
 }

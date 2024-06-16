@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\shop\offer\cancelOfferInvoiceRequest;
 use App\Http\Requests\api\shop\offer\saveOfferRequest;
 use App\Http\Resources\merchant\MerchantOfferDetails;
 use App\Http\Resources\merchant\MerchantOfferResource;
@@ -26,7 +27,7 @@ class ShopOfferController extends Controller
 
 
 
-    function List(Request $request)
+    public function List(Request $request)
     {
         $shop_admin=Auth::guard('shop')->user();
 
@@ -63,7 +64,7 @@ class ShopOfferController extends Controller
         ], 200);
     }
 
-    function Store(saveOfferRequest $request)
+    public function Store(saveOfferRequest $request)
     {
 
         $data = $request->all();
@@ -90,7 +91,7 @@ class ShopOfferController extends Controller
         }
     }
 
-    function Get(Request $request){
+    public function Get(Request $request){
 
         try { 
             $getOffer=Offer::where('id',$request->id)->firstOrFail();
@@ -114,4 +115,38 @@ class ShopOfferController extends Controller
     }
 
  
+    public function cancelOfferInvoice(cancelOfferInvoiceRequest $request) {
+
+        try { 
+
+            $data['offer_id']=$request->id;
+            $data['invoice_id']=$request->invoice_id;
+            
+            DB::beginTransaction();
+            $this->approvalService->store('cancel_offer_invoice', $data);
+            DB::commit();
+            return response()->json([
+                'success' => true,
+                'payload' => null,
+                'message' => 'Offer invoice cancelation request successfully saved'
+            ], 200);
+
+        } catch (\Throwable $th) {
+           
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'unable to save cancel offer invoice request',
+                'debug'=>$th->getMessage()
+            ], 500);
+            //throw $th;
+        }
+ 
+
+
+
+    }
+
+
+
 }

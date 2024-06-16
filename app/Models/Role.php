@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\App;
 
 class Role extends SpatieRole
 {
+
+    protected $fillable=['name','guard_name','shop_id'];
+
     protected $with = ['role_translations'];
 
     public function getTranslation($field = '', $lang = false){

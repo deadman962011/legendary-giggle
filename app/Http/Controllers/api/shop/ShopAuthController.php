@@ -76,9 +76,15 @@ class ShopAuthController extends Controller
         try {
             if ($request->action === 'verifyShopLogin') {
                 $admin = ShopAdmin::where('auth_token', $request->token)->firstOrFail();
+                // $admin->permissions=;
                 $token = Auth::guard('shop')->login($admin);
                 $payload = [
-                    "admin" => $admin,
+                    "admin" =>[
+                        'id'=>$admin->id,
+                        'email'=>$admin->email,
+                        'phone'=>$admin->phone,
+                        'permissions'=>$admin->roles[0]->permissions->pluck('name')
+                    ],
                     "token" => $token
                 ];
             } elseif ($request->action === 'verifyShopRegister') {

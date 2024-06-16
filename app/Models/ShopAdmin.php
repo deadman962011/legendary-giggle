@@ -20,6 +20,19 @@ class ShopAdmin extends Authenticatable implements JWTSubject
         'auth_token',
         'shop_id'
     ];
+    
+    protected $hidden=['auth_token','password'];
+
+
+    /**
+     * Get the shop associated with the ShopAdmin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function shop() 
+    {
+        return $this->hasOne(Shop::class, 'id', 'shop_id');
+    }
 
 
     

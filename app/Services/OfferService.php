@@ -15,11 +15,11 @@ class OfferService
         
         if($from==='approval'){
             $lang_keys=Language::pluck('key');
-            $data->lang=$lang_keys;
+            $data->lang=$lang_keys->toArray();
         }
 
         $offer=Offer::create([
-            'name'=> $data->{'name_'.$data->lang[0]},
+            'name'=> $data->{'name_en'},
             'premalink'=>generate_random_token('5'),
             'start_date'=>$data->start_date,
             'end_date'=>$data->end_date,
@@ -28,16 +28,15 @@ class OfferService
             'shop_id'=>$data->shop_id,
         ]);
 
-
         for ($i=0; $i < count($data->lang); $i++) { 
-            if(array_key_exists("name_".$data->lang[$i],$data)){
+            if(isset($data->{"name_".$data->lang[$i]})){
                 OfferTranslation::create([
                     'key'=>'name',
                     'lang'=>$data->lang[$i], //default language
                     'value'=>$data->{"name_".$data->lang[$i]},
                     'offer_id'=>$offer->id
                 ]);
-            }
+            } 
         }
 
         // if($from==='approval'){
