@@ -81,6 +81,7 @@ class ShopAuthController extends Controller
                 $payload = [
                     "admin" =>[
                         'id'=>$admin->id,
+                        'name'=>$admin->name,
                         'email'=>$admin->email,
                         'phone'=>$admin->phone,
                         'permissions'=>$admin->roles[0]->permissions->pluck('name')
@@ -102,10 +103,9 @@ class ShopAuthController extends Controller
                 'message' => 'token is valid'
             ]);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json([
                 'success' => false,
-                'message' => $th
+                'message' => $th->getMessage()
             ]);
         }
 

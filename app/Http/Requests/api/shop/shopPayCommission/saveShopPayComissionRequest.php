@@ -31,6 +31,7 @@ class saveShopPayComissionRequest extends FormRequest
             'full_name'=>'required',
             'phone'=>'required',
             'deposit_at'=>'required|date',
+            'deposit_bank_account_id'=>'required|exists:deposit_bank_accounts,id',
             'attachments'=>'required'
         ];
     }

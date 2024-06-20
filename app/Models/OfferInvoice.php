@@ -11,7 +11,7 @@ class OfferInvoice extends Model
 
 
     // amount	
-    protected $fillable=['amount','vat','payload','commission_amout','user_id','offer_id','isCanceled'];
+    protected $fillable=['amount','vat','payload','commission_amout','user_id','offer_id','isCanceled','canceled_at'];
 
     protected $appends=['points','state'];
 

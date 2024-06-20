@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\ApprovalRequest;
+use App\Models\OfferInvoice;
 
 class ApprovalService
 {
@@ -28,7 +29,7 @@ class ApprovalService
             case 'offer':
                 (new OfferService())->createOffer(json_decode($data->changes),'approval');
             case 'cancel_offer_invoice':
-                // (new OfferService())->createOffer(json_decode($data->changes),'approval');
+                $this->cancelOfferInvoice(json_decode($data->changes)); 
             default:
                 break;
         }
@@ -47,4 +48,16 @@ class ApprovalService
         ]);
 
     }
+
+
+
+    public function cancelOfferInvoice($data) {
+        
+        $offer_invoice=OfferInvoice::where('offer_id',$data->offer_id)->where('id',$data->offer_invoice_id)->firstOrFail();
+        $offer_invoice->update([
+            'isCanceled'=>true,
+            'canceled_at'=>now()
+        ]);
+    }
+
 }

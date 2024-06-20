@@ -51,6 +51,7 @@ class ShopPayCommissionController extends Controller
                 'sender_full_name' => $request->full_name,
                 'sender_phone' => $request->phone,
                 'deposit_at'=>strtotime($request->deposit_at),
+                'deposit_bank_account_id'=>$request->deposit_bank_account_id,
                 'notice' => $request->notice
             ]);
 

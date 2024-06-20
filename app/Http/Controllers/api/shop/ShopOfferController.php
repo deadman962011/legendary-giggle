@@ -121,6 +121,7 @@ class ShopOfferController extends Controller
 
             $data['offer_id']=$request->id;
             $data['invoice_id']=$request->invoice_id;
+            $data['reason']=$request->reason;
             
             DB::beginTransaction();
             $this->approvalService->store('cancel_offer_invoice', $data);

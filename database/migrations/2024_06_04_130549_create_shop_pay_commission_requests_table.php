@@ -21,6 +21,8 @@ return new class extends Migration
             $table->longText('notice')->nullable();
             $table->longText('reason')->nullable();
             $table->string('deposit_at');
+            $table->bigInteger('deposit_bank_account_id')->unsigned()->index();
+            $table->foreign('deposit_bank_account_id')->references('id')->on('deposit_bank_accounts')->onDelete('cascade');
             $table->string('state')->default('pending');
             $table->timestamps();
         });

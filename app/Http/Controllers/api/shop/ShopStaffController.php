@@ -33,7 +33,7 @@ class ShopStaffController extends Controller
 
         $shop=Auth::guard('shop')->user()->shop;
 
-        $staff=ShopAdmin::where('shop_id',$shop->id)->where('isDeleted',false)->paginate(6);
+        $staff=ShopAdmin::where('shop_id',$shop->id)->where('isDeleted',false)->paginate(20);
    
         return response()->json([
             'success' => true,
@@ -71,7 +71,7 @@ class ShopStaffController extends Controller
                 'success' => true,
                 'payload' => null,
                 'message' => 'shop staff successfully saved'
-            ], 200);
+            ], 201);
             
         } catch (\Throwable $th) {
             DB::rollBack();
