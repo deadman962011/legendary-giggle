@@ -111,7 +111,7 @@ class ApiCouponController extends Controller
             }
             foreach ($coupon_lics as $key => $coupon_lic) {
                 $coupon_lic->update([
-                    'isGranted',true
+                    'isGranted'=>true
                 ]);
 
                 //save user wallet transaction 		

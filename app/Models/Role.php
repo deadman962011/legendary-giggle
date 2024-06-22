@@ -15,8 +15,15 @@ class Role extends SpatieRole
 
     public function getTranslation($field = '', $lang = false){
         $lang = $lang == false ? App::getLocale() : $lang;
-        $role_translation = $this->role_translations->where('lang', $lang)->first();
-        return $role_translation != null ? $role_translation->$field : $this->$field;
+
+        $translation = $this->role_translations->where('key', $field)->where('lang',$lang)->first();
+        
+        if(!$translation){
+            $default_translation=$this->role_translations->where('key', $field)->where('lang','en')->first();
+            return  $default_translation ? $default_translation->value : '';
+        }
+        return $translation->value;
+ 
     }
 
     public function role_translations(){
