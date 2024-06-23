@@ -150,7 +150,7 @@ class ApiCouponController extends Controller
             return response()->json([
                 'success' => false,
                 'payload' => null,
-                'message' => $err_message,
+                'message' =>trans('custom.'.$err_message),
                 'debug'=>$th->getMessage()
             ], 500);
         }

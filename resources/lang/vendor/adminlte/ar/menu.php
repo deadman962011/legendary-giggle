@@ -48,7 +48,8 @@ return [
     'list_pending_offers_commission_paymet'=>'مدفوعات عمولة العروض المعلقة',
     'list_approved_offers_commission_paymet'=>'مدفوعات عمولة العروض الموافقة',
     'list_rejected_offers_commission_paymet'=>'مدفوعات عمولة العروض المرفوضة',
-
+    'cities_list'=>'قائمة المدن',
+    'add_new_city'=>'اضافة مدينة جديدة',
 
     'main_navigation' => 'MAIN NAVIGATION',
     'blog' => 'Blog',

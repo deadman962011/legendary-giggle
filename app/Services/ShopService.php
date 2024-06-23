@@ -107,7 +107,7 @@ class ShopService
                 'shop_id'=>$shop->id
             ]);
             
-            if($from === 'api'){
+            if($from === 'approval'){
                 Mail::to($data->shop_admin_email)->send(new ShopApproved());
             }
 

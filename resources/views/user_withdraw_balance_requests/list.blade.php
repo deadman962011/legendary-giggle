@@ -4,7 +4,7 @@
 
 @section('subtitle', 'Welcome')
 @section('content_header_title', trans('custom.home'))
-@section('content_header_subtitle', __('custom.staff'))
+@section('content_header_subtitle', __('custom.withdraw_balance_request'))
 
 {{-- Content body: main page content --}}
 

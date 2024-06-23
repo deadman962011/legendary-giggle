@@ -5,6 +5,8 @@ namespace App\Http\Requests\api\user;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 
 class saveWithdrawReqRequest extends FormRequest
@@ -23,12 +25,15 @@ class saveWithdrawReqRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    { 
         return [
             'amount'=>'required',
-            'bank_account_id'=>'required'
-            
-
+            'bank_account_id'=>[
+                'required',
+                Rule::exists('bank_accounts','id')->where(function($query){
+                    $query->where('user_id',Auth::guard('user')->id());
+                })
+            ]
         ];
     }
 

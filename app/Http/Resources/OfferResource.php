@@ -21,7 +21,7 @@ class OfferResource extends JsonResource
             'name' => $this->getTranslation('name'),
             'cashback_amount'=> intval($this->cashback_amount),
             'start_date'=>date("m/d/Y",$this->start_date),
-            'end_date'=>date("m/d/Y",$this->end_date) ,
+            'end_date'=>date("m/d/Y",$this->end_date),
             'state'=>$this->state,
             'sales'=>$this->sales,
             'commission'=>$this->commission,

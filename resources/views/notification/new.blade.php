@@ -59,7 +59,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ trans('custom.notification_informations') }}
+                        {{ trans('custom.notification_targeting') }}
                     </div>
                     <div class="card-body">
                         <div class="form-group">

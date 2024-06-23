@@ -68,5 +68,8 @@ return [
     'list_approved_offers_commission_paymet'=>'List approved offers commission paymet',
     'list_rejected_offers_commission_paymet'=>'List rejected offers commission paymet',
     // 'list_offers_commission_paymet'
+    
+    'cities_list'=>'Cities List',
+    'add_new_city'=>'Add new city',
 
 ];

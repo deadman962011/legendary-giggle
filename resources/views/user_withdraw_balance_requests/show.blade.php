@@ -50,7 +50,7 @@
                         </div>
                         <div>
                             <span class="font-weight-bold">
-                                {{ trans('custom.creaated_at') }} :
+                                {{ trans('custom.created_at') }} :
 
                             </span>
                             <span>
@@ -80,10 +80,10 @@
                         <span class="font-weight-bold">{{ trans('custom.email') }}</span>
                         <span>{{ $users_withdraw_request->user->email }}</span>
                     </div>
-                    <div class="">
+                    {{-- <div class="">
                         <span class="font-weight-bold">{{ trans('custom.phone') }}</span>
                         <span>{{ $users_withdraw_request->user->phone }}</span>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

@@ -627,7 +627,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Al Ryiadh City'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => ' مدينة الرياض'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => ' مدينة الرياض'],
                 ],
             ],
             [
@@ -637,7 +637,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Jaddeh City'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة جدة'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'مدينة جدة'],
                 ],
             ],
             [
@@ -647,7 +647,7 @@ class DatabaseSeeder extends Seeder
                 'isDeleted' => false,
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Makkah City'],
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'مدينة مكة'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'مدينة مكة'],
                 ],
             ],
         ];
