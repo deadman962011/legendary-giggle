@@ -87,11 +87,12 @@ class NotificationController extends Controller
             );
         } catch (\Throwable $th) {
             DB::rollBack();
-
+            
             return response()->json(
                 [
                     'success' => false,
-                    'message' => 'Somthing went wrong'
+                    'message' => 'Somthing went wrong',
+                    'debug'=>$th->getMessage()
                 ]
             );
         }

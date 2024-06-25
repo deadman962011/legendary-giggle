@@ -125,7 +125,7 @@ if (!function_exists('my_asset')) {
                 "notification" : {
                     "title":"' . $data['title'] . '",
                     "body" : "' . $data['description'] . '",
-                    "image" : "' . getFileUrl($data['image']) . '",
+                    "image" : "'  . array_key_exists('image', $data->toArray()) && $data['image'] !== null ? getFileUrl($data['image']) : '' . '",
                     "body_loc_key":"' . $type . '",
                     "type":"' . $type . '",
                     "is_read": 0,
