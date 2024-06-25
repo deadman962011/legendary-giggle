@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\shop;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\shop\staff\saveShopStaffRequest;
+use App\Http\Requests\api\shop\staff\updateShopStaffRequest;
 use App\Http\Resources\merchant\MerchantStaffResource;
 use App\Mail\ShopStaffAdded;
 use App\Models\Role;
@@ -83,6 +84,45 @@ class ShopStaffController extends Controller
             ], 500);
         }
     }
+
+
+
+    public function Update(updateShopStaffRequest $request)
+    {
+
+
+        $shop = Auth::guard('shop')->user();
+        try {
+ 
+            DB::beginTransaction();
+
+            //
+            $staff = ShopAdmin::where('id', $request->id)->where('shop_id',$shop->id)->firstOrFail();
+            $staff->update([
+                'name'=>$request->name,
+                'phone'=>$request->phone
+            ]);
+
+            if($request->role_id !== $staff->roles[0]->id){
+                $staff->removeRoles();
+                $staff->assignRole($request->role_id);
+            }
+
+            DB::commit();
+            $response_data['success']    =   true;
+            $response_data['message']   =  trans('role has been updated successfully');
+            return response()->json($response_data, 200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'Somthing Went Wrong',
+                'debug' => $th->getMessage()
+            ], 500);
+        }
+    }
+
 
 
     public function Delete(Request $request)  {
