@@ -20,14 +20,14 @@ class ApprovalService
     }
 
     public function approve($data)
-    {
-
+    { 
         switch ($data->model) {
             case 'shop':
                 (new ShopService())->createShop(json_decode($data->changes),'approval');
                 break;
             case 'offer':
                 (new OfferService())->createOffer(json_decode($data->changes),'approval');
+                break;
             case 'cancel_offer_invoice':
                 $this->cancelOfferInvoice(json_decode($data->changes)); 
             default:

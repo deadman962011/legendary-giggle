@@ -91,7 +91,8 @@ class UserAuthController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => 'Somthing Went Wrong'
+                'message' => 'Somthing Went Wrong',
+                'debug'=>$th->getMessage()
             ], 500);
         }
     }

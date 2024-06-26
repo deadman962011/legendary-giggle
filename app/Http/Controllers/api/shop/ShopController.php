@@ -304,7 +304,7 @@ class ShopController extends Controller
     $upload->file_size = $size;
     $upload->save();
 
-    $shop->shop_logoOP = $upload->id;
+    $shop->shop_logo = $upload->id;
     $shop->save();
 
 

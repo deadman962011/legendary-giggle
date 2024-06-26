@@ -80,9 +80,9 @@
                         <div class="form-group row ">
                             <div class="col-sm-6">
                                 <select name="zone_id" required class="form-control h--45px js-example-basic-multiple"
-                                    data-placeholder="{{ __('custom.select_zone') }}">
+                                    data-placeholder="{{ __('custom.select_city') }}">
                                     <option value="" selected hidden>{{ __('custom.select_zone') }}</option>
-                                    <option value="all"> All Zones</option>
+                                    <option value="all"> {{__('custom.all_cities')}}</option>
                                     @foreach (\App\Models\Zone::where('status', 1)->get(['id', 'name']) as $zone)
                                         <option value="{{ $zone->id }}">{{ $zone->getTranslation('name') }}
                                         </option>
@@ -91,9 +91,9 @@
                             </div>
                             <div class="col-sm-6">
                                 <select name="target" class="form-control" required>
-                                    <option hidden>Send To</option>
-                                    <option value="customer">Customer</option>
-                                    <option value="shop">Shop</option>
+                                    <option hidden>{{ trans('custom.send_to') }}</option>
+                                    <option value="customer">{{trans('custom.customer')}}</option>
+                                    <option value="shop">{{trans('custom.shop')}}</option>
                                 </select>
                             </div>
                         </div>

@@ -158,5 +158,13 @@ return [
     "full_name" => "Full name",
     "add_new_deposit_bank_account" => "Add new deposit bank account",
     "withdraw_balance_request"=>"Withdraw balance requests",
-    "email"=>"Email"
+    "email"=>"Email",
+    "all_cities"=>"All cities",
+    "select_city"=>"Select city",
+    "send_to"=>"Send to",
+    "customer"=>'Customer',
+    "shop"=>"Shop",
+    "minimum_amount_to_withdraw"=>"Minimum amount to withdraw",
+    "no_enough_balance"=>"No enough balance",
+    "already_has_pending_withdraw_balance"=>"Already has pending withdraw balance"
 ];

@@ -156,5 +156,12 @@ return [
     "full_name" => "الاسم الكامل",
     "add_new_deposit_bank_account" => "اضافة حساب بنكي للايداع",
     "withdraw_balance_request"=>"طلبات سحب الرصيد",
-    "email"=>"الايميل"
+    "email"=>"الايميل",
+    "all_cities"=>"كل المدن",
+    "select_city"=>"اختر مدينة",
+    "send_to"=>"ارسال الى",
+    "customer"=>'العملاء',
+    "shop"=>"المتجر",
+    "minimum_amount_to_withdraw"=>"الحد الادنى للسحب"
+
 ];

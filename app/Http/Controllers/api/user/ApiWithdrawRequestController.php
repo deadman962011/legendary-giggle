@@ -70,16 +70,16 @@ class ApiWithdrawRequestController extends Controller
             
             $err_message=$th->getMessage();
             if($err_message === 'minimum_amount_to_withdraw' ){
-                $err_message='minimum_amount_to_withdraw'.getSetting('user_minimum_withdraw_amount');;
+                $err_message=trans('custom.minimum_amount_to_withdraw').' '.getSetting('user_minimum_withdraw_amount');;
             } 
             else if($err_message === 'no_enough_balance'){
-                $err_message='no_enough_balance';
+                $err_message=trans('custom.no_enough_balance');
             }
             else if($err_message === 'already_has_pending_withdraw_balance'){
-                $err_message='already_has_pending_withdraw_balance';
+                $err_message=trans('custom.already_has_pending_withdraw_balance');
             }
             else{
-                $err_message='somthing_went_wrong';
+                $err_message= trans('custom.somthing_went_wrong');
             }
 
             DB::rollBack();
