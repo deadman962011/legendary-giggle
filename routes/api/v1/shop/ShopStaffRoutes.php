@@ -7,4 +7,8 @@ Route::get('/','Get');
 
 Route::post('/','Store');
 
+Route::get('/{id}','GetStaff');
+
+Route::post('/{id}','Update');
+
 ?>

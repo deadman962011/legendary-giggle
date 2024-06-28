@@ -66,8 +66,8 @@ class ShopRoleController extends Controller
     {
 
         $shop = Auth::guard('shop')->user();
-
-        $roles = Role::where('shop_id', $shop->id)->where('isDeleted', false)->get();
+        // $products = Product::where('name_en', 'LIKE', '%'.$search.'%')->get();
+        $roles = Role::where('shop_id', $shop->id)->where('name', 'not like', '%,"shop_admin_role",%')->where('isDeleted', false)->get();
 
         return response()->json([
             'success' => true,

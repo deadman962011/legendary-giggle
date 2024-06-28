@@ -8,6 +8,7 @@ use App\Models\DepositBankAccount;
 use App\Models\District;
 use App\Models\DistrictTranslation;
 use App\Models\Role;
+use App\Models\RoleTranslation;
 use App\Models\Shop;
 use App\Models\ShopAdmin;
 use App\Models\ShopAvailabiltiy;
@@ -954,13 +955,30 @@ class DatabaseSeeder extends Seeder
 
         //save roles for the shop
         $base_shop_admin_role = Role::query()->where('shop_id', 0)->where('name', 'Shop Admin')->first();
-        $shop_admin_role_name = $shop->shop_name . '- Shop Admin' . now();
+        $shop_admin_role_name =$shop->id.'-'.$shop->shop_name .'-shop_admin_role';
 
         $adminRole = Role::create([
             'name' => $shop_admin_role_name,
             'guard_name' => 'shop',
             'shop_id' => $shop->id
         ]);
+
+
+        RoleTranslation::insert([
+            [
+                'key' => 'name',
+                'lang' => 'en', //default language
+                'value' => 'Shop admin',
+                'role_id' => $adminRole->id
+            ],
+            [
+                'key' => 'name',
+                'lang' => 'ar', //default language
+                'value' => 'مدير المتجر',
+                'role_id' => $adminRole->id
+            ],
+        ]);
+
 
         $adminRole->givePermissionTo($base_shop_admin_role->permissions()->pluck('id'));
 

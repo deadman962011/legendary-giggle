@@ -105,8 +105,6 @@ class ApiOfferInvoiceController extends Controller
 
     public function GetOfferInvoice(Request $request)
     {
-
-
         $user = Auth::guard('user')->user();
 
         try {

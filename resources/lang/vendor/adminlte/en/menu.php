@@ -69,6 +69,7 @@ return [
     'list_rejected_offers_commission_paymet'=>'List rejected offers commission paymet',
     // 'list_offers_commission_paymet'
     
+    'cities'=>'Cities',
     'cities_list'=>'Cities List',
     'add_new_city'=>'Add new city',
 

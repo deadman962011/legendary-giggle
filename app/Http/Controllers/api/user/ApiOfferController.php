@@ -7,6 +7,8 @@ use App\Http\Resources\OfferDetailsResource;
 use App\Http\Resources\OfferResource;
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\Shop;
+use App\Models\ShopTranslation;
 
 class ApiOfferController extends Controller
 {
@@ -60,4 +62,19 @@ class ApiOfferController extends Controller
             ], 500);
         }
     }
+
+
+    public function Search(Request $request)  {
+        
+        $translations = ShopTranslation::where('name', 'like', '%' . $request->name . '%')->pluck('shop_id');
+        $shops = Shop::query();
+        $groupped_offers =$shops->whereIn('shop_id', $translations)->whereHas('offers',function($query){
+            $query->where('status',true)->where('isDeleted',false)->where('state','active'); 
+        })->active()->get();
+
+
+
+    }
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\shop;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\shop\staff\saveShopStaffRequest;
 use App\Http\Requests\api\shop\staff\updateShopStaffRequest;
+use App\Http\Resources\merchant\MerchantStaffDetailsResource;
 use App\Http\Resources\merchant\MerchantStaffResource;
 use App\Mail\ShopStaffAdded;
 use App\Models\Role;
@@ -42,6 +43,32 @@ class ShopStaffController extends Controller
             'message' => 'Staff Successfully Loaded'
         ], 200);
     }
+
+
+    public function GetStaff(Request $request)
+    {
+
+        $shop = Auth::guard('shop')->user();
+
+        try {
+            $staff = ShopAdmin::where('id', $request->id)->where('shop_id', $shop->id)->where('isDeleted', false)->firstOrFail();
+    
+            return response()->json([
+                'success' => true,
+                'payload' => new MerchantStaffDetailsResource($staff),
+                'message' => 'staff details Successfully Loaded'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'somthing went wrong'
+            ], 500);
+        }
+
+    }
+
+
 
     public function Store(saveShopStaffRequest $request) {
 
@@ -104,13 +131,16 @@ class ShopStaffController extends Controller
             ]);
 
             if($request->role_id !== $staff->roles[0]->id){
-                $staff->removeRoles();
-                $staff->assignRole($request->role_id);
+                $staff->roles->map(function($role) use($staff) {
+                    $staff->removeRole($role);
+                });
+                $newRole=Role::where('id',$request->role_id)->where('shop_id',$shop->id)->firstOrFail();
+                $staff->assignRole($newRole);
             }
 
             DB::commit();
             $response_data['success']    =   true;
-            $response_data['message']   =  trans('role has been updated successfully');
+            $response_data['message']   =  trans('staff has been updated successfully');
             return response()->json($response_data, 200);
         } catch (\Throwable $th) {
             DB::rollBack();
