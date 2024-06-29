@@ -7,6 +7,7 @@ use App\Http\Requests\api\shop\updateShopContactRequest;
 use App\Http\Resources\merchant\MerchantResource;
 use App\Models\Language;
 use App\Models\Shop;
+use App\Models\ShopAdmin;
 use App\Models\ShopTranslation;
 use App\Models\Upload;
 use Illuminate\Http\Request;
@@ -24,10 +25,10 @@ class ShopController extends Controller
 
         try {
 
-            $getShop=Shop::findOrFail($shop->id);
+            $getShop=ShopAdmin::findOrFail($shop->id);
             return response()->json([
                 'success' => true,
-                'payload' =>  new MerchantResource($getShop),
+                'payload' =>  new MerchantResource($getShop->shop),
                 'message' => 'Shop Successfully loaded'
             ], 200);
         }
