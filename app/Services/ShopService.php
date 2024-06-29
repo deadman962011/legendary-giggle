@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Mail\ShopApproved;
 use App\Models\Role;
+use App\Models\RoleTranslation;
 use App\Models\Shop;
 use App\Models\ShopAdmin;
 use App\Models\ShopAvailabiltiy;
@@ -56,6 +57,21 @@ class ShopService
                 'name' => $shop_admin_role_name,
                 'guard_name' => 'shop',
                 'shop_id' => $shop->id
+            ]);
+
+            RoleTranslation::insert([
+                [
+                    'key' => 'name',
+                    'lang' => 'en', //default language
+                    'value' => 'Shop admin',
+                    'role_id' => $adminRole->id
+                ],
+                [
+                    'key' => 'name',
+                    'lang' => 'ar', //default language
+                    'value' => 'مدير المتجر',
+                    'role_id' => $adminRole->id
+                ],
             ]);
 
             $adminRole->givePermissionTo($base_shop_admin_role->permissions()->pluck('id'));
