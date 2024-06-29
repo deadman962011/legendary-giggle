@@ -20,6 +20,9 @@
                         {{trans('custom.name')}}
                     </th>
                     <th>
+                        {{trans('custom.shop_name')}}
+                    </th>
+                    <th>
                         {{trans('custom.status')}}
                     </th>
                     <th>
@@ -34,6 +37,10 @@
                             </td>
                             <td>
                                 {{ $offer->getTranslation('name') }}
+                            </td>
+                            
+                            <td>
+                                {{ $offer->shop->getTranslation('name') }}
                             </td>
                             <td>
                                 <label class="switch">

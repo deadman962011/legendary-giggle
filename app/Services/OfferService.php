@@ -26,6 +26,7 @@ class OfferService
             'cashback_amount'=>$data->cashback_amount,
             'thumbnail'=>$data->offer_thumbnail,    
             'shop_id'=>$data->shop_id,
+            'status'=>true
         ]);
 
         for ($i=0; $i < count($data->lang); $i++) { 
