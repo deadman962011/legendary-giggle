@@ -36,7 +36,7 @@
                                 {{$offer->id}}
                             </td>
                             <td>
-                                {{ $offer->getTranslation('name') }}
+                                {{ $offer->getTranslation('name','en') }}
                             </td>
                             
                             <td>
