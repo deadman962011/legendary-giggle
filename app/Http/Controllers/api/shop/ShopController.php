@@ -35,7 +35,8 @@ class ShopController extends Controller
             return response()->json([
                 'success' => false,
                 'payload' => null,
-                'message' => 'Somthing went wrong'
+                'message' => 'Somthing went wrong',
+                'debug'=>$th->getMessage()
             ], 500);
         }
     }
