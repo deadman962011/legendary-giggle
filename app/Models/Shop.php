@@ -22,6 +22,12 @@ class Shop extends Model
         return $this->hasMany(ShopTranslation::class);
     }
 
+    public function scopeActive($query)  {
+        return $query->where('isDeleted',false)->where('status',true)->whereHas('offers',function($query) {
+            return $query->where('isDeleted',false)->where('status',true)->where('state','active');
+        });
+    }
+
     /**
      * Get the Categories associated with the Shop
      *

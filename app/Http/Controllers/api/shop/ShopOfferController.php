@@ -124,16 +124,35 @@ class ShopOfferController extends Controller
             $data['reason']=$request->reason;
             
             DB::beginTransaction();
-            $this->approvalService->store('cancel_offer_invoice', $data);
-            DB::commit();
-            return response()->json([
-                'success' => true,
-                'payload' => null,
-                'message' => 'Offer invoice cancelation request successfully saved'
-            ], 200);
+
+
+            //check offer has no pending cancelation request  
+            //thow error 
+            $hasPendingApproval=$this->approvalService->check('cancel_offer_invoice',['offer_id'=>$data['offer_id'],'invoice_id'=>$data['invoice_id']],['pending','approved']);
+
+            if(!$hasPendingApproval){
+                $this->approvalService->store('cancel_offer_invoice', $data);
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'payload' => null,
+                    'message' => 'Offer invoice cancelation request successfully saved'
+                ], 200);
+            }
+            else{
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'payload' => null,
+                    'message' => trans('custom.already_has_previous_offer_invoice_cancelation_request'),
+                ], 500);                
+            }
+
+
 
         } catch (\Throwable $th) {
-           
+           DB::rollBack();
+           dd($th);
             return response()->json([
                 'success' => false,
                 'payload' => null,
@@ -142,10 +161,6 @@ class ShopOfferController extends Controller
             ], 500);
             //throw $th;
         }
- 
-
-
-
     }
 
 

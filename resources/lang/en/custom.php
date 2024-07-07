@@ -166,5 +166,6 @@ return [
     "shop"=>"Shop",
     "minimum_amount_to_withdraw"=>"Minimum amount to withdraw",
     "no_enough_balance"=>"No enough balance",
-    "already_has_pending_withdraw_balance"=>"Already has pending withdraw balance"
+    "already_has_pending_withdraw_balance"=>"Already has pending withdraw balance",
+    "already_has_previous_offer_invoice_cancelation_request"=>"Already has previous offer invoice cancelation request"
 ];

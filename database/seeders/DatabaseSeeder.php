@@ -453,45 +453,10 @@ class DatabaseSeeder extends Seeder
 
         $shop_admin_permissions =   [
             [
-                'name' => 'add_shop_role',
+                'name' => 'show_shop_statistics',
                 'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop role'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة صلاحية للمتجر"],
-                ]
-            ],
-            [
-                'name' => 'edit_shop_role',
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop role'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل صلاحية للمتجر"],
-                ]
-            ],
-            [
-                'name' => 'delete_shop_role',
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop role'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة صلاحية للمتجر"],
-                ]
-            ],
-            [
-                'name' => 'add_shop_staff',
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop staff'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة موظف للمتجر"],
-                ]
-            ],
-            [
-                'name' => 'edit_shop_staff',
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop staff'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل موظف للمتجر"],
-                ]
-            ],
-            [
-                'name' => 'delete_shop_staff',
-                'translation' => [
-                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop staff'],
-                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف للمتجر"],
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Show shop statistics'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اظهار احصائيات المتجر"],
                 ]
             ],
             [
@@ -541,6 +506,48 @@ class DatabaseSeeder extends Seeder
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'pay offer commission'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => "دفع عمولة العرض"],
+                ]
+            ],
+            [
+                'name' => 'add_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_role',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop role'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة صلاحية للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'add_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Add shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "اضافة موظف للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'edit_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Edit shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "تعديل موظف للمتجر"],
+                ]
+            ],
+            [
+                'name' => 'delete_shop_staff',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Delete shop staff'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => "ازالة موظف للمتجر"],
                 ]
             ],
             [
@@ -955,7 +962,7 @@ class DatabaseSeeder extends Seeder
 
         //save roles for the shop
         $base_shop_admin_role = Role::query()->where('shop_id', 0)->where('name', 'Shop Admin')->first();
-        $shop_admin_role_name =$shop->id.'-'.$shop->shop_name .'-shop_admin_role';
+        $shop_admin_role_name = $shop->id . '-' . $shop->shop_name . '-shop_admin_role';
 
         $adminRole = Role::create([
             'name' => $shop_admin_role_name,

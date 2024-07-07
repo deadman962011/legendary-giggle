@@ -332,6 +332,11 @@ return [
                     'url' => '/approval?model=offer&status=pending&action=create',
                     'can'=>['approval_offers']
                 ],
+                [
+                    'text' => 'offer_invoice_cancelation',
+                    'url' => '/approval?model=cancel_offer_invoice&status=pending&action=create',
+                    'can'=>['approval_offers']
+                ],
             ],
         ],
         [

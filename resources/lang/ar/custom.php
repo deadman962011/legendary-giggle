@@ -162,6 +162,7 @@ return [
     "send_to"=>"ارسال الى",
     "customer"=>'العملاء',
     "shop"=>"المتجر",
-    "minimum_amount_to_withdraw"=>"الحد الادنى للسحب"
+    "minimum_amount_to_withdraw"=>"الحد الادنى للسحب",
+    "already_has_previous_offer_invoice_cancelation_request"=>"  يوجد طلب الغاء فاتورة  سابق عرض قيد المراجعة او تم الموافقة عليه"
 
 ];

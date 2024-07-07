@@ -112,7 +112,8 @@ class UserAuthController extends Controller
                         "token" => $token
                     ];
                 } else {
-                    throw new \Exception("somthing went wrong");
+                    throw new \Exception("somthing went wrong_12\
+                    ");
                 }
             } elseif ($request->action === 'verifyUserRegister') {
                 $regRequest = UserRegistrationRequest::where('token', $request->token)->firstOrFail();
@@ -131,7 +132,8 @@ class UserAuthController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
+                'debug'=>$th->getMessage()
             ]);
         }
     }

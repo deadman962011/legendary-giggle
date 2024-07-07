@@ -1,9 +1,13 @@
 <?php
 
 use App\Models\Setting;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+ use Illuminate\Support\Str;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Container\Container;
 use App\Models\Upload;
+
 
 if (!function_exists('get_setting')) {
     function get_setting($key, $default = null, $lang = false)
@@ -154,43 +158,38 @@ if (!function_exists('my_asset')) {
             // close handle to release resources
             curl_close($ch);
             return $result;
-
-
-
-
-            // $postdata = '{
-            //     "to" : "/topics/' . $topic . '",
-            //     "mutable_content": true,
-            //     "data" : {
-            //         "title":"' . $data['title'] . '",
-            //         "body" : "' . $data['description'] . '",
-            //         "image" : "' . $data['image'] . '",
-            //         "is_read": 0,
-            //         "type":"' . $type . '",
-            //     },
-            //     "notification" : {
-            //         "title":"' . $data['title'] . '",
-            //         "body" : "' . $data['description'] . '",
-            //         "image" : "' . $data['image'] . '",
-            //         "body_loc_key":"' . $type . '",
-            //         "type":"' . $type . '",
-            //         "is_read": 0,
-            //         "icon" : "new",
-            //         "sound": "notification.wav",
-            //         "android_channel_id": "mybill"
-            //         ' . $click_action . '
-            //       }
-            // }';
-
-
-
-
-
-
-
-
-
-
         }
     }
+
+
+    if (!function_exists('paginateCollection')) {
+        function paginateCollection(Collection $results, $perPage)
+        {
+    
+            $pageNumber = Paginator::resolveCurrentPage('page');
+            $items = $results->forPage($pageNumber, $perPage);
+            $total = $results->count();
+            $currentPage = $pageNumber;
+            $options = [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ];
+    
+            return Container::getInstance()->makeWith(
+                LengthAwarePaginator::class,
+                compact(
+                    'items',
+                    'total',
+                    'perPage',
+                    'currentPage',
+                    'options'
+                )
+            );
+    
+        }
+    }
+    
+
+
+
 }

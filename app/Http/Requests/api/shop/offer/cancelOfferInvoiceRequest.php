@@ -30,9 +30,7 @@ class cancelOfferInvoiceRequest extends FormRequest
             'reason'=>'required',
             'invoice_id'=>[
                 'required',
-                Rule::exists('offer_invoices','id')->where(function ($query) {
-                    $query->where('offer_id',$this->id)->where('isCanceled',false);
-                })
+                Rule::exists('offer_invoices','id')
             ]
         ];
     }
