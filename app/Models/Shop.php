@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -11,16 +12,22 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $appends=['distance'];
+    protected $appends=['distance','is_premium'];
 
     protected $with=['translations','categories'];
 
-    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id','district_id','shop_contact_email','shop_contact_phone','shop_contact_website'];
+    protected $fillable=['shop_name','shop_logo','longitude','latitude','address','tax_register','status','zone_id','district_id','shop_contact_email','shop_contact_phone','shop_contact_website','isDeleted'];
+
+
+
 
     public function translations()
     {
         return $this->hasMany(ShopTranslation::class);
     }
+
+
+
 
     public function scopeActive($query)  {
         return $query->where('isDeleted',false)->where('status',true)->whereHas('offers',function($query) {
@@ -33,10 +40,21 @@ class Shop extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    // public function categories()
+    // {
+    //     return $this->hasOne(ShopCategory::class, 'shop_id', 'id');
+    // }
+
+    /**
+     * Get all of the categories for the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function categories()
     {
-        return $this->hasOne(ShopCategory::class, 'shop_id', 'id');
+        return $this->hasMany(ShopCategory::class, 'shop_id', 'id');
     }
+
 
     
     /**
@@ -111,6 +129,25 @@ class Shop extends Model
     {
         return $this->hasMany(ShopAvailabiltiy::class, 'shop_id', 'id');
     }
+
+    /**
+     * Get all of the shopSubscription for the Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shopSubscription()
+    {
+        return $this->hasMany(ShopSubscription::class, 'shop_id', 'id');
+    }
+
+
+    public function getIsPremiumAttribute()  {
+        
+        return $this->shopSubscription()->where('status','active')->where('id','!=','1')->exists();
+
+    }
+
+
 
 
 

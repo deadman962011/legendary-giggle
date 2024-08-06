@@ -47,8 +47,29 @@ class saveOfferRequest extends FormRequest
             'shop_id'=>'required|exists:shops,id'
         ];
 
-
-
         return $rules;
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => __('custom.validation_error'),
+            'errors'      => $validator->errors()
+        ],422));
+    }
+
+
+    public function messages()
+    {
+    
+        $messages = [];
+
+        foreach ($this->fetchedLanguages as $lang) {
+            $messages["name_".$lang->key.".required"] = "shop name in ".$lang->name." is required.";
+        }
+
+        return $messages;
     }
 }

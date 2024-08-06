@@ -44,12 +44,12 @@
                             </td>
                             <td>
                                 <label class="switch">
-                                    <input type="checkbox" data-id='{{$offer->id}}' oninput="update_status(this)" @checked($offer->status)>
+                                    <input type="checkbox" data-id='{{$offer->id}}' oninput="update_status(this)" @checked($offer->status) @disabled($offer->state === 'expired')>
                                     <span class="slider round"></span>
                                   </label>
                             </td>
                             <td>
-                                <button data-delete-url='{{route('offer.delete',['id'=>$offer->id])}}'  class="btn btn-primary delete-button" ><i class="fas fa-trash"></i></button>
+                                <button data-delete-url='{{route('offer.delete',['id'=>$offer->id])}}'  class="btn btn-primary delete-button" @disabled($offer->state === 'expired')><i class="fas fa-trash"></i></button>
                                 {{-- <a href="{{route('approval.show',['id'=>$approval_request->id])}}" class="btn btn-primary">ap</a> --}}
                             </td>
                         </tr>

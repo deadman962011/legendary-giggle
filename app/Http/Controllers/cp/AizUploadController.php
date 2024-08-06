@@ -8,7 +8,7 @@ use App\Models\Upload;
 use Response;
 use Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use  Image;
 use enshrined\svgSanitize\Sanitizer;
 
 class AizUploadController extends Controller
@@ -148,41 +148,41 @@ class AizUploadController extends Controller
                 // Get the MIME type of the file
                 $file_mime = finfo_file($finfo, base_path('public/') . $path);
 
-                if ($type[$extension] == 'image' && get_setting('disable_image_optimization') != 1) {
-                    try {
-                        $img = Image::make($request->file('aiz_file')->getRealPath())->encode();
-                        $height = $img->height();
-                        $width = $img->width();
-                        if ($width > $height && $width > 1500) {
-                            $img->resize(1500, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
-                        } elseif ($height > 1500) {
-                            $img->resize(null, 800, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
-                        }
-                        $img->save(base_path('public/') . $path);
-                        clearstatcache();
-                        $size = $img->filesize();
-                    } catch (\Exception $e) {
-                        //dd($e);
-                    }
-                }
+                // if ($type[$extension] == 'image' ) {
+                //     try {
+                //         $img = Image::make($request->file('aiz_file')->getRealPath())->encode();
+                //         $height = $img->height();
+                //         $width = $img->width();
+                //         if ($width > $height && $width > 1500) {
+                //             $img->resize(1500, null, function ($constraint) {
+                //                 $constraint->aspectRatio();
+                //             });
+                //         } elseif ($height > 1500) {
+                //             $img->resize(null, 800, function ($constraint) {
+                //                 $constraint->aspectRatio();
+                //             });
+                //         }
+                //         $img->save(base_path('public/') . $path);
+                //         clearstatcache();
+                //         $size = $img->filesize();
+                //     } catch (\Exception $e) {
+                //         //dd($e);
+                //     }
+                // }
 
-                if (env('FILESYSTEM_DRIVER') == 's3') {
-                    Storage::disk('s3')->put(
-                        $path,
-                        file_get_contents(base_path('public/') . $path),
-                        [
-                            'visibility' => 'public',
-                            'ContentType' => $extension == 'svg' ? 'image/svg+xml' : $file_mime
-                        ]
-                    );
-                    if ($arr[0] != 'updates') {
-                        unlink(base_path('public/') . $path);
-                    }
-                }
+                // if (env('FILESYSTEM_DRIVER') == 's3') {
+                //     Storage::disk('s3')->put(
+                //         $path,
+                //         file_get_contents(base_path('public/') . $path),
+                //         [
+                //             'visibility' => 'public',
+                //             'ContentType' => $extension == 'svg' ? 'image/svg+xml' : $file_mime
+                //         ]
+                //     );
+                //     if ($arr[0] != 'updates') {
+                //         unlink(base_path('public/') . $path);
+                //     }
+                // }
 
                 $upload->extension = $extension;
                 $upload->file_name = $path;
@@ -238,10 +238,10 @@ class AizUploadController extends Controller
                 unlink(public_path() . '/' . $upload->file_name);
             }
             $upload->delete();
-            flash(translate('File deleted successfully'))->success();
+            // flash(translate('File deleted successfully'))->success();
         } catch (\Exception $e) {
             $upload->delete();
-            flash(translate('File deleted successfully'))->success();
+            // flash(translate('File deleted successfully'))->success();
         }
         return back();
     }
@@ -289,10 +289,10 @@ class AizUploadController extends Controller
                     unlink(public_path() . '/' . $upload->file_name);
                 }
                 $upload->delete();
-                flash(translate('File deleted successfully'))->success();
+                // flash(translate('File deleted successfully'))->success();
             } catch (\Exception $e) {
                 $upload->delete();
-                flash(translate('File deleted successfully'))->success();
+                // flash(translate('File deleted successfully'))->success();
             }
         }
 
@@ -307,9 +307,9 @@ class AizUploadController extends Controller
         $project_attachment = Upload::find($id);
         try {
             $file_path = public_path($project_attachment->file_name);
-            return Response::download($file_path);
+            // return Response::download($file_path);
         } catch (\Exception $e) {
-            flash(translate('File does not exist!'))->error();
+            // flash(translate('File does not exist!'))->error();
             return back();
         }
     }

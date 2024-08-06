@@ -19,17 +19,17 @@
                                 #
                             </th>
                             <th>
-                                {{trans('custom.name')}}
+                                {{ trans('custom.name') }}
                             </th>
                             <th>
-                                {{trans('custom.category')}}
+                                {{ trans('custom.category') }}
                             </th>
                             <th>
-                                {{trans('custom.status')}}
+                                {{ trans('custom.status') }}
                             </th>
-                            
+
                             <th>
-                                {{trans('custom.action')}}
+                                {{ trans('custom.action') }}
                             </th>
                         </thead>
                         <tbody>
@@ -41,12 +41,14 @@
                                     <td>
                                         {{ $shop->getTranslation('name') }}
                                     </td>
-                                    <td> 
-
-                                        @foreach ($shop->categories->get() as $shopCategory)
-                                        {{  $shopCategory->category->getTranslation('name')  }} ,
-                                            
+                                    <td>
+                                        @foreach ($shop->categories as $shopCategory)
+                                            {{ $shopCategory->category->getTranslation('name') }} , 
                                         @endforeach
+                                        {{-- {{ }} --}}
+                                        {{-- @foreach ($shop->categories->first() as $shopCategory)
+                                            {{  $shopCategory->category->getTranslation('name')  }} ,
+                                        @endforeach --}}
 
                                     </td>
                                     <td>
@@ -57,7 +59,8 @@
                                         </label>
                                     </td>
                                     <td>
-                                        <a href="{{route('shop.show',['id'=>$shop->id])}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('shop.show', ['id' => $shop->id]) }}" class="btn btn-primary"><i
+                                                class="fas fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -96,21 +99,21 @@
             var url = '{{ route('shop.update_status', ['id' => ':id']) }}';
             url = url.replace(':id', itemId)
             $.ajax({
-                method: "PUT",
-                url,
-                data: {
-                    _token: $('meta[name="c_token"]').attr("content")
-                }
-            }).then((resp) => {
-                if (resp.success) {
-                    toastr["success"](resp.message)
-                } else {
-                    toastr["error"](resp.message)
-                }
-            })
-            .catch(()=>{
-                toastr["error"]('somthing went wrong')
-            })
+                    method: "PUT",
+                    url,
+                    data: {
+                        _token: $('meta[name="c_token"]').attr("content")
+                    }
+                }).then((resp) => {
+                    if (resp.success) {
+                        toastr["success"](resp.message)
+                    } else {
+                        toastr["error"](resp.message)
+                    }
+                })
+                .catch(() => {
+                    toastr["error"]('somthing went wrong')
+                })
         }
     </script>
 @endpush

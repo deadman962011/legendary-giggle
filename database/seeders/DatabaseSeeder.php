@@ -13,6 +13,9 @@ use App\Models\Shop;
 use App\Models\ShopAdmin;
 use App\Models\ShopAvailabiltiy;
 use App\Models\ShopCategory;
+use App\Models\ShopSubscription;
+use App\Models\ShopSubscriptionPlan;
+use App\Models\ShopSubscriptionPlanTranslation;
 use App\Models\ShopTranslation;
 use App\Models\ShopWallet;
 use Illuminate\Database\Seeder;
@@ -30,6 +33,7 @@ class DatabaseSeeder extends Seeder
      **/
     public function run(): void
     {
+        $this->seedPlan();
         $this->seedAdminRole();
         $this->seedAdmin();
         $this->seedShopRoles();
@@ -40,8 +44,97 @@ class DatabaseSeeder extends Seeder
         $this->seedConfig();
         $this->seedShop();
         $this->seedDepositBankAccouts();
+        
     }
 
+
+
+
+    public function seedPlan()
+    {
+
+        $plans = [
+            [
+                'plan' => [
+                    'name' => 'Basic',
+                    'price' => 0,
+                    'duration' => 0,
+                    'status' => 1,
+                    'isDeleted' => 0
+                ],
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Basic',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'الاساسية',
+                    ]
+                ],
+            ],
+            [
+                'plan' => [
+                    'name' => 'Monthly',
+                    'price' => 50.99,
+                    'duration' => 30,
+                    'status' => 1,
+                    'isDeleted' => 0
+                ],
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Monthly Subscription',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'اشتراك شهري',
+                    ]
+                ],
+            ],
+            [
+                'plan' => [
+                    'name' => 'Yearly',
+                    'price' => 500.99,
+                    'duration' => 365,
+                    'status' => 1,
+                    'isDeleted' => 0
+                ],
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Yearly Subscription',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'اشتراك سنوي',
+                    ]
+                ],
+            ],
+        ];
+
+        foreach ($plans as $plan) {
+           $savedPlan= ShopSubscriptionPlan::create([
+                'name' => $plan['plan']['name'],
+                'price' => $plan['plan']['price'],
+                'duration' => $plan['plan']['duration'],
+            ]);
+            foreach ($plan['translations'] as $translation) {
+                ShopSubscriptionPlanTranslation::create([
+                    'key' => $translation['key'],
+                    'lang' => $translation['lang'],
+                    'value' => $translation['value'],
+                    'shop_subscription_plan_id' => $savedPlan->id
+                ]);
+            }
+        }
+    }
 
 
     public function seedAdminRole()
@@ -346,6 +439,36 @@ class DatabaseSeeder extends Seeder
                 'translation' => [
                     ['key' => 'name', 'lang' => 'en', 'value' => 'Display Withdraw balance requests'],
                     ['key' => 'name', 'lang' => 'ar', 'value' => 'رفض طلبات سحب الرصيد '],
+                ]
+            ],
+            [
+                'name' => 'display_shop_subscription_requests',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Shop subscription requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض طلبات اشتراك المتجر '],
+                ]
+            ],
+            [
+                'name' => 'show_shop_subscription_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Display Shop subscription requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'عرض معلومات طلبات اشتراك المتجر '],
+                ]
+            ],
+
+            [
+                'name' => 'approve_shop_subscription_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Approve Shop subscription requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'موافقة طلبات اشتراك المتجر '],
+                ]
+            ],
+
+            [
+                'name' => 'reject_shop_subscription_request',
+                'translation' => [
+                    ['key' => 'name', 'lang' => 'en', 'value' => 'Reject Shop subscription requests'],
+                    ['key' => 'name', 'lang' => 'ar', 'value' => 'رفض طلبات اشتراك المتجر '],
                 ]
             ],
             [
@@ -903,6 +1026,208 @@ class DatabaseSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+                'key' => 'user_referral_offer_share_status',
+                'value' => true,
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'toggle',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'User referral offer share',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'مشاركة العرض العميل',
+                    ],
+                ],
+            ],
+            [
+                'key' => 'user_referral_offer_share_amount',
+                'value' => '1',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'User referral offer share amount',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'مشاركة العرض العميل قيمة العمولة',
+                    ],
+                ],
+            ],
+            [
+                'key' => 'user_referral_registration_status',
+                'value' => true,
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'toggle',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'User referral registration',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'التسجيل بكود احالة للعملاء',
+                    ],
+                ],
+            ],
+            [
+                'key' => 'user_referral_registration_amount',
+                'value' => '1',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'User referral registration amount',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'التسجيل بكود احالة للعملاء قيمة العمولة',
+                    ],
+                ],
+            ],
+
+            [
+                'key' => 'connected_user_shop_bonus_approved_offer_invoice_status',
+                'value' => true,
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'toggle',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus amount for every approved offer invoice status',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => 'بونص للمتاجر من العملاء المتصلين لكل فاتورة عرض مؤكدة حالة',
+                    ],
+                ],
+            ],
+
+
+
+            [
+                'key' => 'connected_user_shop_bonus_amount_approved_offer_invoice',
+                'value' => '1',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus amount for every approved offer invoice',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => ' بونص للمتاجر من العملاء المتصلين لكل فاتورة عرض مؤكدة',
+                    ],
+                ],
+            ],
+
+
+            [
+                'key' => 'connected_user_shop_bonus_shared_offer_status',
+                'value' => true,
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'toggle',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus amount for every offer share status',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => ' بونص للمتاجر من العملاء المتصلين لكل مشاركة لعرض حالة',
+                    ],
+                ],
+            ],
+
+
+            [
+                'key' => 'connected_user_shop_bonus_amount_shared_offer',
+                'value' => '0.5',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus amount for every offer share',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => ' بونص للمتاجر من العملاء المتصلين لكل مشاركة لعرض',
+                    ],
+                ],
+            ],
+
+
+            [
+                'key' => 'connected_user_shop_bonus_split_balance_status',
+                'value' => true,
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'toggle',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus status for every split balance',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => ' بونص للمتاجر من العملاء المتصلين لكل تقسيم رصيد مع الاصدقاء حالة',
+                    ],
+                ],
+            ],
+
+
+            [
+                'key' => 'connected_user_shop_bonus_amount_split_balance',
+                'value' => '0.5',
+                'sub_value' => '',
+                'section' => 'general',
+                'input_type' => 'number',
+                'translations' => [
+                    [
+                        'key' => 'name',
+                        'lang' => 'en',
+                        'value' => 'Connected user shop bonus amount for every split balance',
+                    ],
+                    [
+                        'key' => 'name',
+                        'lang' => 'ar',
+                        'value' => ' بونص للمتاجر من العملاء المتصلين لكل تقسيم رصيد مع الاصدقاء',
+                    ],
+                ],
+            ],
         ];
 
 
@@ -942,7 +1267,12 @@ class DatabaseSeeder extends Seeder
             'shop_contact_email' => 'deadman962111@gmail.com',
             'shop_contact_phone' => '1234567890',
             'tax_register' => '301071869100003',
-            'status' => true
+            'status' => true,
+        ]);
+
+        ShopSubscription::create([
+            'shop_id' => $shop->id,
+            'shop_subscription_plan_id'=>'1'
         ]);
 
         //save shop wallet

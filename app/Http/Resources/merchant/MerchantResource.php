@@ -24,7 +24,8 @@ class MerchantResource extends JsonResource
             'shop_contact_website'=>$this->shop_contact_website,
             'menu'=>$this->menu ? getFileUrl($this->menu) : null,
             'logo'=>$this->shop_logo ? getFileUrl($this->shop_logo) : null,
-        ];
+            'isPremium'=>$this->is_premium
+        ]; 
         return parent::toArray($request);
     }
 }

@@ -163,6 +163,9 @@ return [
     "customer"=>'العملاء',
     "shop"=>"المتجر",
     "minimum_amount_to_withdraw"=>"الحد الادنى للسحب",
-    "already_has_previous_offer_invoice_cancelation_request"=>"  يوجد طلب الغاء فاتورة  سابق عرض قيد المراجعة او تم الموافقة عليه"
+    "already_has_previous_offer_invoice_cancelation_request"=>"  يوجد طلب الغاء فاتورة  سابق عرض قيد المراجعة او تم الموافقة عليه",
+    "change_status_to_in_progress_and_export_as_csv"=>"التغيير الى قيد المراجعة والتصدير كملف CSV",
+    "change_status_to_approved"=>"تغيير الحالة الى موافقة",
+
 
 ];

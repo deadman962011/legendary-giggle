@@ -8,6 +8,7 @@ use App\Http\Resources\OfferInvoiceDetailsResource;
 use App\Http\Resources\OfferInvoiceResource;
 use App\Models\OfferInvoice;
 use App\Models\Shop;
+use App\Models\ShopConnectedUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -124,4 +125,36 @@ class ApiOfferInvoiceController extends Controller
             ], 500);
         }
     }
+
+
+
+
+    public function GetOfferInvoiceByOfferId(Request $request)  {
+        
+        $user = Auth::guard('user')->user();
+
+        try {
+            $offerInvoice = OfferInvoice::where('user_id', $user->id)->where('offer_id', $request->offer_id)->firstOrFail();
+
+            return response()->json([
+                'success' => true,
+                'payload' => new OfferInvoiceDetailsResource($offerInvoice),
+                'message' => 'offer invoice successfully loaded'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'Somthing went wrong',
+                'debug' => $th->getMessage()
+            ], 500);
+        }
+        
+
+    }
+
+
+
+
+
 }

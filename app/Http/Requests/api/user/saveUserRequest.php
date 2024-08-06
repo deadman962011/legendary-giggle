@@ -31,6 +31,7 @@ class saveUserRequest extends FormRequest
             'first_name'=>'required',
             'last_name'=>'required',
             'email'=>'required|unique:users,email',
+            // 'phone'=>'required|unique:users,phone',
             'birth_date'=>'required',
             'gender'=>'required|in:male,female'
         ];

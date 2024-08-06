@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/list','List')->name('user_withdraw_balance_request.list');
 
+Route::get('/list_bulk','ListBulk')->name('user_withdraw_balance_request.list_bulk');
+
+Route::post('/update_bulk','UpdateBulk')->name('user_withdraw_balance_request.update_bulk');
 
 Route::get('/{id}','Show')->name('user_withdraw_balance_request.show');
 
-
 Route::post('/{id}','Update')->name('user_withdraw_balance_request.update');
+
 
 
 

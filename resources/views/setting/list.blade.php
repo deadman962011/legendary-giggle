@@ -29,6 +29,11 @@
                                 @elseif($setting->input_type === 'number')
                                     <input class="form-control setting-input" type="number" name='{{ $setting->key }}'
                                         value="{{ $setting->value }}" required>
+                                @elseif($setting->input_type === 'toggle')
+                                    <label class="switch">
+                                        <input type="checkbox" data-id='{{$setting->key}}' oninput="update_status(this)" @checked($setting->value == 1)>
+                                        <span class="slider round"></span>
+                                    </label>
                                 @endif
                             </div>
                         </div>

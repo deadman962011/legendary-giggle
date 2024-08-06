@@ -317,6 +317,16 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+
+
+        [
+            'text' => 'Dashboard',
+            'shift' => 'ms-2',
+            'icon' => 'far fa-fw fa-file',
+            'url' => '/',
+        ],
+
+
         [
             'text' => 'approval_requests',
             'icon' => 'far fa-fw fa-file',
@@ -372,6 +382,28 @@ return [
                 ],
             ],
         ],
+
+
+        [
+            'text' => 'shop_subscriptions',
+            'icon' => 'far fa-fw fa-file',
+            'can'=>['add_shop_offer','edit_shop_offer','delete_shop_offer'],
+            'submenu' => [
+                [
+                    'text' => 'plans_list',
+                    'url' => '/plan/list',
+                ],
+                [
+                    'text' => 'add_new_plan',
+                'url' => '/plan/new',
+                    'can'=>['add_shop_offer']
+                ],
+            ],
+        ],
+
+
+
+
         [
             'text' => 'offers',
             'icon' => 'far fa-fw fa-file',
@@ -388,7 +420,6 @@ return [
                 ],
             ],
         ],
-
         [
             'text' => 'notifications',
             'icon' => 'far fa-fw fa-file',
@@ -529,6 +560,15 @@ return [
                             'shift' => 'ms-3',
                             'can'=>['display_withdraw_balance_requests']
                         ],
+
+                        [
+                            'text' => 'list_bulk_withdraw_balance_requests',
+                            'url' => '/user_withdraw_balance_requests/list_bulk',
+                            'shift' => 'ms-3',
+                            'can'=>['display_withdraw_balance_requests']
+                        ],
+
+
                     ]
                 ],
                 [
@@ -552,6 +592,30 @@ return [
                             'url' => '/shop_commission_payment/list?status=rejected',
                             'shift' => 'ms-3',
                             'can'=>['display_shop_offers_commission_payment_requests']
+                        ],
+                    ]
+                ],
+                [
+                    'text' => 'shop_subscription_requests',
+                    'shift' => 'ms-2',
+                    'submenu' => [
+                        [
+                            'text' => 'list_pending_shop_subscription_requests',
+                            'url' => '/shop_subscription_requests/list?status=pending',
+                            'shift' => 'ms-3',
+                            'can'=>['display_shop_subscription_requests']
+                        ],
+                        [
+                            'text' => 'list_shop_subscription_requests',
+                            'url' => '/shop_subscription_requests/list?status=approved',
+                            'shift' => 'ms-3',
+                            'can'=>['show_shop_subscription_request']
+                        ],
+                        [
+                            'text' => 'list_rejected_shop_subscription_requests',
+                            'url' => '/shop_subscription_requests/list?status=rejected',
+                            'shift' => 'ms-3',
+                            'can'=>['show_shop_subscription_request']
                         ],
                     ]
                 ],

@@ -28,7 +28,8 @@ class updateUserProfile extends FormRequest
             'first_name'=>'required',
             'last_name'=>'required',
             'birth_date'=>'required',
-            'gender'=>'required|in:male,female'
+            'gender'=>'required|in:male,female',
+            'phone'=>'required|unique:users,phone',
 
         ];
     }

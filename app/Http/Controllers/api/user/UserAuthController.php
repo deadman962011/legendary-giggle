@@ -111,6 +111,11 @@ class UserAuthController extends Controller
                         "user" => $user,
                         "token" => $token
                     ];
+
+                    //update user fcm;
+                    $user->fcm_token=$request->header('fcm_token');
+                    $user->save();
+
                 } else {
                     throw new \Exception("somthing went wrong_12\
                     ");
@@ -149,6 +154,10 @@ class UserAuthController extends Controller
             $user = $user->append('zone');
             //
             $token = auth('user')->login($user);
+
+            //update user fcm;
+            $user->fcm_token=$request->header('fcm_token');
+            $user->save();
 
             DB::commit();
             return response()->json([
@@ -199,6 +208,7 @@ class UserAuthController extends Controller
                 'last_name' => $request->last_name,
                 'birth_date' => $request->birth_date,
                 'gender' => $request->gender,
+                'phone'=>$request->phone
                 // 'email'=>$req
             ]);
             DB::commit();
@@ -308,7 +318,7 @@ class UserAuthController extends Controller
         } catch (\Throwable $th) {
 
             return response()->json([
-                'result' => false,
+                'success' => false,
                 'message' => $th->getMessage(),
                 'path' => ""
             ]);
@@ -318,7 +328,19 @@ class UserAuthController extends Controller
 
 
 
-    function Logout()
+    function Logout(Request $request)
     {
+
+        $user = Auth::guard('user')->user();
+        $user=User::find($user->id);
+        $user->fcm_token='';
+        $user->save();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'logged out successfully',
+            'path' => ""
+        ]);
     }
 }

@@ -25,7 +25,6 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('isDeleted')->default(false);
-            
             $table->bigInteger('menu')->unsigned()->index()->nullable();
             $table->foreign('menu')->references('id')->on('uploads')->onDelete('cascade');
 

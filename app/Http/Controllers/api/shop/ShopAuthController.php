@@ -88,6 +88,11 @@ class ShopAuthController extends Controller
                     ],
                     "token" => $token
                 ];
+
+                //update admin fcm;
+                $admin->fcm_token=$request->header('fcm_token');
+                $admin->save();
+
             } elseif ($request->action === 'verifyShopRegister') {
                 $regrequest = ShopRegistrationRequest::where('token', $request->token)->firstOrFail();
                 $payload = [
@@ -121,7 +126,6 @@ class ShopAuthController extends Controller
 
         $data = $request->all();
         $data['shop_logo'] = '1';
-
         // if($request->shop_logo){
 
         // }
@@ -143,5 +147,22 @@ class ShopAuthController extends Controller
             DB::rollBack();
             //throw $th;
         }
+    }
+
+
+    function Logout(Request $request)
+    {
+
+        $shop_admin = Auth::guard('shop')->user();
+        $shop_admin=ShopAdmin::find($shop_admin->id);
+        $shop_admin->fcm_token='';
+        $shop_admin->save();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'logged out successfully',
+            'path' => ""
+        ]);
     }
 }

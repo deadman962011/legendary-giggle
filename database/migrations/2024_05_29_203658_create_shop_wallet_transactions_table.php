@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('amount');
             $table->string('reason');
+            $table->string('type');
             $table->bigInteger('wallet_id')->unsigned()->index();
             $table->foreign('wallet_id')->references('id')->on('shop_wallets')->onDelete('cascade');
             $table->timestamps();

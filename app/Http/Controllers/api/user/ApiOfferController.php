@@ -10,6 +10,7 @@ use App\Http\Resources\OfferSearchHistoryResource;
 use App\Http\Resources\OfferSearchResource;
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\OfferInvoice;
 use App\Models\Search;
 use App\Models\Shop;
 use App\Models\ShopTranslation;
@@ -79,19 +80,22 @@ class ApiOfferController extends Controller
             return $query->where('isDeleted', false)->where('status', true)->where('state', 'active');
         });
         $groupped_offers=$groupped_offers->get();
-        
-        if($request->filter && $request->filter==='nearby'){
-            $groupped_offers=$groupped_offers->sortBy('distance'); 
-        }
-        
         $mergedOffers = $groupped_offers->flatMap(function ($shop) {
             return $shop->offers;
         });
-
-        if($request->filter && $request->filter==='cashback_amount'){
-            $groupped_offers=$groupped_offers->sortBy('cashback_amount'); 
+        
+        if($request->filter && $request->filter==='nearby'){
+            $offers=$mergedOffers->sortBy('shop.distance'); 
+        }
+        else if($request->filter && $request->filter==='cashback_amount'){
+            $offers=$mergedOffers->sortByDesc('cashback_amount')->values(); 
+        }
+        else{
+            $offers=$mergedOffers;
         }
         
+
+
         //save search history
         Search::create([
             'query'=>$request->name,
@@ -100,7 +104,7 @@ class ApiOfferController extends Controller
  
         return response()->json([
             'success'=>true,
-            'payload'=>OfferSearchResource::collection(paginateCollection($mergedOffers,6))->resource
+            'payload'=>OfferSearchResource::collection(paginateCollection($offers,6))->resource
         ]);
 
     }
@@ -118,6 +122,37 @@ class ApiOfferController extends Controller
             'payload'=>OfferSearchHistoryResource::collection($searches),
             'message'=>'search history successfully loaded'
         ]);
+        
+
+
+    }
+
+
+    public function OfferCashbackRecived(Request $request) {
+
+        //  
+        $user=Auth::guard('user')->user();
+         
+        try {
+            $offerInvoice = OfferInvoice::where('user_id', $user->id)->where('offer_id', $request->id)->firstOrFail();
+
+            // new OfferInvoiceDetailsResource($offerInvoice),
+            return response()->json([
+                'success' => true,
+                'payload' =>[
+                    'amount'=>intval($offerInvoice->amount),
+                    'hasCoupon'=>false
+                ], 
+                'message' => 'offer invoice successfully loaded'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'payload' => null,
+                'message' => 'Somthing went wrong',
+                'debug' => $th->getMessage()
+            ], 500);
+        }
         
 
 

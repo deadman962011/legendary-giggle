@@ -24,11 +24,13 @@ class User extends Authenticatable implements JWTSubject
         'first_name',
         'last_name',
         'email',
+        'phone',
         'password',
         'gender',
         'birth_date',
         'auth_token',
-        'avatar'
+        'avatar',
+        'fcm_token'
     ];
 
     /**
@@ -53,7 +55,7 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+ 
 
     /**
      * Get the wallet a the User
@@ -71,6 +73,18 @@ class User extends Authenticatable implements JWTSubject
         return getFileUrl($this->avatar);
 
     }
+
+
+    /**
+     * Get the ShopConnection associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function ShopConnection()
+    {
+        return $this->hasOne(ShopConnectedUser::class, 'user_id', 'id');
+    }
+    
 
 
     public function getJWTIdentifier()

@@ -108,7 +108,6 @@ class ApiWithdrawRequestController extends Controller
             'message' => 'user withdraw request successfully saved'
         ], 200);
 
-
     }
 
 
